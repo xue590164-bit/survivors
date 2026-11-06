@@ -64,7 +64,7 @@ export class Hud {
       .setOrigin(0, 0.5).setScrollFactor(0).setDepth(Depths.Hud + 1).setVisible(false);
   }
 
-  update(runSec: number, durationSec: number, kills: number, bosses: Enemy[]): void {
+  update(runSec: number, durationSec: number, kills: number, bosses: Enemy[], timerLabel?: string): void {
     const p = this.player;
     const g = this.g;
     g.clear();
@@ -84,7 +84,7 @@ export class Hud {
     g.lineStyle(1, UI.colors.gold, 0.6).strokeRect(16, 50, 246, 14);
     this.infoText.setText(`Lv.${p.level}   HP ${Math.ceil(p.hp)}/${p.stats.maxHp}   击杀 ${kills}`);
 
-    this.timerText.setText(`${fmt(runSec)} / ${fmt(durationSec)}`);
+    this.timerText.setText(timerLabel ?? `${fmt(runSec)} / ${fmt(durationSec)}`);
 
     // 神兵残片计数（>0 才显示）
     const shards = p.relicShards;

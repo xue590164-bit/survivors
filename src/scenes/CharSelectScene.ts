@@ -15,6 +15,8 @@ export class CharSelectScene extends Phaser.Scene {
   private stageCards = new Map<StageDef, Phaser.GameObjects.Rectangle>();
   private selectedStage: StageDef | null = null;
   private startBtn!: Phaser.GameObjects.Container;
+  private selectedMods = new Set<string>();
+  private modChips: Phaser.GameObjects.Container[] = [];
 
   constructor() {
     super(SceneKeys.CharSelect);
@@ -99,9 +101,10 @@ export class CharSelectScene extends Phaser.Scene {
     this.view.add(mini);
 
     const stages = db().stages();
+    const pitch = stages.length > 4 ? 102 : 120;
     stages.forEach((s, i) => {
       const x = GAME_WIDTH / 2;
-      const y = 300 + i * 120;
+      const y = 296 + i * pitch;
       const unlocked = saveSystem.isStageUnlocked(s.id);
       const canBuy = !unlocked && s.unlockCost !== undefined;
       const card = this.add
@@ -114,7 +117,8 @@ export class CharSelectScene extends Phaser.Scene {
       this.view.add(txt(this, x - 190, y - 18, title, {
         fontSize: '21px', color: canBuy ? UI.text.gold : UI.text.body,
       }).setOrigin(0, 0.5));
-      this.view.add(txt(this, x - 190, y + 16, canBuy ? `时长 ${Math.floor(s.durationSec / 60)} 分钟（点击解锁）` : `时长 ${Math.floor(s.durationSec / 60)} 分钟`, {
+      const dur = s.mode === 'bossrush' ? 'Boss连战 · 无限讨伐' : `时长 ${Math.floor(s.durationSec / 60)} 分钟`;
+      this.view.add(txt(this, x - 190, y + 16, canBuy ? `${dur}（点击解锁）` : dur, {
         fontSize: '13px', color: UI.text.dim,
       }).setOrigin(0, 0.5));
       if (unlocked) {
@@ -123,6 +127,7 @@ export class CharSelectScene extends Phaser.Scene {
           for (const [, rc] of this.stageCards) rc.setStrokeStyle(2, UI.colors.goldDim);
           card.setStrokeStyle(3, UI.colors.goldBright);
           this.startBtn.setAlpha(1);
+          this.refreshMods();
         });
       } else if (canBuy) {
         card.on('pointerdown', () => {
@@ -136,11 +141,14 @@ export class CharSelectScene extends Phaser.Scene {
       }
     });
 
+    this.renderMods(300 + stages.length * pitch - 46);
+
     this.startBtn = makeButton(this, GAME_WIDTH / 2 + 110, GAME_HEIGHT - 70, '出发！', () => {
       if (!this.selectedChar || !this.selectedStage) return;
       this.scene.start(SceneKeys.Game, {
         characterId: this.selectedChar.id,
         stageId: this.selectedStage.id,
+        modifiers: [...this.selectedMods],
       });
     }, { width: 240, height: 56, fontSize: 24 });
     this.startBtn.setAlpha(0.4);
@@ -149,6 +157,56 @@ export class CharSelectScene extends Phaser.Scene {
     this.view.add(makeButton(this, GAME_WIDTH / 2 - 110, GAME_HEIGHT - 70, '重选英雄', () => this.renderCharPick(), {
       width: 160, height: 56,
     }));
+  }
+
+  /** 难度词条行：Boss Rush 不适用则置灰 */
+  private renderMods(y: number): void {
+    this.modChips = [];
+    const mods = db().modifiers();
+    const w = 118;
+    const total = mods.length * w + (mods.length - 1) * 10;
+    let x = (GAME_WIDTH - total) / 2 + w / 2;
+    this.view.add(txt(this, GAME_WIDTH / 2, y - 24, '难度词条（惩罚换金币）', {
+      fontSize: '13px', color: UI.text.gold,
+    }).setOrigin(0.5));
+    for (const m of mods) {
+      const bg = this.add.rectangle(0, 0, w, 30, UI.colors.woodDark).setStrokeStyle(1, UI.colors.goldDim);
+      const label = txt(this, 0, 0, `${m.name} +${Math.round(m.goldBonusPct * 100)}%`, {
+        fontSize: '12px', color: UI.text.dim,
+      }).setOrigin(0.5);
+      const chip = this.add.container(x, y, [bg, label]);
+      chip.setInteractive({ useHandCursor: true, hitArea: new Phaser.Geom.Rectangle(-w / 2, -15, w, 30), hitAreaCallback: Phaser.Geom.Rectangle.Contains });
+      chip.setData('def', m);
+      chip.setData('bg', bg);
+      chip.setData('label', label);
+      chip.on('pointerdown', () => {
+        if (this.selectedMods.has(m.id)) this.selectedMods.delete(m.id);
+        else this.selectedMods.add(m.id);
+        this.refreshMods();
+      });
+      chip.on('pointerover', () => {
+        this.view.add(txt(this, x, y + 26, m.desc, { fontSize: '11px', color: UI.text.body }).setOrigin(0.5).setName('modTip'));
+      });
+      chip.on('pointerout', () => {
+        const t = this.view.getByName('modTip');
+        if (t) { this.view.remove(t); t.destroy(); }
+      });
+      this.view.add(chip);
+      this.modChips.push(chip);
+      x += w + 10;
+    }
+    this.refreshMods();
+  }
+
+  private refreshMods(): void {
+    const bossRush = this.selectedStage?.mode === 'bossrush';
+    for (const chip of this.modChips) {
+      const m = chip.getData('def') as { id: string };
+      const on = this.selectedMods.has(m.id) && !bossRush;
+      (chip.getData('bg') as Phaser.GameObjects.Rectangle).setStrokeStyle(on ? 2 : 1, on ? UI.colors.goldBright : UI.colors.goldDim);
+      (chip.getData('label') as Phaser.GameObjects.Text).setColor(on ? UI.text.gold : UI.text.dim);
+      chip.setAlpha(bossRush ? 0.35 : 1);
+    }
   }
 
   private flashMsg(x: number, y: number, msg: string): void {

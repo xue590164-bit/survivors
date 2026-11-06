@@ -5,6 +5,7 @@ import type {
   CharmDef,
   EnemyDef,
   MetaTree,
+  ModifierDef,
   PassiveDef,
   PickupDef,
   StageDef,
@@ -82,6 +83,13 @@ export class DataRegistry {
   }
   pickup(id: string): PickupDef {
     return this.mustFind(this.pickups(), id);
+  }
+
+  modifiers(): ModifierDef[] {
+    return this.cache.json.get('modifiers') as ModifierDef[];
+  }
+  modifier(id: string): ModifierDef {
+    return this.mustFind(this.modifiers(), id);
   }
 
   private mustFind<T extends { id: string }>(list: T[], id: string): T {

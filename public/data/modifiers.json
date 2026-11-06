@@ -1,0 +1,9 @@
+[
+ { "id": "mod_tough", "name": "硬壳", "desc": "敌人生命 ×1.5", "goldBonusPct": 0.3, "effects": { "enemyHpMul": 1.5 } },
+ { "id": "mod_swift", "name": "疾行", "desc": "敌人移速 ×1.3", "goldBonusPct": 0.2, "effects": { "enemySpdMul": 1.3 } },
+ { "id": "mod_frail", "name": "纸躯", "desc": "玩家生命上限 ×0.75", "goldBonusPct": 0.25, "effects": { "playerHpMul": 0.75 } },
+ { "id": "mod_stingy", "name": "贫瘠", "desc": "不再掉落治疗物", "goldBonusPct": 0.2, "effects": { "noHealDrop": true } },
+ { "id": "mod_horde", "name": "人海", "desc": "刷怪速度 ×1.4", "goldBonusPct": 0.3, "effects": { "spawnMul": 1.4 } },
+ { "id": "mod_nightmare", "name": "噩梦", "desc": "敌人伤害 ×1.4", "goldBonusPct": 0.35, "effects": { "enemyDmgMul": 1.4 } },
+ { "id": "mod_glass", "name": "玻璃场", "desc": "玩家HP×0.6 敌人HP×1.2", "goldBonusPct": 0.5, "effects": { "playerHpMul": 0.6, "enemyHpMul": 1.2 } }
+]

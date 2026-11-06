@@ -9,6 +9,8 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
   def!: EnemyDef;
   hp = 1;
   maxHp = 1;
+  /** 难度词条速度系数（默认1） */
+  spdMul = 1;
   xpValue = 1;
   isElite = false;
   isBoss = false;
@@ -195,9 +197,9 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
       if (ax * ax + ay * ay < z.r * z.r) { auraMul = z.mul; break; }
     }
     // Boss 低血加速：失血越多追得越凶
-    const speed = this.isBoss
+    const speed = (this.isBoss
       ? this.def.speed * (1 + (1 - this.hp / this.maxHp) * 0.6) * auraMul
-      : this.def.speed * auraMul;
+      : this.def.speed * auraMul) * this.spdMul;
 
     // charger AI：进入射程先亮白蓄力，再三倍速冲刺
     if (this.def.aiType === 'charger') {

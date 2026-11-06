@@ -29,6 +29,10 @@ import type { RunResult, StageDef } from '../types';
 export interface GameSceneData {
   characterId?: string;
   stageId?: string;
+  /** 难度词条 id 列表 */
+  modifiers?: string[];
+  /** 每日挑战局标记 */
+  daily?: boolean;
 }
 
 export class GameScene extends Phaser.Scene {
@@ -61,6 +65,16 @@ export class GameScene extends Phaser.Scene {
   private endlessDepth = 0;
   private nextEndlessBossAt = 0;
   private endlessChoice?: Phaser.GameObjects.Container;
+  /** 难度词条 */
+  private modIds: string[] = [];
+  private goldBonusPct = 0;
+  private daily = false;
+  /** Boss Rush */
+  private rushIdx = 0;
+  private rushCycle = 0;
+  private nextRushAt = 25;
+  /** 虚拟摇杆 */
+  private joy?: { base: Phaser.GameObjects.Graphics; nub: Phaser.GameObjects.Graphics; pointerId: number; cx: number; cy: number };
 
   private runTimeMs = 0;
   private kills = 0;
@@ -76,6 +90,8 @@ export class GameScene extends Phaser.Scene {
   init(data: GameSceneData): void {
     this.characterId = data.characterId ?? 'char_knight';
     this.stageId = data.stageId ?? 'stage_forest';
+    this.modIds = data.modifiers ?? [];
+    this.daily = data.daily ?? false;
   }
 
   create(): void {
@@ -127,6 +143,30 @@ export class GameScene extends Phaser.Scene {
       enemies: this.enemyGroup,
     });
 
+    // ===== 难度词条应用 =====
+    this.goldBonusPct = 0;
+    this.rushIdx = 0;
+    this.rushCycle = 0;
+    this.nextRushAt = 25;
+    for (const id of this.modIds) {
+      const m = db().modifier(id);
+      const e = m.effects;
+      this.goldBonusPct += m.goldBonusPct;
+      if (e.enemyHpMul) this.director.mods.hp *= e.enemyHpMul;
+      if (e.enemyDmgMul) this.director.mods.dmg *= e.enemyDmgMul;
+      if (e.enemySpdMul) this.director.mods.spd *= e.enemySpdMul;
+      if (e.spawnMul) this.director.mods.spawn *= e.spawnMul;
+      if (e.xpMul) this.director.mods.xp *= e.xpMul;
+      if (e.playerHpMul) {
+        const dh = Math.floor(this.player.stats.maxHp * (e.playerHpMul - 1));
+        this.player.applyStatPatch({ maxHp: dh });
+        this.player.hp = Math.min(this.player.hp, this.player.stats.maxHp);
+      }
+      if (e.noHealDrop) this.pickups.noHealDrop = true;
+    }
+
+    this.setupJoystick();
+
     // UI 层独立场景：世界相机 zoom=1.5 会把 scrollFactor(0) 对象一起缩放推离屏幕
     this.scene.launch(SceneKeys.Hud, {
       refs: {
@@ -141,6 +181,10 @@ export class GameScene extends Phaser.Scene {
         enemies: this.enemyGroup,
         gameScene: this,
         durationSec: this.stageDef.durationSec,
+        getTimerLabel: () =>
+          this.stageDef.mode === 'bossrush'
+            ? `讨伐 ${this.rushIdx} 只 · ${Math.floor(this.runTimeMs / 60000)}:${String(Math.floor(this.runTimeMs / 1000) % 60).padStart(2, '0')}`
+            : undefined,
         getRunSec: () => this.runTimeMs / 1000,
         getKills: () => this.kills,
         getBosses: () => this.bosses,
@@ -226,7 +270,16 @@ export class GameScene extends Phaser.Scene {
     });
 
     const runSec = this.runTimeMs / 1000;
-    if (runSec >= this.stageDef.durationSec) {
+    // Boss Rush：按序列出 Boss，间隔召唤
+    if (this.stageDef.mode === 'bossrush' && this.stageDef.bossSequence && runSec >= this.nextRushAt) {
+      const seq = this.stageDef.bossSequence;
+      const b = seq[this.rushIdx % seq.length];
+      const mul = b.hpMul * Math.pow(1.6, this.rushCycle);
+      this.director.spawnAt(b.enemyId, mul);
+      this.nextRushAt = runSec + 9999; // 击杀后才排下一只
+      this.floatText(this.player.x, this.player.y - 60, `讨伐 ${this.rushIdx + 1}：${db().enemy(b.enemyId).name}`, '#ff7050', 18);
+    }
+    if (this.stageDef.mode !== 'bossrush' && runSec >= this.stageDef.durationSec) {
       if (this.stageDef.finalBoss) {
         // 召最终Boss，击杀才通关
         if (!this.finalSpawned) {
@@ -244,6 +297,53 @@ export class GameScene extends Phaser.Scene {
       this.director.spawnAt(this.stageDef.finalBoss.enemyId, mul);
       this.floatText(this.player.x, this.player.y - 60, `无尽讨伐 第${this.endlessDepth + 1}波！`, '#ff7050', 18);
     }
+  }
+
+  /** 虚拟摇杆：屏幕左下半区按住拖动，松手回零（鼠标/触屏通用） */
+  private setupJoystick(): void {
+    const cam = this.cameras.main;
+    const base = this.add.graphics().setScrollFactor(0).setDepth(Depths.Hud + 6).setVisible(false);
+    const nub = this.add.graphics().setScrollFactor(0).setDepth(Depths.Hud + 7).setVisible(false);
+    this.input.on('pointerdown', (p: Phaser.Input.Pointer) => {
+      if (this.uiLock || this.ended) return;
+      if (p.x > cam.width * 0.55 || p.y < cam.height * 0.45) return;
+      this.joy = { base, nub, pointerId: p.id, cx: p.x, cy: p.y };
+      this.drawJoy(p.x, p.y, p.x, p.y);
+    });
+    this.input.on('pointermove', (p: Phaser.Input.Pointer) => {
+      if (!this.joy || p.id !== this.joy.pointerId) return;
+      this.drawJoy(this.joy.cx, this.joy.cy, p.x, p.y);
+      const dx = p.x - this.joy.cx, dy = p.y - this.joy.cy;
+      const len = Math.hypot(dx, dy);
+      const k = Math.min(1, len / 50);
+      this.player.virtualVec.x = len > 6 ? (dx / len) * k : 0;
+      this.player.virtualVec.y = len > 6 ? (dy / len) * k : 0;
+    });
+    const release = (p: Phaser.Input.Pointer) => {
+      if (!this.joy || p.id !== this.joy.pointerId) return;
+      this.joy = undefined;
+      this.player.virtualVec.x = 0;
+      this.player.virtualVec.y = 0;
+      base.setVisible(false);
+      nub.setVisible(false);
+    };
+    this.input.on('pointerup', release);
+    this.input.on('pointerupoutside', release);
+  }
+
+  private drawJoy(cx: number, cy: number, px: number, py: number): void {
+    if (!this.joy) return;
+    const dx = px - cx, dy = py - cy;
+    const len = Math.hypot(dx, dy) || 1;
+    const k = Math.min(1, len / 50);
+    const nx = cx + (dx / len) * 50 * k;
+    const ny = cy + (dy / len) * 50 * k;
+    this.joy.base.clear().setVisible(true)
+      .lineStyle(2, 0xd8a838, 0.5).strokeCircle(cx, cy, 52)
+      .fillStyle(0x141008, 0.3).fillCircle(cx, cy, 52);
+    this.joy.nub.clear().setVisible(true)
+      .fillStyle(0xd8a838, 0.7).fillCircle(nx, ny, 20)
+      .lineStyle(2, 0xfff4d0, 0.8).strokeCircle(nx, ny, 20);
   }
 
   /** 通关抉择：领取奖励 or 无尽挑战 */
@@ -301,6 +401,19 @@ export class GameScene extends Phaser.Scene {
     this.bossSkills.unregister(p.enemy);
     this.bosses = this.bosses.filter((b) => b !== p.enemy);
     this.floatText(p.x, p.y - 30, `${p.enemy.def.name} 被消灭！`, '#ffd700');
+    // Boss Rush：讨伐成功 → 回血+奖励，排下一波；循环后整体强化
+    if (this.stageDef.mode === 'bossrush' && this.stageDef.bossSequence) {
+      const seq = this.stageDef.bossSequence;
+      this.rushIdx += 1;
+      if (this.rushIdx % seq.length === 0) this.rushCycle += 1;
+      const heal = Math.floor(this.player.stats.maxHp * 0.3);
+      this.player.hp = Math.min(this.player.stats.maxHp, this.player.hp + heal);
+      this.pickups.spawn('pickup_chest', p.x + 40, p.y + 40);
+      this.pickups.spawn('pickup_relic_shard', p.x - 40, p.y + 40);
+      this.nextRushAt = this.runTimeMs / 1000 + 8;
+      this.floatText(p.x, p.y - 50, `讨伐完成 ${this.rushIdx}！`, '#ffd700', 18);
+      return;
+    }
     // 击杀最终Boss：无尽中算一波讨伐，否则弹通关抉择
     if (this.stageDef.finalBoss && p.enemy.def.id === this.stageDef.finalBoss.enemyId) {
       if (this.endless) {
@@ -379,9 +492,17 @@ export class GameScene extends Phaser.Scene {
     if (this.ended) return;
     this.ended = true;
     const timeSec = Math.floor(this.runTimeMs / 1000);
-    const goldEarned = Math.floor(this.kills / 2) + Math.floor(timeSec / 5);
+    const base = Math.floor(this.kills / 2) + Math.floor(timeSec / 5);
+    const goldEarned = Math.floor(base * (1 + this.goldBonusPct));
     saveSystem.addGold(goldEarned);
-    const result: RunResult = { won, timeSec, kills: this.kills, level: this.player.level, goldEarned, endlessDepth: this.endlessDepth };
+    const depth = this.stageDef.mode === 'bossrush' ? this.rushIdx : this.endlessDepth;
+    const result: RunResult = {
+      won, timeSec, kills: this.kills, level: this.player.level, goldEarned,
+      endlessDepth: depth,
+      modifiers: this.modIds.length ? this.modIds : undefined,
+      daily: this.daily || undefined,
+    };
+    if (this.daily) saveSystem.saveDailyBest(result);
     this.scene.start(SceneKeys.Result, result);
   }
 

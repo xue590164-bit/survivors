@@ -21,6 +21,7 @@ export class BootScene extends Phaser.Scene {
     this.load.json('metaUpgrades', 'data/metaUpgrades.json');
     this.load.json('pickups', 'data/pickups.json');
     this.load.json('buildings', 'data/buildings.json');
+    this.load.json('modifiers', 'data/modifiers.json');
   }
 
   create(): void {

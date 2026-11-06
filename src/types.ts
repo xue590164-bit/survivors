@@ -244,6 +244,10 @@ export interface StageDef {
   iceSlide?: number;
   /** 局内任务列表 */
   quests?: StageQuest[];
+  /** 特殊模式：bossrush=Boss连战（无视时长/最终Boss逻辑） */
+  mode?: 'bossrush';
+  /** Boss Rush 讨伐序列：按序出场，全部讨伐后循环并整体强化 */
+  bossSequence?: { enemyId: string; hpMul: number }[];
 }
 
 /** 局外成长的武器专属修正（叠加到局内属性折算之后，数值保守） */
@@ -324,8 +328,30 @@ export interface RunResult {
   kills: number;
   level: number;
   goldEarned: number;
-  /** 无尽模式讨伐深度（0=未进入或未讨伐） */
+  /** 无尽模式讨伐深度（0=未进入或未讨伐）；Boss Rush 复用为击杀数 */
   endlessDepth?: number;
+  /** 本局启用的难度词条 id 列表 */
+  modifiers?: string[];
+  /** 每日挑战局（用于结算页显示今日最佳） */
+  daily?: boolean;
+}
+
+/** 难度词条：选图时勾选惩罚换金币加成 */
+export interface ModifierDef {
+  id: string;
+  name: string;
+  desc: string;
+  /** 金币产出加成比例（多个累加） */
+  goldBonusPct: number;
+  effects: {
+    enemyHpMul?: number;
+    enemyDmgMul?: number;
+    enemySpdMul?: number;
+    spawnMul?: number;
+    xpMul?: number;
+    playerHpMul?: number;
+    noHealDrop?: boolean;
+  };
 }
 
 /** 建筑效果：由 MapSystem 按 type 分发 */

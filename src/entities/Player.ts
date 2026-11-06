@@ -50,6 +50,8 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
   private regenAcc = 0;
   /** 调试无敌标记（DebugSystem 用） */
   god = false;
+  /** 移动端虚拟摇杆向量（-1~1），非零时优先于键盘 */
+  virtualVec = { x: 0, y: 0 };
 
   constructor(
     scene: Phaser.Scene,
@@ -107,6 +109,10 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
       if (k.right.isDown || k.right2.isDown) vx += 1;
       if (k.up.isDown || k.up2.isDown) vy -= 1;
       if (k.down.isDown || k.down2.isDown) vy += 1;
+    }
+    if (vx === 0 && vy === 0 && (this.virtualVec.x !== 0 || this.virtualVec.y !== 0)) {
+      vx = this.virtualVec.x;
+      vy = this.virtualVec.y;
     }
     const len = Math.hypot(vx, vy) || 1;
     const moving = vx !== 0 || vy !== 0;

@@ -18,6 +18,9 @@ export class SpawnDirector {
   private credits: number[] = [];
   private firedEvents = new Set<number>();
   private bossSpawned = false;
+  /** 难度词条系数：由 GameScene 开局注入 */
+  mods = { hp: 1, dmg: 1, spd: 1, spawn: 1, xp: 1 };
+
   private elapsedSec = 0;
   /** 沙暴环境状态：spawnMul 作用于时间轴刷怪；wind 由 Player 每帧读取叠加速度 */
   readonly env = { spawnMul: 1, windX: 0, windY: 0, stormActive: false };
@@ -62,9 +65,9 @@ export class SpawnDirector {
     const endHp = 1 + over * 0.4;
     const endDmg = 1 + over * 0.2;
     return {
-      hp: hpMul * hpCurve * endHp,
-      dmg: this.curveMul(this.stage.difficultyCurve?.dmg, this.elapsedSec) * endDmg,
-      xp: 1 + (hpCurve * endHp - 1) * 0.35, // 后期击杀经验更值钱，保证升级不断流
+      hp: hpMul * hpCurve * endHp * this.mods.hp,
+      dmg: this.curveMul(this.stage.difficultyCurve?.dmg, this.elapsedSec) * endDmg * this.mods.dmg,
+      xp: (1 + (hpCurve * endHp - 1) * 0.35) * this.mods.xp, // 后期击杀经验更值钱，保证升级不断流
     };
   }
 
@@ -77,7 +80,7 @@ export class SpawnDirector {
 
     this.stage.spawnTimeline.forEach((entry, i) => {
       if (elapsedSec < entry.timeSec) return;
-      this.credits[i] += entry.ratePerSec * this.env.spawnMul * dt;
+      this.credits[i] += entry.ratePerSec * this.env.spawnMul * this.mods.spawn * dt;
       while (this.credits[i] >= 1) {
         this.credits[i] -= 1;
         this.spawnEnemy(entry.enemyId);
@@ -120,6 +123,7 @@ export class SpawnDirector {
     if (!e) return null;
     // 精英判定只看事件倍率（hpMul>1），时间曲线不算——否则全场变精英
     e.spawn(def, x, y, this.player, s.hp, s.dmg, s.xp, !def.isBoss && hpMul > 1);
+    e.spdMul = this.mods.spd;
     if (e.isBoss) eventBus.emit(GameEvents.BossSpawned, { enemy: e });
     return e;
   }

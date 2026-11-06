@@ -1,5 +1,7 @@
 import Phaser from 'phaser';
 import { SceneKeys, GAME_WIDTH, GAME_HEIGHT } from '../config';
+import { db } from '../core/DataRegistry';
+import { saveSystem } from '../core/SaveSystem';
 import { makeButton } from '../ui/button';
 import { txt } from '../ui/text';
 import { UI, parchmentPanel } from '../ui/theme';
@@ -40,8 +42,16 @@ export class ResultScene extends Phaser.Scene {
       `等级       Lv.${r.level}`,
       `获得金币   ${r.goldEarned}`,
     ];
+    if (r.modifiers?.length) {
+      const names = r.modifiers.map((id) => db().modifier(id).name).join('·');
+      lines.splice(0, 0, `词条       ${names}`);
+    }
     if (r.endlessDepth && r.endlessDepth > 0) {
-      lines.splice(2, 0, `无尽讨伐   ${r.endlessDepth} 波`);
+      lines.splice(2, 0, `讨伐深度   ${r.endlessDepth} 波`);
+    }
+    if (r.daily) {
+      const b = saveSystem.dailyBest;
+      if (b) lines.push(`今日最佳   ${b.won ? '通关' : '阵亡'} 深${b.depth} 杀${b.kills}`);
     }
     txt(this, GAME_WIDTH / 2, GAME_HEIGHT / 2 - 30, lines.join('\n'), {
         fontSize: '22px',

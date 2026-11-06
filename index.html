@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Survivors</title>
   <style>
     @font-face {
@@ -11,8 +11,8 @@
       font-display: swap;
     }
     html, body { margin: 0; padding: 0; background: #0a0a0f; height: 100%; overflow: hidden; }
-    #game { width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center; }
-    canvas { display: block; }
+    #game { width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center; touch-action: none; }
+    canvas { display: block; touch-action: none; }
   </style>
 </head>
 <body>

@@ -12,6 +12,9 @@ const MAGNET_DROP_CHANCE = 0.004;
 
 /** 掉落物系统：击杀掉落生成、磁吸移动、拾取结算 */
 export class PickupSystem {
+  /** 难度词条：禁止治疗掉落 */
+  noHealDrop = false;
+
   constructor(
     _scene: Phaser.Scene,
     private player: Player,
@@ -44,7 +47,7 @@ export class PickupSystem {
       return;
     }
     const roll = Math.random();
-    if (roll < MAGNET_DROP_CHANCE) {
+    if (roll < MAGNET_DROP_CHANCE || this.noHealDrop) {
       this.spawn('pickup_magnet', p.x, p.y);
     } else if (roll < MAGNET_DROP_CHANCE + HEAL_DROP_CHANCE) {
       this.spawn('pickup_meat', p.x, p.y);

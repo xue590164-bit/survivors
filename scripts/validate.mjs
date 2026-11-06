@@ -136,7 +136,21 @@ for (const s of stages) {
     else if (!enemies.find((e) => e.id === s.finalBoss.enemyId).damageCap)
       err(`stage ${s.id} finalBoss ${s.finalBoss.enemyId} 缺 damageCap`);
   }
+  if (s.bossSequence) {
+    for (const b of s.bossSequence) {
+      if (!eIds.has(b.enemyId)) err(`stage ${s.id} bossSequence 未知: ${b.enemyId}`);
+      else if (!enemies.find((e) => e.id === b.enemyId).isBoss) err(`stage ${s.id} bossSequence ${b.enemyId} 非Boss`);
+    }
+  }
 }
+
+// ---------- 6.5) 难度词条 ----------
+const modifiers = J('modifiers');
+for (const m of modifiers) {
+  if (!m.effects || Object.keys(m.effects).length === 0) err(`modifier ${m.id} 无效果`);
+  if (!(m.goldBonusPct > 0)) err(`modifier ${m.id} goldBonusPct 缺失`);
+}
+for (const m of modifiers) { if (m.id && modifiers.filter((x) => x.id === m.id).length > 1) err(`modifiers 重复 id: ${m.id}`); }
 
 // ---------- 7) 羁绊 ----------
 for (const b of bonds) {

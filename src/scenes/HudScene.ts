@@ -31,6 +31,8 @@ export interface HudRefs {
   /** dev.scene 控制台句柄指向世界场景 */
   gameScene: Phaser.Scene;
   durationSec: number;
+  /** Boss Rush 等模式的计时栏替代文案；undefined 走默认 "当前/总时长" */
+  getTimerLabel?: () => string | undefined;
   getRunSec: () => number;
   getKills: () => number;
   getBosses: () => Enemy[];
@@ -108,7 +110,7 @@ export class HudScene extends Phaser.Scene {
 
   update(_time: number, delta: number): void {
     if (!this.refs) return;
-    this.hud.update(this.refs.getRunSec(), this.refs.durationSec, this.refs.getKills(), this.refs.getBosses());
+    this.hud.update(this.refs.getRunSec(), this.refs.durationSec, this.refs.getKills(), this.refs.getBosses(), this.refs.getTimerLabel?.());
     this.updateAltarHints();
     this.updateQuestCompass();
     this.debug?.update(delta);

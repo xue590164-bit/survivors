@@ -97,6 +97,37 @@ export class SaveSystem {
       this.save();
     }
   }
+
+  /** 今日挑战最佳战绩（按 胜>深>杀 排序），跨天自动重置 */
+  private dailyKey(): string {
+    return `${SAVE_KEY}_daily_${new Date().toISOString().slice(0, 10)}`;
+  }
+
+  get dailyBest(): { won: boolean; depth: number; kills: number; level: number } | undefined {
+    try {
+      const raw = localStorage.getItem(this.dailyKey());
+      return raw ? JSON.parse(raw) : undefined;
+    } catch {
+      return undefined;
+    }
+  }
+
+  saveDailyBest(r: { won: boolean; endlessDepth?: number; kills: number; level: number }): void {
+    const cur = this.dailyBest;
+    const cand = { won: r.won, depth: r.endlessDepth ?? 0, kills: r.kills, level: r.level };
+    const better =
+      !cur ||
+      (cand.won && !cur.won) ||
+      (cand.won === cur.won && cand.depth > cur.depth) ||
+      (cand.won === cur.won && cand.depth === cur.depth && cand.kills > cur.kills);
+    if (better) {
+      try {
+        localStorage.setItem(this.dailyKey(), JSON.stringify(cand));
+      } catch {
+        // ignore
+      }
+    }
+  }
 }
 
 export const saveSystem = new SaveSystem();
