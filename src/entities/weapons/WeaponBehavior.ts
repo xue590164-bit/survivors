@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { eventBus, GameEvents } from '../../core/EventBus';
 import type { WeaponDef, WeaponLevelDef, WeaponMod } from '../../types';
 import type { Player } from '../Player';
 import type { CombatSystem } from '../../systems/CombatSystem';
@@ -37,8 +38,11 @@ export abstract class WeaponBehavior {
 
   update(nowMs: number): void {
     if (nowMs >= this.nextFireAt) {
+      const cd = this.effCooldown();
       this.fire(nowMs);
-      this.nextFireAt = nowMs + this.effCooldown();
+      this.nextFireAt = nowMs + cd;
+      // 只对低频武器发声：高频武器（<800ms）每秒多次会糊成噪音墙
+      if (cd >= 800) eventBus.emit(GameEvents.WeaponFired, { cooldownMs: cd });
     }
     this.tick(nowMs);
   }

@@ -181,7 +181,8 @@
         "timeSec": 210,
         "type": "miniboss",
         "params": {
-          "enemyId": "boss_skeleton_lord"
+          "enemyId": "boss_skeleton_lord",
+          "hpMul": 1.5
         }
       },
       {
@@ -1112,19 +1113,19 @@
       },
       {
         "enemyId": "boss_scarab_king",
-        "hpMul": 1.2
+        "hpMul": 1.0
       },
       {
         "enemyId": "boss_knight_king",
-        "hpMul": 1.45
+        "hpMul": 1.25
       },
       {
         "enemyId": "boss_forest_lord",
-        "hpMul": 1.7
+        "hpMul": 1.5
       },
       {
         "enemyId": "boss_mammoth",
-        "hpMul": 2.0
+        "hpMul": 1.75
       }
     ]
   }

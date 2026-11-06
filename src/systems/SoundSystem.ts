@@ -57,6 +57,7 @@ class SoundSystem {
     eventBus.on(B.BossSpawned, () => this.play('boss'));
     eventBus.on(B.BossPhase, () => this.play('phase'));
     eventBus.on(B.EnemyShot, () => this.play('eshot', 120));
+    eventBus.on(B.WeaponFired, () => this.play('shot', 160));
     eventBus.on(B.Sandstorm, () => this.play('storm'));
     eventBus.on(B.Blizzard, () => this.play('storm'));
     eventBus.on(B.QuestToast, () => this.play('ding', 400));
@@ -147,6 +148,7 @@ class SoundSystem {
     phase: () => { this.beep(220, 300, 'sawtooth', 0.35, 110); this.noise(250, 0.2, 900); },
     bossDie: () => { this.arp([784, 659, 523, 392, 262], 100, 220, 'square', 0.35); this.noise(800, 0.3, 2000, 1, 100, 200); },
     eshot: () => this.beep(1200, 40, 'square', 0.07, 700),
+    shot: () => { this.beep(640 + Math.random() * 80, 55, 'triangle', 0.1, 320); this.noise(35, 0.05, 2800, 2); },
     storm: () => this.noise(1400, 0.22, 500, 0.7, 0, 1400),
     ding: () => this.beep(1175, 180, 'triangle', 0.22, 1175),
   };

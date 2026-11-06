@@ -33,6 +33,8 @@ export interface HudRefs {
   durationSec: number;
   /** Boss Rush 等模式的计时栏替代文案；undefined 走默认 "当前/总时长" */
   getTimerLabel?: () => string | undefined;
+  /** 本局难度词条名（开局传入，局内不变） */
+  modNames?: string;
   getRunSec: () => number;
   getKills: () => number;
   getBosses: () => Enemy[];
@@ -65,6 +67,12 @@ export class HudScene extends Phaser.Scene {
     const onBond = (p: { bond: BondDef }) => this.hud.announceBond(p.bond);
     eventBus.on(GameEvents.BondActivated, onBond);
     this.menu = new LevelUpMenu(this);
+
+    if (r.modNames) {
+      txt(this, 16, 82, `词条 ${r.modNames}`, { fontSize: '11px', color: '#ff9050' })
+        .setOrigin(0, 0)
+        .setDepth(Depths.Hud + 1);
+    }
 
     if (DEV_MODE) {
       this.debug = new DebugSystem(this, {

@@ -16,6 +16,7 @@ export const GameEvents = {
   BossSpawned: 'boss-spawned',
   BossPhase: 'boss-phase',
   EnemyShot: 'enemy-shot',
+  WeaponFired: 'weapon-fired',
   Sandstorm: 'sandstorm',
   Blizzard: 'blizzard',
   QuestCompass: 'quest-compass',

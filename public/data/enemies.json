@@ -224,7 +224,7 @@
   {
     "id": "enemy_armor_captain",
     "name": "铠甲统领",
-    "hp": 300,
+    "hp": 246,
     "speed": 42,
     "damage": 20,
     "xp": 10,
@@ -390,7 +390,7 @@
   {
     "id": "enemy_golem_sand",
     "name": "沙石魔像",
-    "hp": 270,
+    "hp": 243,
     "speed": 30,
     "damage": 18,
     "xp": 6,
@@ -585,7 +585,7 @@
   {
     "id": "enemy_yeti",
     "name": "雪人",
-    "hp": 340,
+    "hp": 238,
     "speed": 34,
     "damage": 20,
     "xp": 8,

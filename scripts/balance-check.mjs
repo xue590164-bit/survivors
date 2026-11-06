@@ -57,13 +57,27 @@ for (const s of stages) {
     const effHp = effHpOf(e, ev.timeSec, m);
     console.log(`  ${ev.timeSec}s ${e.id} [精英×${m}] effHp=${effHp.toFixed(0)} TTK(普)=${(effHp / lerp(DPS_NORM, ev.timeSec)).toFixed(1)}s`);
   }
-  // 最终Boss：好构筑 30~60s（不吃曲线）
-  const fb = eMap[s.finalBoss.enemyId];
-  const fbHp = fb.hp * (s.finalBoss.hpMul ?? 1);
-  const ttk = fbHp / lerp(DPS_GOOD, s.durationSec);
-  const flag = ttk < 30 ? '  ⚠ 太脆' : ttk > 75 ? '  ⚠ 太肉' : '';
-  if (flag) issues.push(`${s.id} finalBoss TTK=${ttk.toFixed(0)}s`);
-  console.log(`  [最终Boss] ${fb.id} effHp=${fbHp.toFixed(0)} TTK(好)=${ttk.toFixed(0)}s${flag}`);
+  // 最终Boss：好构筑 30~60s（不吃曲线）；Boss Rush 走序列检查
+  if (s.finalBoss) {
+    const fb = eMap[s.finalBoss.enemyId];
+    const fbHp = fb.hp * (s.finalBoss.hpMul ?? 1);
+    const ttk = fbHp / lerp(DPS_GOOD, s.durationSec);
+    const flag = ttk < 30 ? '  ⚠ 太脆' : ttk > 75 ? '  ⚠ 太肉' : '';
+    if (flag) issues.push(`${s.id} finalBoss TTK=${ttk.toFixed(0)}s`);
+    console.log(`  [最终Boss] ${fb.id} effHp=${fbHp.toFixed(0)} TTK(好)=${ttk.toFixed(0)}s${flag}`);
+  }
+  // Boss Rush 序列：按讨伐时点期望构筑 DPS 估算
+  if (s.bossSequence) {
+    let t = 30;
+    for (const b of s.bossSequence) {
+      const be = eMap[b.enemyId];
+      if (!be) continue;
+      const effHp = be.hp * b.hpMul;
+      const ttkG = effHp / lerp(DPS_GOOD, Math.min(t, 300));
+      console.log(`  [Rush~${t}s] ${b.enemyId} ×${b.hpMul} effHp=${effHp.toFixed(0)} TTK(好)=${ttkG.toFixed(1)}s`);
+      t += Math.max(45, ttkG + 30); // 战斗时长 + 8s 间歇 + 缓冲
+    }
+  }
 }
 
 console.log('\n========== 武器有效 DPS（Lv1 红线 ≤25；满级参考上限 ~750） ==========');
@@ -73,14 +87,24 @@ const rows = weapons.map((w) => {
     if (!l || !l.cooldownMs) return 0;
     return (l.damage * (l.projectiles || 1)) / (l.cooldownMs / 1000);
   };
+  // 神兵：godParts 部件 DPS 求和 + 签名技（单体估算，AoE 不打折=乐观上限）
+  if (w.godParts?.length) {
+    let v = 0;
+    for (const p of w.godParts) {
+      v += (p.damage * Math.max(1, p.projectiles || 1)) / ((p.cooldownMs || 1000) / 1000);
+    }
+    if (w.signatureMs) v += (w.signatureDamage || 0) / (w.signatureMs / 1000);
+    return { id: w.id, lv1: v, max: v, evolved: false, god: true };
+  }
   return { id: w.id, lv1: dps(0), max: dps(w.levels.length - 1), evolved: weapons.some((x) => x.evolution?.into === w.id) };
 }).sort((a, b) => b.max - a.max);
 for (const r of rows) {
   const isEvo = r.evolved;
-  const flag = !isEvo && r.lv1 > 25 ? '  ✗ 破前期红线' : !isEvo && r.lv1 > 20 ? '  ⚠ 前期偏高' :
+  const flag = r.god ? '' :
+    !isEvo && r.lv1 > 25 ? '  ✗ 破前期红线' : !isEvo && r.lv1 > 20 ? '  ⚠ 前期偏高' :
     !isEvo && r.max > 750 ? '  ⚠ 满级超上限' : '';
   if (flag.includes('✗')) issues.push(`${r.id} Lv1 DPS=${r.lv1.toFixed(1)}`);
-  console.log(`  ${r.id.padEnd(24)} Lv1=${r.lv1.toFixed(1).padStart(6)} 满级=${r.max.toFixed(0).padStart(6)}${isEvo ? ' [进化]' : ''}${flag}`);
+  console.log(`  ${r.id.padEnd(24)} Lv1=${r.lv1.toFixed(1).padStart(6)} 满级=${r.max.toFixed(0).padStart(6)}${isEvo ? ' [进化]' : ''}${r.god ? ' [神兵]' : ''}${flag}`);
 }
 
 console.log('\n========== 结论 ==========');

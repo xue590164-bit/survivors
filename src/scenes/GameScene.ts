@@ -181,6 +181,9 @@ export class GameScene extends Phaser.Scene {
         enemies: this.enemyGroup,
         gameScene: this,
         durationSec: this.stageDef.durationSec,
+        modNames: this.modIds.length
+          ? this.modIds.map((id) => db().modifier(id).name).join('·')
+          : undefined,
         getTimerLabel: () =>
           this.stageDef.mode === 'bossrush'
             ? `讨伐 ${this.rushIdx} 只 · ${Math.floor(this.runTimeMs / 60000)}:${String(Math.floor(this.runTimeMs / 1000) % 60).padStart(2, '0')}`
