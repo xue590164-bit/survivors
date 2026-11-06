@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { SceneKeys, Depths, GAME_ZOOM, MOBILE } from '../config';
+import { SceneKeys, Depths, GAME_ZOOM, MOBILE, GAME_WIDTH, GAME_HEIGHT } from '../config';
 import { db } from '../core/DataRegistry';
 import { saveSystem } from '../core/SaveSystem';
 import { eventBus, GameEvents, type EnemyKilledPayload } from '../core/EventBus';
@@ -169,6 +169,18 @@ export class GameScene extends Phaser.Scene {
     }
 
     this.setupJoystick();
+
+    // 前 3 局底部操作提示：新手不知道摇杆在左下
+    if (saveSystem.stat('runs') < 3) {
+      const hint = txt(this, GAME_WIDTH / 2, GAME_HEIGHT - 60,
+        MOBILE ? '左下半屏按住拖动 = 移动' : 'WASD / 方向键移动', {
+          fontSize: '16px', color: '#ffe9a0',
+        })
+        .setOrigin(0.5)
+        .setScrollFactor(0)
+        .setDepth(Depths.Overlay);
+      this.tweens.add({ targets: hint, alpha: 0, delay: 5000, duration: 800, onComplete: () => hint.destroy() });
+    }
 
     // UI 层独立场景：世界相机 zoom=1.5 会把 scrollFactor(0) 对象一起缩放推离屏幕
     this.scene.launch(SceneKeys.Hud, {
@@ -437,10 +449,31 @@ export class GameScene extends Phaser.Scene {
     this.particles.shake(300, 0.005);
   }
 
-  private onEnemyDamaged(p: { dmg: number; x: number; y: number; crit?: boolean }): void {
+  private onEnemyDamaged(p: { dmg: number; x: number; y: number; crit?: boolean; weaponId?: string }): void {
     // 暴击：更大更亮，橙色区分普通命中
     if (p.crit) this.floatText(p.x, p.y - 10, `${Math.round(p.dmg)}`, '#ff9838', 19);
     else this.floatText(p.x, p.y - 10, `${Math.round(p.dmg)}`, '#ffd25e');
+    // 打击感：近战命中微顿帧，暴击更长+微震屏（节流防抖，高频攻击不会连顿）
+    const melee = !!p.weaponId && db().weapon(p.weaponId).behavior === 'melee';
+    if (melee || p.crit) this.hitStop(p.crit ? 70 : 40, p.crit);
+  }
+
+  private hitStopSeq = 0;
+  private lastHitStopAt = 0;
+  private hitStop(ms: number, crit = false): void {
+    const now = performance.now();
+    if (now - this.lastHitStopAt < 260) return;
+    this.lastHitStopAt = now;
+    const seq = ++this.hitStopSeq;
+    this.physics.world.timeScale = 0.35;
+    this.time.timeScale = 0.4;
+    if (crit) this.particles.shake(70, 0.002);
+    // 真时钟恢复：scene.time.timeScale 会连带放慢 delayedCall，不能用
+    setTimeout(() => {
+      if (seq !== this.hitStopSeq) return;
+      this.physics.world.timeScale = 1;
+      this.time.timeScale = 1;
+    }, ms);
   }
 
   private onLevelUp(): void {

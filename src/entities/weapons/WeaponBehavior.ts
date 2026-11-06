@@ -42,7 +42,7 @@ export abstract class WeaponBehavior {
       this.fire(nowMs);
       this.nextFireAt = nowMs + cd;
       // 只对低频武器发声：高频武器（<800ms）每秒多次会糊成噪音墙
-      if (cd >= 800) eventBus.emit(GameEvents.WeaponFired, { cooldownMs: cd });
+      if (cd >= 800) eventBus.emit(GameEvents.WeaponFired, { cooldownMs: cd, behavior: this.def.behavior });
     }
     this.tick(nowMs);
   }

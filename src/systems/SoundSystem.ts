@@ -57,7 +57,7 @@ class SoundSystem {
     eventBus.on(B.BossSpawned, () => this.play('boss'));
     eventBus.on(B.BossPhase, () => this.play('phase'));
     eventBus.on(B.EnemyShot, () => this.play('eshot', 120));
-    eventBus.on(B.WeaponFired, () => this.play('shot', 160));
+    eventBus.on(B.WeaponFired, (p: { behavior?: string }) => this.play(`shot_${p.behavior}`, 160));
     eventBus.on(B.Sandstorm, () => this.play('storm'));
     eventBus.on(B.Blizzard, () => this.play('storm'));
     eventBus.on(B.QuestToast, () => this.play('ding', 400));
@@ -79,7 +79,7 @@ class SoundSystem {
     const now = performance.now();
     if (now - (this.lastAt.get(key) ?? -1e9) < minGapMs) return;
     this.lastAt.set(key, now);
-    const fn = this.bank[key];
+    const fn = this.bank[key] ?? this.bank.shot;
     if (fn) fn();
   }
 
@@ -149,6 +149,16 @@ class SoundSystem {
     bossDie: () => { this.arp([784, 659, 523, 392, 262], 100, 220, 'square', 0.35); this.noise(800, 0.3, 2000, 1, 100, 200); },
     eshot: () => this.beep(1200, 40, 'square', 0.07, 700),
     shot: () => { this.beep(640 + Math.random() * 80, 55, 'triangle', 0.1, 320); this.noise(35, 0.05, 2800, 2); },
+    // 分武器发射音：弹道啾/近战破空/投掷闷响/回旋呼啸/召唤沉鸣/圣光铃
+    shot_projectile: () => this.beep(740 + Math.random() * 60, 45, 'triangle', 0.09, 420),
+    shot_melee: () => { this.noise(80, 0.16, 4200, 2.5, 0, 900); this.beep(920, 40, 'sine', 0.06, 480); },
+    shot_lob: () => this.beep(260, 90, 'sawtooth', 0.12, 170),
+    shot_boomerang: () => this.beep(480, 130, 'sine', 0.1, 960),
+    shot_summon: () => this.beep(170, 150, 'triangle', 0.13, 130),
+    shot_nova: () => this.beep(520, 170, 'triangle', 0.11, 1040),
+    shot_aura: () => this.beep(420, 120, 'sine', 0.07, 630),
+    shot_orbit: () => this.beep(560, 60, 'sine', 0.06, 700),
+    shot_divine: () => { this.beep(880, 90, 'triangle', 0.1, 1320); this.noise(60, 0.06, 5200, 3); },
     storm: () => this.noise(1400, 0.22, 500, 0.7, 0, 1400),
     ding: () => this.beep(1175, 180, 'triangle', 0.22, 1175),
   };
