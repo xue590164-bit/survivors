@@ -1,0 +1,176 @@
+[
+ {
+  "id": "charm_thunder",
+  "name": "雷霆护符",
+  "description": "武器命中 12% 概率落雷，造成 26 点伤害",
+  "color": 10130431,
+  "trigger": "onHitChance",
+  "chance": 0.12,
+  "effect": {
+   "type": "strikeDamage",
+   "damage": 26
+  }
+ },
+ {
+  "id": "charm_ricochet",
+  "name": "回旋石",
+  "description": "命中 20% 概率弹射至附近的另一敌人（60%伤害）",
+  "color": 9075624,
+  "trigger": "onHitChance",
+  "chance": 0.2,
+  "effect": {
+   "type": "ricochet",
+   "dmgPct": 0.6,
+   "range": 240
+  }
+ },
+ {
+  "id": "charm_fang",
+  "name": "毒牙坠",
+  "description": "命中 15% 概率施毒：每秒 6 伤持续 3 秒",
+  "color": 6080604,
+  "trigger": "onHitChance",
+  "chance": 0.15,
+  "effect": {
+   "type": "dot",
+   "dps": 6,
+   "durationMs": 3000
+  }
+ },
+ {
+  "id": "charm_frost",
+  "name": "冰霜符",
+  "description": "命中 10% 概率冰冻敌人 1.4 秒",
+  "color": 7130879,
+  "trigger": "onHitChance",
+  "chance": 0.1,
+  "effect": {
+   "type": "freeze",
+   "durationMs": 1400
+  }
+ },
+ {
+  "id": "charm_burst",
+  "name": "爆裂印",
+  "description": "击杀 12% 概率尸爆，波及周围敌人 30 伤",
+  "color": 15240013,
+  "trigger": "onKillChance",
+  "chance": 0.12,
+  "effect": {
+   "type": "corpseExplode",
+   "damage": 30,
+   "radius": 90
+  }
+ },
+ {
+  "id": "charm_leech",
+  "name": "吸血藤",
+  "description": "每第 8 次命中回复 1 生命（每秒至多一次）",
+  "color": 15216670,
+  "trigger": "onHitEvery",
+  "every": 8,
+  "effect": {
+   "type": "heal",
+   "amount": 1,
+   "cooldownMs": 800
+  }
+ },
+ {
+  "id": "charm_thorns",
+  "name": "荆棘甲",
+  "description": "受击时向周身释放尖刺，22 伤害",
+  "color": 9076392,
+  "trigger": "onPlayerHurt",
+  "effect": {
+   "type": "thorns",
+   "damage": 22,
+   "radius": 110
+  }
+ },
+ {
+  "id": "charm_bloodlust",
+  "name": "嗜血刃",
+  "description": "每次命中伤害 +2%，可叠 15 层，断连 2 秒清零",
+  "color": 14042437,
+  "trigger": "onHitChance",
+  "chance": 1,
+  "effect": {
+   "type": "stackDamage",
+   "perStack": 0.02,
+   "maxStacks": 15,
+   "decayMs": 2000
+  }
+ },
+ {
+  "id": "charm_gale",
+  "name": "疾风铃",
+  "description": "每第 12 次命中召风刃补 45 伤",
+  "color": 8978312,
+  "trigger": "onHitEvery",
+  "every": 12,
+  "effect": {
+   "type": "strikeDamage",
+   "damage": 45
+  }
+ },
+ {
+  "id": "charm_soulbite",
+  "name": "噬魂坠",
+  "description": "击杀 12% 概率噬魂回复 2 生命",
+  "color": 9961472,
+  "trigger": "onKillChance",
+  "chance": 0.12,
+  "effect": {
+   "type": "heal",
+   "amount": 2
+  }
+ },
+ {
+  "id": "charm_shockwave",
+  "name": "震荡戒",
+  "description": "每第 15 次命中在目标处引发小爆炸",
+  "color": 16744192,
+  "trigger": "onHitEvery",
+  "every": 15,
+  "effect": {
+   "type": "corpseExplode",
+   "damage": 25,
+   "radius": 80
+  }
+ },
+ {
+  "id": "charm_ward",
+  "name": "守护符",
+  "description": "受击时圣光护体，回复 4 生命",
+  "color": 16777200,
+  "trigger": "onPlayerHurt",
+  "effect": {
+   "type": "heal",
+   "amount": 4
+  }
+ },
+ {
+  "id": "charm_cripple",
+  "name": "致残针",
+  "description": "命中 12% 概率使敌人僵直 0.5 秒",
+  "color": 7895160,
+  "trigger": "onHitChance",
+  "chance": 0.12,
+  "effect": {
+   "type": "freeze",
+   "durationMs": 500
+  }
+ },
+ {
+  "id": "charm_marksman",
+  "name": "神射眼",
+  "description": "命中 15% 概率精准补射 18 伤",
+  "color": 13382400,
+  "trigger": "onHitChance",
+  "chance": 0.15,
+  "effect": {
+   "type": "strikeDamage",
+   "damage": 18
+  }
+ }
+]

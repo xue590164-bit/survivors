@@ -1,0 +1,727 @@
+[
+  {
+    "id": "enemy_slime",
+    "name": "史莱姆",
+    "hp": 18,
+    "speed": 55,
+    "damage": 6,
+    "xp": 1,
+    "aiType": "chase",
+    "color": 5358159,
+    "scale": 1.13,
+    "animMs": 320
+  },
+  {
+    "id": "enemy_bat",
+    "name": "蝙蝠",
+    "hp": 10,
+    "speed": 130,
+    "damage": 4,
+    "xp": 1,
+    "aiType": "chase",
+    "color": 9075624,
+    "scale": 1,
+    "lean": 0.16,
+    "animMs": 140
+  },
+  {
+    "id": "enemy_skeleton",
+    "name": "骷髅",
+    "hp": 45,
+    "speed": 75,
+    "damage": 10,
+    "xp": 3,
+    "aiType": "chase",
+    "color": 15263976,
+    "scale": 1.2,
+    "animMs": 300
+  },
+  {
+    "id": "enemy_brute",
+    "name": "蛮兵",
+    "hp": 220,
+    "speed": 45,
+    "damage": 18,
+    "xp": 8,
+    "aiType": "chase",
+    "color": 14042437,
+    "scale": 1.47,
+    "animMs": 380
+  },
+  {
+    "id": "boss_slime_king",
+    "name": "史莱姆王",
+    "hp": 3600,
+    "speed": 42,
+    "damage": 24,
+    "xp": 60,
+    "aiType": "chase",
+    "color": 5358159,
+    "scale": 2.93,
+    "isBoss": true,
+    "animMs": 320,
+    "skills": [
+      {
+        "type": "summon",
+        "cooldownMs": 9500,
+        "enemyId": "enemy_slime",
+        "count": 3,
+        "radius": 140
+      },
+      {
+        "type": "leap",
+        "cooldownMs": 7000,
+        "radius": 95,
+        "damage": 20,
+        "windupMs": 900,
+        "color": 6344800
+      }
+    ]
+  },
+  {
+    "id": "boss_skeleton_lord",
+    "name": "白骨领主",
+    "hp": 8160,
+    "speed": 88,
+    "damage": 30,
+    "xp": 120,
+    "aiType": "chase",
+    "color": 15263976,
+    "scale": 2.53,
+    "isBoss": true,
+    "damageCap": 380,
+    "animMs": 300,
+    "skills": [
+      {
+        "type": "summon",
+        "cooldownMs": 12000,
+        "enemyId": "enemy_skeleton",
+        "count": 5,
+        "radius": 160
+      },
+      {
+        "type": "volley",
+        "cooldownMs": 8000,
+        "count": 4,
+        "radius": 55,
+        "damage": 14,
+        "spread": 180,
+        "telegraphMs": 900
+      }
+    ]
+  },
+  {
+    "id": "boss_forest_lord",
+    "name": "森林之心",
+    "hp": 42000,
+    "speed": 52,
+    "damage": 45,
+    "xp": 0,
+    "aiType": "chase",
+    "color": 8003120,
+    "scale": 2.93,
+    "isBoss": true,
+    "damageCap": 900,
+    "animMs": 380,
+    "phases": [
+      {
+        "atHpPct": 0.66,
+        "spawnEnemyId": "enemy_skeleton",
+        "count": 8
+      },
+      {
+        "atHpPct": 0.33,
+        "spawnEnemyId": "enemy_brute",
+        "count": 6
+      }
+    ],
+    "skills": [
+      {
+        "type": "nova",
+        "cooldownMs": 10000,
+        "radius": 135,
+        "damage": 26,
+        "telegraphMs": 900,
+        "color": 6332480
+      },
+      {
+        "type": "volley",
+        "cooldownMs": 11000,
+        "count": 6,
+        "radius": 60,
+        "damage": 18,
+        "spread": 200,
+        "telegraphMs": 950,
+        "color": 8437824
+      },
+      {
+        "type": "summon",
+        "cooldownMs": 14000,
+        "enemyId": "enemy_brute",
+        "count": 3,
+        "radius": 180
+      }
+    ]
+  },
+  {
+    "id": "enemy_ghost",
+    "name": "幽灵",
+    "hp": 14,
+    "speed": 95,
+    "damage": 5,
+    "xp": 1,
+    "aiType": "chase",
+    "color": 10148048,
+    "alpha": 0.62,
+    "weave": 85,
+    "hoverPx": 5,
+    "alphaPulse": 0.16,
+    "scale": 1.13,
+    "animMs": 260
+  },
+  {
+    "id": "enemy_rat",
+    "name": "古堡鼠",
+    "hp": 8,
+    "speed": 150,
+    "damage": 3,
+    "xp": 1,
+    "aiType": "chase",
+    "color": 9075304,
+    "scale": 1,
+    "animMs": 120
+  },
+  {
+    "id": "enemy_grimoire",
+    "name": "魔典",
+    "hp": 42,
+    "speed": 72,
+    "damage": 9,
+    "xp": 3,
+    "aiType": "chase",
+    "color": 6963082,
+    "weave": 55,
+    "hoverPx": 3,
+    "lean": 0.1,
+    "scale": 1.2,
+    "animMs": 340
+  },
+  {
+    "id": "enemy_armor",
+    "name": "空甲卫士",
+    "hp": 95,
+    "speed": 48,
+    "damage": 14,
+    "xp": 4,
+    "aiType": "charger",
+    "color": 8029336,
+    "chargeRange": 240,
+    "chargeCdMs": 3400,
+    "chargeSpeedMul": 3,
+    "scale": 1.33,
+    "animMs": 320
+  },
+  {
+    "id": "enemy_armor_captain",
+    "name": "铠甲统领",
+    "hp": 300,
+    "speed": 42,
+    "damage": 20,
+    "xp": 10,
+    "aiType": "charger",
+    "color": 9082028,
+    "chargeRange": 280,
+    "chargeCdMs": 2800,
+    "chargeSpeedMul": 3.2,
+    "scale": 1.73,
+    "animMs": 320
+  },
+  {
+    "id": "boss_ghost_duke",
+    "name": "幽灵大公",
+    "hp": 5200,
+    "speed": 70,
+    "damage": 26,
+    "xp": 100,
+    "aiType": "chase",
+    "color": 9095360,
+    "alpha": 0.78,
+    "weave": 40,
+    "hoverPx": 6,
+    "alphaPulse": 0.1,
+    "scale": 2.27,
+    "isBoss": true,
+    "damageCap": 340,
+    "animMs": 300,
+    "skills": [
+      {
+        "type": "summon",
+        "cooldownMs": 9000,
+        "enemyId": "enemy_ghost",
+        "count": 4,
+        "radius": 150
+      },
+      {
+        "type": "volley",
+        "cooldownMs": 8000,
+        "count": 3,
+        "radius": 60,
+        "damage": 16,
+        "spread": 160,
+        "telegraphMs": 850,
+        "color": 10121176
+      }
+    ]
+  },
+  {
+    "id": "boss_knight_king",
+    "name": "骑士王",
+    "hp": 52000,
+    "speed": 46,
+    "damage": 50,
+    "xp": 0,
+    "aiType": "chase",
+    "color": 6976648,
+    "scale": 3.07,
+    "isBoss": true,
+    "damageCap": 1000,
+    "animMs": 380,
+    "phases": [
+      {
+        "atHpPct": 0.66,
+        "spawnEnemyId": "enemy_armor",
+        "count": 6
+      },
+      {
+        "atHpPct": 0.33,
+        "spawnEnemyId": "enemy_armor_captain",
+        "count": 3
+      }
+    ],
+    "skills": [
+      {
+        "type": "charge",
+        "cooldownMs": 8000,
+        "windupMs": 700,
+        "speedMul": 6,
+        "durationMs": 600,
+        "dmgMul": 1.6
+      },
+      {
+        "type": "nova",
+        "cooldownMs": 9000,
+        "radius": 150,
+        "damage": 30,
+        "telegraphMs": 900,
+        "color": 14200912
+      },
+      {
+        "type": "summon",
+        "cooldownMs": 16000,
+        "enemyId": "enemy_armor",
+        "count": 3,
+        "radius": 170
+      },
+      {
+        "type": "volley",
+        "cooldownMs": 12000,
+        "count": 5,
+        "radius": 60,
+        "damage": 20,
+        "spread": 190,
+        "telegraphMs": 900,
+        "color": 14200912
+      }
+    ]
+  },
+  {
+    "id": "enemy_scarab",
+    "name": "圣甲虫",
+    "hp": 16,
+    "speed": 72,
+    "damage": 5,
+    "xp": 1,
+    "aiType": "chase",
+    "color": 3093291,
+    "scale": 1.15,
+    "weave": 45,
+    "animMs": 240
+  },
+  {
+    "id": "enemy_jackal",
+    "name": "胡狼",
+    "hp": 50,
+    "speed": 98,
+    "damage": 9,
+    "xp": 2,
+    "aiType": "charger",
+    "color": 11347507,
+    "scale": 1.3,
+    "chargeRange": 130,
+    "chargeCdMs": 3200,
+    "chargeSpeedMul": 3.2,
+    "animMs": 180
+  },
+  {
+    "id": "enemy_snake",
+    "name": "沙蛇",
+    "hp": 55,
+    "speed": 105,
+    "damage": 8,
+    "xp": 2,
+    "aiType": "chase",
+    "color": 12485120,
+    "scale": 1.2,
+    "weave": 95,
+    "animMs": 200
+  },
+  {
+    "id": "enemy_mummy",
+    "name": "木乃伊",
+    "hp": 170,
+    "speed": 40,
+    "damage": 14,
+    "xp": 4,
+    "aiType": "chase",
+    "color": 14392560,
+    "scale": 1.45,
+    "animMs": 380
+  },
+  {
+    "id": "enemy_golem_sand",
+    "name": "沙石魔像",
+    "hp": 270,
+    "speed": 30,
+    "damage": 18,
+    "xp": 6,
+    "aiType": "chase",
+    "color": 12698368,
+    "scale": 1.7,
+    "animMs": 420
+  },
+  {
+    "id": "enemy_cultist",
+    "name": "沙祭司",
+    "hp": 90,
+    "speed": 58,
+    "damage": 10,
+    "xp": 5,
+    "aiType": "ranged",
+    "color": 12058418,
+    "scale": 1.3,
+    "shootRange": 280,
+    "standoff": 170,
+    "shootCdMs": 2400,
+    "shotSpeed": 200,
+    "animMs": 280
+  },
+  {
+    "id": "boss_snake_queen",
+    "name": "沙蛇女王",
+    "hp": 4600,
+    "speed": 68,
+    "damage": 22,
+    "xp": 60,
+    "aiType": "charger",
+    "color": 9666126,
+    "scale": 3.0,
+    "isBoss": true,
+    "chargeRange": 160,
+    "chargeCdMs": 2600,
+    "chargeSpeedMul": 4.0,
+    "animMs": 240,
+    "skills": [
+      {
+        "type": "charge",
+        "cooldownMs": 7000,
+        "windupMs": 650,
+        "speedMul": 5,
+        "durationMs": 550,
+        "dmgMul": 1.5
+      },
+      {
+        "type": "summon",
+        "cooldownMs": 12000,
+        "enemyId": "enemy_snake",
+        "count": 4,
+        "radius": 150
+      },
+      {
+        "type": "volley",
+        "cooldownMs": 11000,
+        "count": 5,
+        "radius": 60,
+        "damage": 16,
+        "spread": 170,
+        "telegraphMs": 900,
+        "color": 16771680
+      }
+    ]
+  },
+  {
+    "id": "boss_scarab_king",
+    "name": "圣甲虫王",
+    "hp": 56000,
+    "speed": 48,
+    "damage": 55,
+    "xp": 0,
+    "aiType": "chase",
+    "color": 13107200,
+    "scale": 3.4,
+    "isBoss": true,
+    "damageCap": 1700,
+    "animMs": 320,
+    "phases": [
+      {
+        "atHpPct": 0.5,
+        "spawnEnemyId": "enemy_scarab",
+        "count": 10,
+        "sandstorm": true
+      }
+    ],
+    "skills": [
+      {
+        "type": "charge",
+        "cooldownMs": 9000,
+        "windupMs": 800,
+        "speedMul": 6,
+        "durationMs": 600,
+        "dmgMul": 1.6
+      },
+      {
+        "type": "leap",
+        "cooldownMs": 14000,
+        "windupMs": 700,
+        "radius": 120,
+        "damage": 38,
+        "telegraphMs": 800,
+        "color": 16771680
+      },
+      {
+        "type": "nova",
+        "cooldownMs": 10000,
+        "radius": 170,
+        "damage": 34,
+        "telegraphMs": 900,
+        "color": 16771680
+      },
+      {
+        "type": "summon",
+        "cooldownMs": 15000,
+        "enemyId": "enemy_scarab",
+        "count": 8,
+        "radius": 170
+      },
+      {
+        "type": "volley",
+        "cooldownMs": 13000,
+        "count": 7,
+        "radius": 60,
+        "damage": 22,
+        "spread": 200,
+        "telegraphMs": 900,
+        "color": 16771680
+      }
+    ]
+  },
+  {
+    "id": "enemy_icewolf",
+    "name": "冰狼",
+    "hp": 60,
+    "speed": 105,
+    "damage": 11,
+    "xp": 3,
+    "aiType": "chase",
+    "color": 11919536,
+    "scale": 1.3,
+    "weave": 55,
+    "animMs": 160
+  },
+  {
+    "id": "enemy_frozen_corpse",
+    "name": "冻尸",
+    "hp": 40,
+    "speed": 38,
+    "damage": 7,
+    "xp": 2,
+    "aiType": "chase",
+    "color": 8905176,
+    "scale": 1.25,
+    "animMs": 360
+  },
+  {
+    "id": "enemy_snowhare",
+    "name": "雪兔",
+    "hp": 22,
+    "speed": 135,
+    "damage": 5,
+    "xp": 1,
+    "aiType": "chase",
+    "color": 15790330,
+    "scale": 1.0,
+    "weave": 80,
+    "animMs": 140
+  },
+  {
+    "id": "enemy_frostwisp",
+    "name": "冰元素",
+    "hp": 100,
+    "speed": 62,
+    "damage": 12,
+    "xp": 5,
+    "aiType": "ranged",
+    "color": 7050992,
+    "scale": 1.35,
+    "alpha": 0.85,
+    "hoverPx": 6,
+    "alphaPulse": 0.15,
+    "shootRange": 290,
+    "standoff": 180,
+    "shootCdMs": 2600,
+    "shotSpeed": 210,
+    "shotTex": "tex_proj_ice",
+    "animMs": 300
+  },
+  {
+    "id": "enemy_yeti",
+    "name": "雪人",
+    "hp": 340,
+    "speed": 34,
+    "damage": 20,
+    "xp": 8,
+    "aiType": "chase",
+    "color": 14474480,
+    "scale": 1.8,
+    "animMs": 400
+  },
+  {
+    "id": "enemy_frost_totem",
+    "name": "寒冰图腾",
+    "hp": 200,
+    "speed": 0,
+    "damage": 0,
+    "xp": 6,
+    "aiType": "stationary",
+    "color": 7051500,
+    "scale": 1.3,
+    "auraRadius": 190,
+    "auraSpeedMul": 1.3,
+    "animMs": 500
+  },
+  {
+    "id": "boss_frost_queen",
+    "name": "霜之女王",
+    "hp": 4800,
+    "speed": 75,
+    "damage": 26,
+    "xp": 80,
+    "aiType": "ranged",
+    "color": 7051248,
+    "scale": 3.2,
+    "isBoss": true,
+    "shootRange": 340,
+    "standoff": 200,
+    "shootCdMs": 2000,
+    "shotSpeed": 230,
+    "shotTex": "tex_proj_ice",
+    "hoverPx": 5,
+    "alphaPulse": 0.1,
+    "animMs": 260,
+    "skills": [
+      {
+        "type": "summon",
+        "cooldownMs": 13000,
+        "enemyId": "enemy_icewolf",
+        "count": 5,
+        "radius": 160
+      },
+      {
+        "type": "volley",
+        "cooldownMs": 10000,
+        "count": 7,
+        "radius": 60,
+        "damage": 18,
+        "spread": 210,
+        "telegraphMs": 900,
+        "color": 8900336
+      },
+      {
+        "type": "nova",
+        "cooldownMs": 12000,
+        "radius": 160,
+        "damage": 24,
+        "telegraphMs": 900,
+        "color": 8900336
+      }
+    ]
+  },
+  {
+    "id": "boss_mammoth",
+    "name": "冰川猛犸",
+    "hp": 68000,
+    "speed": 52,
+    "damage": 62,
+    "xp": 0,
+    "aiType": "charger",
+    "color": 10653224,
+    "scale": 3.4,
+    "isBoss": true,
+    "damageCap": 1900,
+    "chargeRange": 200,
+    "chargeCdMs": 4000,
+    "chargeSpeedMul": 5.0,
+    "animMs": 300,
+    "phases": [
+      {
+        "atHpPct": 0.5,
+        "spawnEnemyId": "enemy_icewolf",
+        "count": 8,
+        "sandstorm": true
+      }
+    ],
+    "skills": [
+      {
+        "type": "charge",
+        "cooldownMs": 8000,
+        "windupMs": 700,
+        "speedMul": 6,
+        "durationMs": 650,
+        "dmgMul": 1.7
+      },
+      {
+        "type": "leap",
+        "cooldownMs": 13000,
+        "windupMs": 700,
+        "radius": 130,
+        "damage": 42,
+        "telegraphMs": 800,
+        "color": 8900336
+      },
+      {
+        "type": "nova",
+        "cooldownMs": 10000,
+        "radius": 190,
+        "damage": 36,
+        "telegraphMs": 900,
+        "color": 8900336
+      },
+      {
+        "type": "summon",
+        "cooldownMs": 14000,
+        "enemyId": "enemy_icewolf",
+        "count": 6,
+        "radius": 180
+      },
+      {
+        "type": "volley",
+        "cooldownMs": 12000,
+        "count": 7,
+        "radius": 60,
+        "damage": 24,
+        "spread": 200,
+        "telegraphMs": 900,
+        "color": 8900336
+      }
+    ]
+  }
+]

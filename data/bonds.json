@@ -1,0 +1,356 @@
+[
+ {
+  "id": "bond_swift_blades",
+  "name": "影刃织网",
+  "weaponIds": [
+   "weapon_knife",
+   "weapon_thousand_edge"
+  ],
+  "passiveId": "passive_boots",
+  "desc": "飞刀每命中 6 次，向附近 2 个敌人弹射刃光",
+  "trigger": {
+   "type": "onHitEvery",
+   "every": 6
+  },
+  "effect": {
+   "type": "ricochet",
+   "count": 2,
+   "dmgPct": 0.6,
+   "range": 180
+  }
+ },
+ {
+  "id": "bond_reaper_mark",
+  "name": "死神印记",
+  "weaponIds": [
+   "weapon_sickle",
+   "weapon_reaper"
+  ],
+  "passiveId": "passive_reaper_rune",
+  "desc": "锁镰对生命低于 25% 的敌人追加 70% 处决伤害",
+  "trigger": {
+   "type": "onHitExecute",
+   "belowPct": 0.25
+  },
+  "effect": {
+   "type": "bonusDamage",
+   "dmgPct": 0.7
+  }
+ },
+ {
+  "id": "bond_chain_blast",
+  "name": "连环爆破",
+  "weaponIds": [
+   "weapon_bomb",
+   "weapon_firestorm"
+  ],
+  "passiveId": "passive_warhorn",
+  "desc": "炸药命中 18% 概率引发二次爆炸",
+  "trigger": {
+   "type": "onHitChance",
+   "chance": 0.18
+  },
+  "effect": {
+   "type": "corpseExplode",
+   "radius": 60,
+   "dmgPct": 0.9
+  }
+ },
+ {
+  "id": "bond_holy_pulse",
+  "name": "圣愈回响",
+  "weaponIds": [
+   "weapon_nova",
+   "weapon_sanctum"
+  ],
+  "passiveId": "passive_heart",
+  "desc": "圣光每命中 10 个敌人回复 3 点生命",
+  "trigger": {
+   "type": "onHitEvery",
+   "every": 10
+  },
+  "effect": {
+   "type": "heal",
+   "amount": 3
+  }
+ },
+ {
+  "id": "bond_venom_nest",
+  "name": "万毒归巢",
+  "weaponIds": [
+   "weapon_miasma",
+   "weapon_plague"
+  ],
+  "passiveId": "passive_thornmail",
+  "desc": "毒系武器击杀的敌人 25% 概率爆出毒雾",
+  "trigger": {
+   "type": "onKillChance",
+   "chance": 0.25
+  },
+  "effect": {
+   "type": "corpseExplode",
+   "radius": 70,
+   "dmgPct": 1.1
+  }
+ },
+ {
+  "id": "bond_ricochet_hunt",
+  "name": "回旋猎手",
+  "weaponIds": [
+   "weapon_axe",
+   "weapon_warwheel"
+  ],
+  "passiveId": "passive_prism",
+  "desc": "回旋武器每命中 5 次弹射 3 个目标",
+  "trigger": {
+   "type": "onHitEvery",
+   "every": 5
+  },
+  "effect": {
+   "type": "ricochet",
+   "count": 3,
+   "dmgPct": 0.5,
+   "range": 200
+  }
+ },
+ {
+  "id": "bond_star_pierce",
+  "name": "贯星狙击",
+  "weaponIds": [
+   "weapon_javelin",
+   "weapon_starlance"
+  ],
+  "passiveId": "passive_lens",
+  "desc": "标枪命中 240px 外的敌人伤害 +50%",
+  "trigger": {
+   "type": "onHitFar",
+   "minDist": 240
+  },
+  "effect": {
+   "type": "bonusDamage",
+   "dmgPct": 0.5
+  }
+ },
+ {
+  "id": "bond_thorn_grasp",
+  "name": "荆棘缠绕",
+  "weaponIds": [
+   "weapon_thornfield",
+   "weapon_briar_crown"
+  ],
+  "passiveId": "passive_armor",
+  "desc": "荆棘命中 15% 概率缠绕敌人 0.4 秒",
+  "trigger": {
+   "type": "onHitChance",
+   "chance": 0.15
+  },
+  "effect": {
+   "type": "freeze",
+   "durationMs": 400
+  }
+ },
+ {
+  "id": "bond_silver_bolt",
+  "name": "银弩雷引",
+  "weaponIds": [
+   "weapon_crossbow",
+   "weapon_banisher"
+  ],
+  "passiveId": "passive_quiver",
+  "desc": "银弩每命中 7 次追加一道落雷",
+  "trigger": {
+   "type": "onHitEvery",
+   "every": 7
+  },
+  "effect": {
+   "type": "strikeDamage",
+   "dmgPct": 1.2
+  }
+ },
+ {
+  "id": "bond_storm_wrath",
+  "name": "风暴天罚",
+  "weaponIds": [
+   "weapon_bolt",
+   "weapon_storm"
+  ],
+  "passiveId": "passive_tome",
+  "desc": "雷系击杀 12% 概率降下天雷轰击附近敌人",
+  "trigger": {
+   "type": "onKillChance",
+   "chance": 0.12
+  },
+  "effect": {
+   "type": "strikeRandom",
+   "dmgPct": 2.0,
+   "range": 300
+  }
+ },
+ {
+  "id": "bond_bible_guard",
+  "name": "圣典护体",
+  "weaponIds": [
+   "weapon_bible",
+   "weapon_unholy_vespers"
+  ],
+  "passiveId": "passive_regen",
+  "desc": "圣典每命中 12 次回复 2 点生命",
+  "trigger": {
+   "type": "onHitEvery",
+   "every": 12
+  },
+  "effect": {
+   "type": "heal",
+   "amount": 2
+  }
+ },
+ {
+  "id": "bond_soul_tithe",
+  "name": "亡者供养",
+  "weaponIds": [
+   "weapon_summon",
+   "weapon_legion"
+  ],
+  "passiveId": "passive_mask",
+  "desc": "仆从击杀 15% 概率反哺主人 2 点生命",
+  "trigger": {
+   "type": "onKillChance",
+   "chance": 0.15
+  },
+  "effect": {
+   "type": "heal",
+   "amount": 2
+  }
+ },
+ {
+  "id": "bond_ranger_volley",
+  "name": "猎手协奏",
+  "weaponIds": [
+   "weapon_longbow",
+   "weapon_arrowrain"
+  ],
+  "passiveId": "passive_quiver",
+  "desc": "长弓每命中 8 次，箭矢分裂弹射 2 个敌人（50% 伤害）",
+  "trigger": {
+   "type": "onHitEvery",
+   "every": 8
+  },
+  "effect": {
+   "type": "ricochet",
+   "count": 2,
+   "dmgPct": 0.5,
+   "range": 200
+  }
+ },
+ {
+  "id": "bond_iron_maelstrom",
+  "name": "铁旋狂澜",
+  "weaponIds": [
+   "weapon_flail",
+   "weapon_grinder"
+  ],
+  "passiveId": "passive_gauntlet",
+  "desc": "链锤命中 15% 概率碾压爆压（80% 伤害）",
+  "trigger": {
+   "type": "onHitChance",
+   "chance": 0.15
+  },
+  "effect": {
+   "type": "corpseExplode",
+   "radius": 70,
+   "dmgPct": 0.8
+  }
+ },
+ {
+  "id": "bond_blade_oath",
+  "name": "剑誓不摧",
+  "weaponIds": [
+   "weapon_sword",
+   "weapon_bladestorm"
+  ],
+  "passiveId": "passive_oath",
+  "desc": "长剑每命中 10 次，誓约之力回复 3 生命",
+  "trigger": {
+   "type": "onHitEvery",
+   "every": 10
+  },
+  "effect": {
+   "type": "heal",
+   "amount": 3
+  }
+ },
+ {
+  "id": "bond_arcane_surge",
+  "name": "奥术奔涌",
+  "weaponIds": [
+   "weapon_arcane",
+   "weapon_starseeker"
+  ],
+  "passiveId": "passive_focus",
+  "desc": "奥术飞弹每命中 9 次，迸发一枚追踪法球（40 伤）",
+  "trigger": {
+   "type": "onHitEvery",
+   "every": 9
+  },
+  "effect": {
+   "type": "strikeRandom",
+   "damage": 40,
+   "range": 300
+  }
+ },
+ {
+  "id": "bond_shadow_fan",
+  "name": "袖舞影杀",
+  "weaponIds": [
+   "weapon_fan",
+   "weapon_shadowdance"
+  ],
+  "passiveId": "passive_sash",
+  "desc": "袖刃击杀 15% 概率爆出刃片波及周围（70% 伤害）",
+  "trigger": {
+   "type": "onKillChance",
+   "chance": 0.15
+  },
+  "effect": {
+   "type": "corpseExplode",
+   "radius": 60,
+   "dmgPct": 0.7
+  }
+ },
+ {
+  "id": "bond_duelist_grace",
+  "name": "决斗谢幕",
+  "weaponIds": [
+   "weapon_rapier",
+   "weapon_rosesurge"
+  ],
+  "passiveId": "passive_crit",
+  "desc": "刺剑命中 200px 外的敌人追加 50% 伤害",
+  "trigger": {
+   "type": "onHitFar",
+   "minDist": 200
+  },
+  "effect": {
+   "type": "bonusDamage",
+   "dmgPct": 0.5
+  }
+ },
+ {
+  "id": "bond_quaking_fist",
+  "name": "碎岳拳劲",
+  "weaponIds": [
+   "weapon_palm",
+   "weapon_quakepalm"
+  ],
+  "passiveId": "passive_chi",
+  "desc": "连环掌每命中 12 次，震慑敌人僵直 0.8 秒",
+  "trigger": {
+   "type": "onHitEvery",
+   "every": 12
+  },
+  "effect": {
+   "type": "freeze",
+   "durationMs": 800
+  }
+ }
+]

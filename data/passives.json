@@ -1,0 +1,182 @@
+[
+ {
+  "id": "passive_clover",
+  "name": "幸运草",
+  "description": "伤害 +6% / 级（飞刀进化所需）",
+  "stat": "damagePct",
+  "bonusPerLevel": 0.06,
+  "maxLevel": 5,
+  "color": 5154944
+ },
+ {
+  "id": "passive_tome",
+  "name": "空日之书",
+  "description": "冷却 -4% / 级（圣典进化所需）",
+  "stat": "cooldownPct",
+  "bonusPerLevel": 0.04,
+  "maxLevel": 5,
+  "color": 11693032
+ },
+ {
+  "id": "passive_heart",
+  "name": "石榴心",
+  "description": "生命上限 +15 / 级",
+  "stat": "maxHp",
+  "bonusPerLevel": 15,
+  "maxLevel": 5,
+  "color": 15240013
+ },
+ {
+  "id": "passive_armor",
+  "name": "铁胸甲",
+  "description": "护甲 +1 / 级",
+  "stat": "armor",
+  "bonusPerLevel": 1,
+  "maxLevel": 5,
+  "color": 9075624
+ },
+ {
+  "id": "passive_boots",
+  "name": "疾风靴",
+  "description": "移速 +6% / 级",
+  "stat": "speed",
+  "bonusPerLevel": 10,
+  "maxLevel": 5,
+  "color": 5078504
+ },
+ {
+  "id": "passive_magnet",
+  "name": "引力珠",
+  "description": "拾取范围 +20 / 级",
+  "stat": "magnetRadius",
+  "bonusPerLevel": 20,
+  "maxLevel": 5,
+  "color": 3135231
+ },
+ {
+  "id": "passive_mask",
+  "name": "恶毒面具",
+  "description": "攻击范围 +8% / 级（毒雾进化所需）",
+  "stat": "areaPct",
+  "bonusPerLevel": 0.08,
+  "maxLevel": 5,
+  "color": 6080604
+ },
+ {
+  "id": "passive_lens",
+  "name": "鹰眼",
+  "description": "经验获取 +10% / 级（雷矢进化所需）",
+  "stat": "xpGainPct",
+  "bonusPerLevel": 0.1,
+  "maxLevel": 5,
+  "color": 5495035
+ },
+ {
+  "id": "passive_crit",
+  "name": "暴击瞳",
+  "description": "暴击率 +8% / 级（暴击×2 伤害，链锤进化所需）",
+  "stat": "critPct",
+  "bonusPerLevel": 0.08,
+  "maxLevel": 5,
+  "color": 16736336
+ },
+ {
+  "id": "passive_regen",
+  "name": "再生珠",
+  "description": "每秒回复 0.4 HP / 级",
+  "stat": "regenPerSec",
+  "bonusPerLevel": 0.4,
+  "maxLevel": 5,
+  "color": 6346880
+ },
+ {
+  "id": "passive_prism",
+  "name": "折射镜",
+  "description": "命中 8% 概率折射 50% 伤害到附近敌人 / 级（炸药瓶进化所需）",
+  "stat": "ricochetPct",
+  "bonusPerLevel": 0.08,
+  "maxLevel": 5,
+  "color": 10545407
+ },
+ {
+  "id": "passive_warhorn",
+  "name": "战意号角",
+  "description": "伤害 +7% / 级（标枪进化所需）",
+  "stat": "damagePct",
+  "bonusPerLevel": 0.07,
+  "maxLevel": 5,
+  "color": 15255648
+ },
+ {
+  "id": "passive_thornmail",
+  "name": "荆棘皮甲",
+  "description": "护甲 +1 / 级（荆棘光环进化所需）",
+  "stat": "armor",
+  "bonusPerLevel": 1,
+  "maxLevel": 5,
+  "color": 4885044
+ },
+ {
+  "id": "passive_quiver",
+  "name": "机巧箭袋",
+  "description": "冷却 -3% / 级（银弩进化所需）",
+  "stat": "cooldownPct",
+  "bonusPerLevel": 0.03,
+  "maxLevel": 5,
+  "color": 6965802
+ },
+ {
+  "id": "passive_reaper_rune",
+  "name": "收割符文",
+  "description": "暴击 +10% / 级（锁镰进化所需）",
+  "stat": "critPct",
+  "bonusPerLevel": 0.1,
+  "maxLevel": 5,
+  "color": 8010396
+ },
+ {
+  "id": "passive_oath",
+  "name": "誓约铁誓",
+  "description": "护甲 +1 / 级（骑士长剑进化所需）",
+  "stat": "armor",
+  "bonusPerLevel": 1,
+  "maxLevel": 5,
+  "color": 9868950
+ },
+ {
+  "id": "passive_focus",
+  "name": "凝神石",
+  "description": "暴击率 +4% / 级（奥术飞弹进化所需）",
+  "stat": "critPct",
+  "bonusPerLevel": 0.04,
+  "maxLevel": 5,
+  "color": 65535
+ },
+ {
+  "id": "passive_sash",
+  "name": "迅影带",
+  "description": "移速 +5% / 级（袖刃扇进化所需）",
+  "stat": "speed",
+  "bonusPerLevel": 0.05,
+  "maxLevel": 5,
+  "color": 3355443
+ },
+ {
+  "id": "passive_gauntlet",
+  "name": "决斗手套",
+  "description": "伤害 +7% / 级（决斗刺剑进化所需）",
+  "stat": "damagePct",
+  "bonusPerLevel": 0.07,
+  "maxLevel": 5,
+  "color": 16764057
+ },
+ {
+  "id": "passive_chi",
+  "name": "气海珠",
+  "description": "范围 +8% / 级（连环掌进化所需）",
+  "stat": "areaPct",
+  "bonusPerLevel": 0.08,
+  "maxLevel": 5,
+  "color": 16753920
+ }
+]
