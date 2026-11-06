@@ -262,5 +262,26 @@
   },
   "startingWeapon": "weapon_bible",
   "color": 3836490
+ },
+ {
+  "id": "char_ronin",
+  "name": "浪人",
+  "description": "无名独行的剑客，身法凌厉、会心惊人，但身板脆弱（斗场霸主成就解锁）",
+  "baseStats": {
+   "maxHp": 80,
+   "speed": 195,
+   "armor": 0,
+   "damagePct": 10,
+   "areaPct": 0,
+   "cooldownPct": 5,
+   "magnetRadius": 60,
+   "xpGainPct": 0,
+   "critPct": 15,
+   "regenPerSec": 0,
+   "ricochetPct": 0
+  },
+  "startingWeapon": "weapon_sickle",
+  "color": 4017202,
+  "unlockAchievement": "ach_rush2"
  }
 ]

@@ -101,7 +101,7 @@ export class AchievementsScene extends Phaser.Scene {
       fontSize: '16px',
       color: done ? UI.text.gold : UI.text.body,
     }).setOrigin(0, 0.5));
-    c.add(txt(this, -w / 2 + 58, 10, d.desc, {
+    c.add(txt(this, -w / 2 + 58, 10, d.unlockDesc ? `${d.desc} · ${d.unlockDesc}` : d.desc, {
       fontSize: '11px',
       color: UI.text.dim,
     }).setOrigin(0, 0.5));

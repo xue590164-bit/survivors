@@ -154,10 +154,17 @@ for (const m of modifiers) { if (m.id && modifiers.filter((x) => x.id === m.id).
 
 // ---------- 6.6) 成就 ----------
 const achievementsData = J('achievements');
+const aIds = new Set(achievementsData.map((a) => a.id));
 for (const a of achievementsData) {
   if (!a.stat || !(a.threshold > 0)) err(`achievement ${a.id} 缺 stat/threshold`);
+  if (a.unlockCharId && !cIds.has(a.unlockCharId)) err(`achievement ${a.id} 解锁角色不存在: ${a.unlockCharId}`);
 }
 dup(achievementsData, 'achievements');
+// 成就门控引用闭合（武器/护符/角色的 unlockAchievement 必须指向存在的成就）
+for (const w of weapons) if (w.unlockAchievement && !aIds.has(w.unlockAchievement))
+  err(`weapon ${w.id} unlockAchievement 未知: ${w.unlockAchievement}`);
+for (const ch of charms) if (ch.unlockAchievement && !aIds.has(ch.unlockAchievement))
+  err(`charm ${ch.id} unlockAchievement 未知: ${ch.unlockAchievement}`);
 // 词条图标引用闭合
 for (const m of modifiers) need(`tex_mod_${m.id.replace('mod_', '')}`, `modifier ${m.id}`);
 
@@ -173,6 +180,7 @@ for (const b of bonds) {
 for (const c of characters) {
   need(`tex_char_${c.id.replace(/^char_/, '')}`, `character ${c.id}`);
   if (!wIds.has(c.startingWeapon)) err(`character ${c.id} 初始武器不存在: ${c.startingWeapon}`);
+  if (c.unlockAchievement && !aIds.has(c.unlockAchievement)) err(`character ${c.id} unlockAchievement 未知: ${c.unlockAchievement}`);
 }
 for (const [key, tree] of Object.entries(meta)) {
   const cid = key;

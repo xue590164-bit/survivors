@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import { db } from '../core/DataRegistry';
 import { eventBus, GameEvents } from '../core/EventBus';
 import { achievements } from './AchievementSystem';
+import { saveSystem } from '../core/SaveSystem';
 import type { Player } from '../entities/Player';
 import type { WeaponManager } from './WeaponManager';
 import type { PassiveManager } from './PassiveManager';
@@ -67,6 +68,7 @@ export class LevelUpSystem {
       });
     }
     for (const def of this.weapons.available()) {
+      if (def.unlockAchievement && !saveSystem.isAchievementUnlocked(def.unlockAchievement)) continue;
       pool.push({ kind: 'weapon_new', id: def.id, label: `新武器：${def.name}`, desc: def.description, icon: `tex_${def.id}`, bondHint: hint(def.id) });
     }
     for (const def of this.passives.upgradable()) {
@@ -85,6 +87,7 @@ export class LevelUpSystem {
     if (this.charms.count < MAX_CHARMS) {
       for (const def of db().charms()) {
         if (this.charms.has(def.id)) continue;
+        if (def.unlockAchievement && !saveSystem.isAchievementUnlocked(def.unlockAchievement)) continue;
         pool.push({ kind: 'charm_new', id: def.id, label: `护符：${def.name}`, desc: def.description, icon: `tex_${def.id}` });
       }
     }

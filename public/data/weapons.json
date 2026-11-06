@@ -1587,5 +1587,56 @@
    }
   ],
   "color": 16772432
+ },
+ {
+  "id": "weapon_voidnova",
+  "name": "虚空新星",
+  "description": "深渊回响化作的虚空脉冲，灼烧并撕碎周身之敌",
+  "behavior": "nova",
+  "maxLevel": 5,
+  "levels": [
+   {
+    "damage": 14,
+    "cooldownMs": 2600,
+    "projectiles": 0,
+    "area": 1.1,
+    "durationMs": 0,
+    "knockback": 210
+   },
+   {
+    "damage": 18,
+    "cooldownMs": 2500,
+    "projectiles": 0,
+    "area": 1.2,
+    "durationMs": 0,
+    "knockback": 230
+   },
+   {
+    "damage": 22,
+    "cooldownMs": 2400,
+    "projectiles": 0,
+    "area": 1.3,
+    "durationMs": 0,
+    "knockback": 250
+   },
+   {
+    "damage": 27,
+    "cooldownMs": 2300,
+    "projectiles": 0,
+    "area": 1.45,
+    "durationMs": 0,
+    "knockback": 270
+   },
+   {
+    "damage": 34,
+    "cooldownMs": 2200,
+    "projectiles": 0,
+    "area": 1.6,
+    "durationMs": 0,
+    "knockback": 300
+   }
+  ],
+  "unlockAchievement": "ach_deep2",
+  "color": 6953882
  }
 ]

@@ -172,5 +172,32 @@
    "type": "strikeDamage",
    "damage": 18
   }
+ },
+ {
+  "id": "charm_divine",
+  "name": "神眷符",
+  "description": "每第 15 次命中降下神罚之光，造成 60 点伤害",
+  "color": 16771328,
+  "trigger": "onHitEvery",
+  "every": 15,
+  "effect": {
+   "type": "strikeDamage",
+   "damage": 60
+  },
+  "unlockAchievement": "ach_god2"
+ },
+ {
+  "id": "charm_doom",
+  "name": "灭世印",
+  "description": "击杀 14% 概率引发灭世尸爆，波及周围敌人 45 伤",
+  "color": 10158540,
+  "trigger": "onKillChance",
+  "chance": 0.14,
+  "effect": {
+   "type": "corpseExplode",
+   "damage": 45,
+   "radius": 110
+  },
+  "unlockAchievement": "ach_kill3"
  }
 ]

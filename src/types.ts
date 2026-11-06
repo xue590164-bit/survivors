@@ -23,6 +23,8 @@ export interface CharacterDef {
   color: number;
   /** 解锁价格（无此字段=默认可用） */
   unlockCost?: number;
+  /** 成就解锁：指定成就达成后自动解锁（不可购买） */
+  unlockAchievement?: string;
 }
 
 export interface WeaponLevelDef {
@@ -70,6 +72,8 @@ export interface WeaponDef {
   evolution?: { requiresPassive: string; into: string };
   /** 进化产物标记：不进升级三选一的新武器池 */
   evolved?: boolean;
+  /** 成就解锁：达成指定成就前不进新武器池（不可作初始武器） */
+  unlockAchievement?: string;
   /** 进化武器的派系（martial/holy/arcane/dark/hunt），神兵合成配方按派系配对 */
   school?: 'martial' | 'holy' | 'arcane' | 'dark' | 'hunt';
   /** 神兵标记：只能由合成获得 */
@@ -310,6 +314,8 @@ export interface CharmDef {
   chance?: number;
   every?: number;
   effect: CharmEffect;
+  /** 成就解锁：达成指定成就前不进护符池 */
+  unlockAchievement?: string;
 }
 
 export type PickupType = 'xp' | 'heal' | 'magnet' | 'chest' | 'bomb' | 'relic';
@@ -363,6 +369,10 @@ export interface AchievementDef {
   stat: string;
   threshold: number;
   rewardGold: number;
+  /** 达成时解锁隐藏角色 */
+  unlockCharId?: string;
+  /** 成就页展示的额外奖励说明（如"解锁护符「神眷符」"） */
+  unlockDesc?: string;
 }
 
 /** 建筑效果：由 MapSystem 按 type 分发 */

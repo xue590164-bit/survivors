@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import type { CharacterDef } from '../types';
 import { saveSystem } from '../core/SaveSystem';
 import { db } from '../core/DataRegistry';
+import { achievements } from '../systems/AchievementSystem';
 import { txt } from './text';
 import { UI, woodPanel } from './theme';
 
@@ -47,7 +48,9 @@ export function charCard(
     ? (opts.subtitle ?? `HP ${c.baseStats.maxHp} · ${db().weapon(c.startingWeapon).name}`)
     : canBuy
       ? `🔒 ${c.unlockCost} 金`
-      : '🔒';
+      : c.unlockAchievement
+        ? `🔒 ${db().achievements().find((a) => a.id === c.unlockAchievement)?.name ?? '成就'}解锁`
+        : '🔒';
   const subTxt = txt(scene, 0, 34, sub, {
     fontSize: '12px',
     color: unlocked ? UI.text.dim : canBuy ? UI.text.gold : UI.text.dim,
@@ -61,7 +64,7 @@ export function charCard(
   hit.on('pointerdown', () => {
     if (unlocked) return onPick('ok');
     if (!canBuy) return onPick('locked');
-    onPick(saveSystem.spendGold(c.unlockCost!) ? (saveSystem.unlockCharacter(c.id), 'bought') : 'poor');
+    onPick(saveSystem.spendGold(c.unlockCost!) ? (saveSystem.unlockCharacter(c.id), achievements.check(), 'bought') : 'poor');
   });
   return box;
 }

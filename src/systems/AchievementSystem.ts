@@ -33,9 +33,10 @@ class AchievementSystem {
       if (saveSystem.stat(d.stat) >= d.threshold) {
         saveSystem.unlockAchievement(d.id);
         if (d.rewardGold > 0) saveSystem.addGold(d.rewardGold);
+        if (d.unlockCharId) saveSystem.unlockCharacter(d.unlockCharId);
         fresh.push(d);
         eventBus.emit(GameEvents.QuestToast, {
-          text: `🏆 成就解锁「${d.name}」${d.rewardGold > 0 ? ` +${d.rewardGold}金` : ''}`,
+          text: `🏆 成就解锁「${d.name}」${d.unlockDesc ? ` ${d.unlockDesc}` : ''}${d.rewardGold > 0 ? ` +${d.rewardGold}金` : ''}`,
           color: '#ffd700',
         });
       }

@@ -315,6 +315,28 @@ const CHARS = [
     },
   },
   {
+    id: 'ronin',
+    // 浪人：斗笠遮脸+靛蓝和服+腰刀（隐藏角色，斗场霸主解锁）
+    palette: { H: 0xd8b088, h: 0xb08858, E: K, C: 0x2a2228, c: 0x1c161a, T: 0x2e3a52, t: 0x1e2838, S: 0x2e3a52, A: 0xd8b060, B: 0x3a3230, F: 0x2a2428, M: 0xd0d8e8, m: 0x98a0b8, X: 0xf0e8d0, x: 0x4a3020, W: 0xffffff, R: 0xa03828 },
+    draw: (g, v) => {
+      // 斗笠：尖顶三角笠盖住大半头，笠缘压到眼上
+      px(g, 12, 0, 'A'); px(g, 11, 0, 'A');
+      rect(g, 9, 1, 6, 1, 'A');
+      rect(g, 7, 2, 10, 1, 'A'); rect(g, 7, 2, 10, 1, 'x');
+      rect(g, 5, 3, 14, 1, 'A'); rect(g, 5, 3, 14, 1, 'x');
+      rect(g, 4, 4, 16, 1, 'x');
+      if (v === 'up') rect(g, 6, 5, 12, 8, 'x'); else rect(g, 6, 4, 12, 1, 'x');
+      // 和服：白襟领 + 腰带
+      if (v !== 'up') {
+        px(g, 11, 15, 'W'); px(g, 12, 15, 'W');
+        px(g, 10, 16, 'W'); px(g, 13, 16, 'W');
+        px(g, 10, 17, 'W'); px(g, 13, 17, 'W');
+      }
+      rect(g, 7, 18, 10, 2, 'R'); // 朱红腰带
+      HELD.sword(g, v);
+    },
+  },
+  {
     id: 'bard',
     palette: { S: 0x2a5836, H: 0xf0d0a8, h: 0xd0a878, E: K, C: 0x8a5a2a, c: 0x6a4020, T: 0x3c7a4a, t: 0x2a5836, A: 0xd04030, B: 0x3c5a8a, F: 0x3a2a1a, M: 0xd0d8e8, m: 0x98a0b8, X: 0x8a5a2a, x: 0x6a4a2a, W: 0xffffff, R: 0xd04030 },
     draw: (g, v) => {
