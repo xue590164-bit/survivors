@@ -1,0 +1,51 @@
+[
+ {
+  "id": "pickup_xp_small",
+  "name": "经验结晶",
+  "type": "xp",
+  "value": 1,
+  "color": 5105858
+ },
+ {
+  "id": "pickup_xp_big",
+  "name": "大型结晶",
+  "type": "xp",
+  "value": 10,
+  "color": 3135231
+ },
+ {
+  "id": "pickup_meat",
+  "name": "烤肉",
+  "type": "heal",
+  "value": 30,
+  "color": 15240013
+ },
+ {
+  "id": "pickup_magnet",
+  "name": "磁石",
+  "type": "magnet",
+  "value": 0,
+  "color": 5078504
+ },
+ {
+  "id": "pickup_bomb",
+  "name": "炸弹",
+  "type": "bomb",
+  "value": 200,
+  "color": 3355443
+ },
+ {
+  "id": "pickup_chest",
+  "name": "宝箱",
+  "type": "chest",
+  "value": 0,
+  "color": 15254605
+ },
+ {
+  "id": "pickup_relic_shard",
+  "name": "神兵残片",
+  "type": "relic",
+  "value": 1,
+  "color": 16766720
+ }
+]

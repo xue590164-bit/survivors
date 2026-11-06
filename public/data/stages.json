@@ -1,0 +1,1022 @@
+[
+ {
+  "id": "stage_forest",
+  "name": "幽暗森林",
+  "durationSec": 300,
+  "bgColor": 1058842,
+  "theme": "forest",
+  "difficultyCurve": {
+   "hp": [
+    [
+     0,
+     1
+    ],
+    [
+     60,
+     1.3
+    ],
+    [
+     120,
+     2.2
+    ],
+    [
+     180,
+     3.5
+    ],
+    [
+     240,
+     5
+    ],
+    [
+     300,
+     7
+    ]
+   ],
+   "dmg": [
+    [
+     0,
+     1
+    ],
+    [
+     150,
+     1.2
+    ],
+    [
+     300,
+     1.6
+    ]
+   ]
+  },
+  "spawnTimeline": [
+   {
+    "timeSec": 0,
+    "enemyId": "enemy_slime",
+    "ratePerSec": 0.8
+   },
+   {
+    "timeSec": 30,
+    "enemyId": "enemy_slime",
+    "ratePerSec": 0.5
+   },
+   {
+    "timeSec": 30,
+    "enemyId": "enemy_bat",
+    "ratePerSec": 0.25
+   },
+   {
+    "timeSec": 60,
+    "enemyId": "enemy_bat",
+    "ratePerSec": 0.35
+   },
+   {
+    "timeSec": 60,
+    "enemyId": "enemy_slime",
+    "ratePerSec": 0.2
+   },
+   {
+    "timeSec": 90,
+    "enemyId": "enemy_skeleton",
+    "ratePerSec": 0.35
+   },
+   {
+    "timeSec": 120,
+    "enemyId": "enemy_slime",
+    "ratePerSec": 0.5
+   },
+   {
+    "timeSec": 120,
+    "enemyId": "enemy_skeleton",
+    "ratePerSec": 0.15
+   },
+   {
+    "timeSec": 150,
+    "enemyId": "enemy_brute",
+    "ratePerSec": 0.08
+   },
+   {
+    "timeSec": 150,
+    "enemyId": "enemy_skeleton",
+    "ratePerSec": 0.3
+   },
+   {
+    "timeSec": 180,
+    "enemyId": "enemy_bat",
+    "ratePerSec": 0.5
+   },
+   {
+    "timeSec": 180,
+    "enemyId": "enemy_brute",
+    "ratePerSec": 0.07
+   },
+   {
+    "timeSec": 180,
+    "enemyId": "enemy_slime",
+    "ratePerSec": 0.5
+   },
+   {
+    "timeSec": 220,
+    "enemyId": "enemy_skeleton",
+    "ratePerSec": 0.5
+   },
+   {
+    "timeSec": 220,
+    "enemyId": "enemy_brute",
+    "ratePerSec": 0.15
+   },
+   {
+    "timeSec": 220,
+    "enemyId": "enemy_bat",
+    "ratePerSec": 0.3
+   },
+   {
+    "timeSec": 260,
+    "enemyId": "enemy_brute",
+    "ratePerSec": 0.3
+   },
+   {
+    "timeSec": 260,
+    "enemyId": "enemy_skeleton",
+    "ratePerSec": 0.4
+   },
+   {
+    "timeSec": 260,
+    "enemyId": "enemy_slime",
+    "ratePerSec": 0.5
+   }
+  ],
+  "finalBoss": {
+   "enemyId": "boss_forest_lord",
+   "hpMul": 1
+  },
+  "events": [
+   {
+    "timeSec": 45,
+    "type": "swarm_ring",
+    "params": {
+     "enemyId": "enemy_bat",
+     "count": 24
+    }
+   },
+   {
+    "timeSec": 90,
+    "type": "miniboss",
+    "params": {
+     "enemyId": "boss_slime_king"
+    }
+   },
+   {
+    "timeSec": 120,
+    "type": "elite_wave",
+    "params": {
+     "enemyId": "enemy_skeleton",
+     "count": 6,
+     "hpMul": 3
+    }
+   },
+   {
+    "timeSec": 150,
+    "type": "chest"
+   },
+   {
+    "timeSec": 210,
+    "type": "miniboss",
+    "params": {
+     "enemyId": "boss_skeleton_lord"
+    }
+   },
+   {
+    "timeSec": 240,
+    "type": "elite_wave",
+    "params": {
+     "enemyId": "enemy_brute",
+     "count": 3,
+     "hpMul": 2
+    }
+   },
+   {
+    "timeSec": 270,
+    "type": "elite_wave",
+    "params": {
+     "enemyId": "enemy_brute",
+     "count": 4,
+     "hpMul": 2.5
+    }
+   }
+  ],
+  "quests": [
+   {
+    "timeSec": 70,
+    "type": "light_beacons",
+    "params": {
+     "count": 3,
+     "channelMs": 2500,
+     "label": "点亮圣烛",
+     "toast": "点亮 3 座林中圣烛，驱散黑暗！"
+    }
+   },
+   {
+    "timeSec": 185,
+    "type": "thaw_survivor",
+    "params": {
+     "tex": "tex_quest_cocoon",
+     "glow": 9109312,
+     "channelMs": 4000,
+     "label": "救出被藤蔓困住的村民",
+     "toast": "有村民被荆棘藤蔓裹住了！循着绿光去救",
+     "doneToast": "村民获救！猎手赶来助你作战"
+    }
+   }
+  ]
+ },
+ {
+  "id": "stage_castle",
+  "name": "幽影古堡",
+  "durationSec": 300,
+  "bgColor": 1314844,
+  "theme": "castle",
+  "unlockCost": 500,
+  "difficultyCurve": {
+   "hp": [
+    [
+     0,
+     1.2
+    ],
+    [
+     60,
+     1.5
+    ],
+    [
+     120,
+     2.6
+    ],
+    [
+     180,
+     4
+    ],
+    [
+     240,
+     5.8
+    ],
+    [
+     300,
+     8
+    ]
+   ],
+   "dmg": [
+    [
+     0,
+     1.1
+    ],
+    [
+     150,
+     1.3
+    ],
+    [
+     300,
+     1.7
+    ]
+   ]
+  },
+  "spawnTimeline": [
+   {
+    "timeSec": 0,
+    "enemyId": "enemy_ghost",
+    "ratePerSec": 0.55
+   },
+   {
+    "timeSec": 0,
+    "enemyId": "enemy_rat",
+    "ratePerSec": 0.3
+   },
+   {
+    "timeSec": 30,
+    "enemyId": "enemy_rat",
+    "ratePerSec": 0.45
+   },
+   {
+    "timeSec": 40,
+    "enemyId": "enemy_ghost",
+    "ratePerSec": 0.3
+   },
+   {
+    "timeSec": 60,
+    "enemyId": "enemy_grimoire",
+    "ratePerSec": 0.3
+   },
+   {
+    "timeSec": 90,
+    "enemyId": "enemy_armor",
+    "ratePerSec": 0.12
+   },
+   {
+    "timeSec": 120,
+    "enemyId": "enemy_rat",
+    "ratePerSec": 0.5
+   },
+   {
+    "timeSec": 120,
+    "enemyId": "enemy_grimoire",
+    "ratePerSec": 0.25
+   },
+   {
+    "timeSec": 150,
+    "enemyId": "enemy_armor",
+    "ratePerSec": 0.2
+   },
+   {
+    "timeSec": 150,
+    "enemyId": "enemy_ghost",
+    "ratePerSec": 0.4
+   },
+   {
+    "timeSec": 185,
+    "enemyId": "enemy_armor_captain",
+    "ratePerSec": 0.05
+   },
+   {
+    "timeSec": 185,
+    "enemyId": "enemy_grimoire",
+    "ratePerSec": 0.3
+   },
+   {
+    "timeSec": 215,
+    "enemyId": "enemy_armor",
+    "ratePerSec": 0.25
+   },
+   {
+    "timeSec": 215,
+    "enemyId": "enemy_rat",
+    "ratePerSec": 0.5
+   },
+   {
+    "timeSec": 240,
+    "enemyId": "enemy_armor_captain",
+    "ratePerSec": 0.08
+   },
+   {
+    "timeSec": 240,
+    "enemyId": "enemy_ghost",
+    "ratePerSec": 0.5
+   },
+   {
+    "timeSec": 270,
+    "enemyId": "enemy_armor_captain",
+    "ratePerSec": 0.12
+   },
+   {
+    "timeSec": 270,
+    "enemyId": "enemy_grimoire",
+    "ratePerSec": 0.45
+   },
+   {
+    "timeSec": 270,
+    "enemyId": "enemy_ghost",
+    "ratePerSec": 0.4
+   }
+  ],
+  "finalBoss": {
+   "enemyId": "boss_knight_king",
+   "hpMul": 1
+  },
+  "events": [
+   {
+    "timeSec": 50,
+    "type": "swarm_ring",
+    "params": {
+     "enemyId": "enemy_rat",
+     "count": 30
+    }
+   },
+   {
+    "timeSec": 95,
+    "type": "miniboss",
+    "params": {
+     "enemyId": "boss_ghost_duke"
+    }
+   },
+   {
+    "timeSec": 130,
+    "type": "elite_wave",
+    "params": {
+     "enemyId": "enemy_armor",
+     "count": 6,
+     "hpMul": 3
+    }
+   },
+   {
+    "timeSec": 160,
+    "type": "chest"
+   },
+   {
+    "timeSec": 215,
+    "type": "miniboss",
+    "params": {
+     "enemyId": "boss_ghost_duke",
+     "hpMul": 1.6
+    }
+   },
+   {
+    "timeSec": 250,
+    "type": "elite_wave",
+    "params": {
+     "enemyId": "enemy_armor_captain",
+     "count": 3,
+     "hpMul": 2
+    }
+   },
+   {
+    "timeSec": 278,
+    "type": "elite_wave",
+    "params": {
+     "enemyId": "enemy_armor_captain",
+     "count": 4,
+     "hpMul": 2.5
+    }
+   }
+  ],
+  "quests": [
+   {
+    "timeSec": 95,
+    "type": "thaw_survivor",
+    "params": {
+     "tex": "tex_enemy_armor",
+     "glow": 13434879,
+     "channelMs": 4500,
+     "label": "解除骑士的封印",
+     "toast": "一副骑士铠甲被封印定住了——解开它",
+     "doneToast": "封印解除！援军赶到助战"
+    }
+   },
+   {
+    "timeSec": 205,
+    "type": "seal_rift",
+    "params": {
+     "channelMs": 6000,
+     "spawnEnemyId": "enemy_ghost",
+     "label": "封印裂开的墓穴",
+     "toast": "墓穴裂开涌出怨灵——封印它，或留着刷经验"
+    }
+   }
+  ]
+ },
+ {
+  "id": "stage_desert",
+  "name": "烈日遗迹",
+  "durationSec": 300,
+  "bgColor": 13144144,
+  "theme": "desert",
+  "difficultyCurve": {
+   "hp": [
+    [
+     0,
+     1
+    ],
+    [
+     60,
+     1.4
+    ],
+    [
+     120,
+     2.4
+    ],
+    [
+     180,
+     3.8
+    ],
+    [
+     240,
+     5.5
+    ],
+    [
+     300,
+     8
+    ]
+   ],
+   "dmg": [
+    [
+     0,
+     1
+    ],
+    [
+     150,
+     1.25
+    ],
+    [
+     300,
+     1.7
+    ]
+   ]
+  },
+  "hazards": [
+   {
+    "type": "quicksand",
+    "perChunk": 0.16,
+    "radius": 46,
+    "slowPct": 0.65
+   }
+  ],
+  "dormantPack": {
+   "enemyId": "enemy_golem_sand",
+   "perChunk": 0.1
+  },
+  "spawnTimeline": [
+   {
+    "timeSec": 0,
+    "enemyId": "enemy_scarab",
+    "ratePerSec": 0.9
+   },
+   {
+    "timeSec": 40,
+    "enemyId": "enemy_scarab",
+    "ratePerSec": 0.4
+   },
+   {
+    "timeSec": 40,
+    "enemyId": "enemy_jackal",
+    "ratePerSec": 0.3
+   },
+   {
+    "timeSec": 75,
+    "enemyId": "enemy_snake",
+    "ratePerSec": 0.25
+   },
+   {
+    "timeSec": 75,
+    "enemyId": "enemy_jackal",
+    "ratePerSec": 0.15
+   },
+   {
+    "timeSec": 110,
+    "enemyId": "enemy_mummy",
+    "ratePerSec": 0.12
+   },
+   {
+    "timeSec": 110,
+    "enemyId": "enemy_snake",
+    "ratePerSec": 0.3
+   },
+   {
+    "timeSec": 150,
+    "enemyId": "enemy_scarab",
+    "ratePerSec": 0.35
+   },
+   {
+    "timeSec": 150,
+    "enemyId": "enemy_jackal",
+    "ratePerSec": 0.25
+   },
+   {
+    "timeSec": 190,
+    "enemyId": "enemy_golem_sand",
+    "ratePerSec": 0.08
+   },
+   {
+    "timeSec": 190,
+    "enemyId": "enemy_cultist",
+    "ratePerSec": 0.15
+   },
+   {
+    "timeSec": 190,
+    "enemyId": "enemy_mummy",
+    "ratePerSec": 0.15
+   },
+   {
+    "timeSec": 240,
+    "enemyId": "enemy_mummy",
+    "ratePerSec": 0.2
+   },
+   {
+    "timeSec": 240,
+    "enemyId": "enemy_cultist",
+    "ratePerSec": 0.2
+   },
+   {
+    "timeSec": 240,
+    "enemyId": "enemy_jackal",
+    "ratePerSec": 0.3
+   },
+   {
+    "timeSec": 270,
+    "enemyId": "enemy_golem_sand",
+    "ratePerSec": 0.12
+   },
+   {
+    "timeSec": 270,
+    "enemyId": "enemy_snake",
+    "ratePerSec": 0.4
+   },
+   {
+    "timeSec": 270,
+    "enemyId": "enemy_scarab",
+    "ratePerSec": 0.3
+   }
+  ],
+  "finalBoss": {
+   "enemyId": "boss_scarab_king",
+   "hpMul": 1
+  },
+  "events": [
+   {
+    "timeSec": 45,
+    "type": "burrow_swarm",
+    "params": {
+     "enemyId": "enemy_scarab",
+     "count": 14,
+     "radius": 200
+    }
+   },
+   {
+    "timeSec": 75,
+    "type": "sandstorm",
+    "params": {
+     "durationSec": 15,
+     "windX": 45,
+     "windY": 0,
+     "spawnMul": 1.5
+    }
+   },
+   {
+    "timeSec": 90,
+    "type": "miniboss",
+    "params": {
+     "enemyId": "boss_snake_queen"
+    }
+   },
+   {
+    "timeSec": 120,
+    "type": "burrow_swarm",
+    "params": {
+     "enemyId": "enemy_jackal",
+     "count": 8,
+     "radius": 180
+    }
+   },
+   {
+    "timeSec": 150,
+    "type": "wormstrike",
+    "params": {
+     "durationSec": 130,
+     "intervalSec": 12,
+     "damage": 25,
+     "radius": 56,
+     "delaySec": 6
+    }
+   },
+   {
+    "timeSec": 150,
+    "type": "elite_wave",
+    "params": {
+     "enemyId": "enemy_jackal",
+     "count": 6,
+     "hpMul": 3,
+     "wakeDormant": true
+    }
+   },
+   {
+    "timeSec": 195,
+    "type": "sandstorm",
+    "params": {
+     "durationSec": 15,
+     "windX": -50,
+     "windY": 20,
+     "spawnMul": 1.5
+    }
+   },
+   {
+    "timeSec": 200,
+    "type": "chest"
+   },
+   {
+    "timeSec": 240,
+    "type": "elite_wave",
+    "params": {
+     "enemyId": "enemy_mummy",
+     "count": 8,
+     "hpMul": 4,
+     "wakeDormant": true
+    }
+   },
+   {
+    "timeSec": 240,
+    "type": "burrow_swarm",
+    "params": {
+     "enemyId": "enemy_scarab",
+     "count": 20,
+     "radius": 220
+    }
+   },
+   {
+    "timeSec": 255,
+    "type": "sandstorm",
+    "params": {
+     "durationSec": 20,
+     "windX": 60,
+     "windY": -15,
+     "spawnMul": 1.6
+    }
+   },
+   {
+    "timeSec": 270,
+    "type": "burrow_swarm",
+    "params": {
+     "enemyId": "enemy_mummy",
+     "count": 10,
+     "radius": 190
+    }
+   }
+  ],
+  "quests": [
+   {
+    "timeSec": 150,
+    "type": "airdrop",
+    "params": {
+     "delayMs": 8000,
+     "label": "抢占商队补给点",
+     "toast": "商队信号弹升空！补给落点已标记",
+     "waves": [
+      [
+       "enemy_jackal",
+       8
+      ],
+      [
+       "enemy_scarab",
+       10
+      ]
+     ]
+    }
+   },
+   {
+    "timeSec": 235,
+    "type": "seal_rift",
+    "params": {
+     "channelMs": 6000,
+     "glow": 15240016,
+     "spawnEnemyId": "enemy_scarab",
+     "label": "封印沙之裂缝",
+     "toast": "沙之裂缝在钻出虫群——封印它，或留着刷经验"
+    }
+   }
+  ]
+ },
+ {
+  "id": "stage_tundra",
+  "name": "冰原冻土",
+  "durationSec": 300,
+  "bgColor": 13622506,
+  "theme": "tundra",
+  "iceSlide": 0.28,
+  "difficultyCurve": {
+   "hp": [
+    [
+     0,
+     1
+    ],
+    [
+     60,
+     1.5
+    ],
+    [
+     120,
+     2.6
+    ],
+    [
+     180,
+     4.2
+    ],
+    [
+     240,
+     6
+    ],
+    [
+     300,
+     9.5
+    ]
+   ],
+   "dmg": [
+    [
+     0,
+     1
+    ],
+    [
+     150,
+     1.3
+    ],
+    [
+     300,
+     1.8
+    ]
+   ]
+  },
+  "hazards": [
+   {
+    "type": "icesheet",
+    "perChunk": 0.14,
+    "radius": 50,
+    "slideK": 0.07
+   }
+  ],
+  "quests": [
+   {
+    "timeSec": 60,
+    "type": "thaw_survivor",
+    "params": {
+     "channelMs": 4000
+    }
+   },
+   {
+    "timeSec": 140,
+    "type": "light_beacons",
+    "params": {
+     "count": 3,
+     "channelMs": 2500
+    }
+   },
+   {
+    "timeSec": 200,
+    "type": "seal_rift",
+    "params": {
+     "channelMs": 6000
+    }
+   },
+   {
+    "timeSec": 260,
+    "type": "airdrop",
+    "params": {
+     "delayMs": 8000
+    }
+   }
+  ],
+  "spawnTimeline": [
+   {
+    "timeSec": 0,
+    "enemyId": "enemy_frozen_corpse",
+    "ratePerSec": 0.8
+   },
+   {
+    "timeSec": 0,
+    "enemyId": "enemy_icewolf",
+    "ratePerSec": 0.2
+   },
+   {
+    "timeSec": 40,
+    "enemyId": "enemy_snowhare",
+    "ratePerSec": 0.3
+   },
+   {
+    "timeSec": 40,
+    "enemyId": "enemy_icewolf",
+    "ratePerSec": 0.25
+   },
+   {
+    "timeSec": 75,
+    "enemyId": "enemy_frostwisp",
+    "ratePerSec": 0.15
+   },
+   {
+    "timeSec": 75,
+    "enemyId": "enemy_frozen_corpse",
+    "ratePerSec": 0.3
+   },
+   {
+    "timeSec": 110,
+    "enemyId": "enemy_icewolf",
+    "ratePerSec": 0.35
+   },
+   {
+    "timeSec": 110,
+    "enemyId": "enemy_snowhare",
+    "ratePerSec": 0.25
+   },
+   {
+    "timeSec": 120,
+    "enemyId": "enemy_frost_totem",
+    "ratePerSec": 0.02
+   },
+   {
+    "timeSec": 150,
+    "enemyId": "enemy_frostwisp",
+    "ratePerSec": 0.2
+   },
+   {
+    "timeSec": 150,
+    "enemyId": "enemy_frozen_corpse",
+    "ratePerSec": 0.4
+   },
+   {
+    "timeSec": 190,
+    "enemyId": "enemy_yeti",
+    "ratePerSec": 0.07
+   },
+   {
+    "timeSec": 190,
+    "enemyId": "enemy_icewolf",
+    "ratePerSec": 0.3
+   },
+   {
+    "timeSec": 230,
+    "enemyId": "enemy_frostwisp",
+    "ratePerSec": 0.25
+   },
+   {
+    "timeSec": 230,
+    "enemyId": "enemy_snowhare",
+    "ratePerSec": 0.3
+   },
+   {
+    "timeSec": 270,
+    "enemyId": "enemy_yeti",
+    "ratePerSec": 0.12
+   },
+   {
+    "timeSec": 270,
+    "enemyId": "enemy_frozen_corpse",
+    "ratePerSec": 0.5
+   },
+   {
+    "timeSec": 270,
+    "enemyId": "enemy_icewolf",
+    "ratePerSec": 0.25
+   }
+  ],
+  "finalBoss": {
+   "enemyId": "boss_mammoth",
+   "hpMul": 1
+  },
+  "events": [
+   {
+    "timeSec": 45,
+    "type": "swarm_ring",
+    "params": {
+     "enemyId": "enemy_icewolf",
+     "count": 18
+    }
+   },
+   {
+    "timeSec": 75,
+    "type": "blizzard",
+    "params": {
+     "durationSec": 15,
+     "windX": 25,
+     "spawnMul": 1.5
+    }
+   },
+   {
+    "timeSec": 90,
+    "type": "miniboss",
+    "params": {
+     "enemyId": "boss_frost_queen"
+    }
+   },
+   {
+    "timeSec": 150,
+    "type": "elite_wave",
+    "params": {
+     "enemyId": "enemy_icewolf",
+     "count": 6,
+     "hpMul": 3
+    }
+   },
+   {
+    "timeSec": 170,
+    "type": "chest"
+   },
+   {
+    "timeSec": 210,
+    "type": "blizzard",
+    "params": {
+     "durationSec": 15,
+     "windX": -20,
+     "windY": 15,
+     "spawnMul": 1.5
+    }
+   },
+   {
+    "timeSec": 240,
+    "type": "elite_wave",
+    "params": {
+     "enemyId": "enemy_yeti",
+     "count": 3,
+     "hpMul": 3
+    }
+   },
+   {
+    "timeSec": 250,
+    "type": "swarm_ring",
+    "params": {
+     "enemyId": "enemy_frozen_corpse",
+     "count": 24
+    }
+   },
+   {
+    "timeSec": 270,
+    "type": "blizzard",
+    "params": {
+     "durationSec": 18,
+     "windX": 30,
+     "windY": -10,
+     "spawnMul": 1.7
+    }
+   }
+  ]
+ }
+]

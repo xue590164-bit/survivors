@@ -1,0 +1,201 @@
+{
+  "forest": {
+    "ambient": [
+      {
+        "tex": "tex_bld_hut",
+        "weight": 3
+      },
+      {
+        "tex": "tex_bld_well",
+        "weight": 3
+      },
+      {
+        "tex": "tex_bld_camp",
+        "weight": 2
+      },
+      {
+        "tex": "tex_bld_stone",
+        "weight": 3
+      },
+      {
+        "tex": "tex_bld_log",
+        "weight": 3
+      },
+      {
+        "tex": "tex_bld_fence",
+        "weight": 2
+      }
+    ],
+    "altars": [
+      {
+        "tex": "tex_bld_altar_blood",
+        "effect": "blood_pact",
+        "weight": 3
+      },
+      {
+        "tex": "tex_bld_stone_circle",
+        "effect": "regen_aura",
+        "weight": 3
+      },
+      {
+        "tex": "tex_bld_fairy_spring",
+        "effect": "heal_xp",
+        "weight": 3
+      },
+      {
+        "tex": "tex_bld_witch_hut",
+        "effect": "witch_gamble",
+        "weight": 1,
+        "maxPerRun": 1
+      }
+    ]
+  },
+  "castle": {
+    "ambient": [
+      {
+        "tex": "tex_bld_statue",
+        "weight": 3
+      },
+      {
+        "tex": "tex_bld_bookshelf",
+        "weight": 3
+      },
+      {
+        "tex": "tex_bld_feast",
+        "weight": 3
+      },
+      {
+        "tex": "tex_bld_gibbet",
+        "weight": 2
+      },
+      {
+        "tex": "tex_bld_carriage",
+        "weight": 2
+      },
+      {
+        "tex": "tex_bld_grate",
+        "weight": 2
+      }
+    ],
+    "altars": [
+      {
+        "tex": "tex_bld_altar_holy",
+        "effect": "holy_altar",
+        "weight": 3
+      },
+      {
+        "tex": "tex_bld_alchemy",
+        "effect": "alchemy",
+        "weight": 3
+      },
+      {
+        "tex": "tex_bld_throne",
+        "effect": "throne",
+        "weight": 3
+      },
+      {
+        "tex": "tex_bld_mirror",
+        "effect": "cursed_mirror",
+        "weight": 1,
+        "maxPerRun": 1
+      }
+    ]
+  },
+  "desert": {
+    "ambient": [
+      {
+        "tex": "tex_bld_pyramid_big",
+        "weight": 2
+      },
+      {
+        "tex": "tex_bld_obelisk",
+        "weight": 3
+      },
+      {
+        "tex": "tex_bld_column_broken",
+        "weight": 3
+      },
+      {
+        "tex": "tex_bld_sphinx",
+        "weight": 2
+      },
+      {
+        "tex": "tex_bld_palm",
+        "weight": 3
+      },
+      {
+        "tex": "tex_bld_bones",
+        "weight": 2
+      },
+      {
+        "tex": "tex_bld_pots",
+        "weight": 2
+      },
+      {
+        "tex": "tex_bld_dry_pool",
+        "weight": 1
+      }
+    ],
+    "altars": [
+      {
+        "tex": "tex_bld_altar_sun",
+        "effect": "sun_shrine",
+        "weight": 3,
+        "channelMs": 3000
+      },
+      {
+        "tex": "tex_bld_altar_scarab",
+        "effect": "holy_altar",
+        "weight": 2
+      }
+    ]
+  },
+  "tundra": {
+    "ambient": [
+      {
+        "tex": "tex_bld_tent",
+        "weight": 3
+      },
+      {
+        "tex": "tex_bld_sled",
+        "weight": 3
+      },
+      {
+        "tex": "tex_bld_pine_snow",
+        "weight": 3
+      },
+      {
+        "tex": "tex_bld_ice_crystal",
+        "weight": 2
+      },
+      {
+        "tex": "tex_bld_frozen_pond",
+        "weight": 2
+      },
+      {
+        "tex": "tex_bld_cairn",
+        "weight": 2
+      },
+      {
+        "tex": "tex_bld_mammoth_skull",
+        "weight": 1
+      },
+      {
+        "tex": "tex_bld_flag",
+        "weight": 2
+      }
+    ],
+    "altars": [
+      {
+        "tex": "tex_bld_altar_frost",
+        "effect": "holy_altar",
+        "weight": 3
+      },
+      {
+        "tex": "tex_bld_altar_aurora",
+        "effect": "throne",
+        "weight": 2
+      }
+    ]
+  }
+}

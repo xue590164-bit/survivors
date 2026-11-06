@@ -1,0 +1,1744 @@
+{
+ "char_knight": {
+  "nodes": [
+   {
+    "id": "k_vit",
+    "name": "体魄",
+    "desc": "生命上限 +15",
+    "icon": "tex_passive_heart",
+    "cost": 40,
+    "requires": [],
+    "pos": [
+     0,
+     1
+    ],
+    "stat": "maxHp",
+    "value": 15
+   },
+   {
+    "id": "k_ka1",
+    "name": "利刃",
+    "desc": "飞刀伤害 +10%",
+    "icon": "tex_weapon_knife",
+    "cost": 60,
+    "requires": [
+     "k_vit"
+    ],
+    "pos": [
+     1,
+     0
+    ],
+    "weapon": "weapon_knife",
+    "weaponMod": {
+     "damagePct": 0.1
+    }
+   },
+   {
+    "id": "k_ka2",
+    "name": "双发",
+    "desc": "飞刀弹道 +1",
+    "icon": "tex_weapon_knife",
+    "cost": 240,
+    "requires": [
+     "k_ka1"
+    ],
+    "pos": [
+     2,
+     0
+    ],
+    "weapon": "weapon_knife",
+    "weaponMod": {
+     "projectiles": 1
+    }
+   },
+   {
+    "id": "k_kb1",
+    "name": "轻盈",
+    "desc": "所有武器冷却 -4%",
+    "icon": "tex_passive_boots",
+    "cost": 60,
+    "requires": [
+     "k_vit"
+    ],
+    "pos": [
+     1,
+     1
+    ],
+    "stat": "cooldownPct",
+    "value": 0.04
+   },
+   {
+    "id": "k_kb2",
+    "name": "疾行",
+    "desc": "移动速度 +8",
+    "icon": "tex_passive_boots",
+    "cost": 120,
+    "requires": [
+     "k_kb1"
+    ],
+    "pos": [
+     2,
+     1
+    ],
+    "stat": "speed",
+    "value": 8
+   },
+   {
+    "id": "k_kb3",
+    "name": "极速",
+    "desc": "所有武器冷却 -3%",
+    "icon": "tex_passive_boots",
+    "cost": 180,
+    "requires": [
+     "k_kb2"
+    ],
+    "pos": [
+     3,
+     1
+    ],
+    "stat": "cooldownPct",
+    "value": 0.03
+   },
+   {
+    "id": "k_kc1",
+    "name": "铁壁",
+    "desc": "护甲 +1",
+    "icon": "tex_passive_armor",
+    "cost": 80,
+    "requires": [
+     "k_vit"
+    ],
+    "pos": [
+     1,
+     2
+    ],
+    "stat": "armor",
+    "value": 1
+   },
+   {
+    "id": "k_kc2",
+    "name": "磐石",
+    "desc": "生命上限 +20",
+    "icon": "tex_passive_heart",
+    "cost": 150,
+    "requires": [
+     "k_kc1"
+    ],
+    "pos": [
+     2,
+     2
+    ],
+    "stat": "maxHp",
+    "value": 20
+   }
+  ]
+ },
+ "char_mage": {
+  "nodes": [
+   {
+    "id": "m_vit",
+    "name": "冥想",
+    "desc": "生命上限 +10",
+    "icon": "tex_passive_heart",
+    "cost": 40,
+    "requires": [],
+    "pos": [
+     0,
+     1
+    ],
+    "stat": "maxHp",
+    "value": 10
+   },
+   {
+    "id": "m_a1",
+    "name": "圣言",
+    "desc": "圣典伤害 +10%",
+    "icon": "tex_weapon_bible",
+    "cost": 60,
+    "requires": [
+     "m_vit"
+    ],
+    "pos": [
+     1,
+     0
+    ],
+    "weapon": "weapon_bible",
+    "weaponMod": {
+     "damagePct": 0.1
+    }
+   },
+   {
+    "id": "m_a2",
+    "name": "双典",
+    "desc": "圣典环绕体 +1",
+    "icon": "tex_weapon_bible",
+    "cost": 240,
+    "requires": [
+     "m_a1"
+    ],
+    "pos": [
+     2,
+     0
+    ],
+    "weapon": "weapon_bible",
+    "weaponMod": {
+     "projectiles": 1
+    }
+   },
+   {
+    "id": "m_b1",
+    "name": "魔力",
+    "desc": "所有伤害 +3%",
+    "icon": "tex_passive_clover",
+    "cost": 60,
+    "requires": [
+     "m_vit"
+    ],
+    "pos": [
+     1,
+     1
+    ],
+    "stat": "damagePct",
+    "value": 0.03
+   },
+   {
+    "id": "m_b2",
+    "name": "广域",
+    "desc": "攻击范围 +6%",
+    "icon": "tex_passive_mask",
+    "cost": 120,
+    "requires": [
+     "m_b1"
+    ],
+    "pos": [
+     2,
+     1
+    ],
+    "stat": "areaPct",
+    "value": 0.06
+   },
+   {
+    "id": "m_b3",
+    "name": "专注",
+    "desc": "所有武器冷却 -4%",
+    "icon": "tex_passive_tome",
+    "cost": 180,
+    "requires": [
+     "m_b2"
+    ],
+    "pos": [
+     3,
+     1
+    ],
+    "stat": "cooldownPct",
+    "value": 0.04
+   },
+   {
+    "id": "m_c1",
+    "name": "学识",
+    "desc": "经验获取 +10%",
+    "icon": "tex_passive_lens",
+    "cost": 80,
+    "requires": [
+     "m_vit"
+    ],
+    "pos": [
+     1,
+     2
+    ],
+    "stat": "xpGainPct",
+    "value": 0.1
+   },
+   {
+    "id": "m_c2",
+    "name": "共鸣",
+    "desc": "拾取范围 +30",
+    "icon": "tex_passive_magnet",
+    "cost": 120,
+    "requires": [
+     "m_c1"
+    ],
+    "pos": [
+     2,
+     2
+    ],
+    "stat": "magnetRadius",
+    "value": 30
+   }
+  ]
+ },
+ "char_rogue": {
+  "nodes": [
+   {
+    "id": "r_vit",
+    "name": "野性",
+    "desc": "生命上限 +8",
+    "icon": "tex_passive_heart",
+    "cost": 40,
+    "requires": [],
+    "pos": [
+     0,
+     1
+    ],
+    "stat": "maxHp",
+    "value": 8
+   },
+   {
+    "id": "r_a1",
+    "name": "扩散",
+    "desc": "毒雾范围 +12%",
+    "icon": "tex_weapon_miasma",
+    "cost": 60,
+    "requires": [
+     "r_vit"
+    ],
+    "pos": [
+     1,
+     0
+    ],
+    "weapon": "weapon_miasma",
+    "weaponMod": {
+     "areaPct": 0.12
+    }
+   },
+   {
+    "id": "r_a2",
+    "name": "剧毒",
+    "desc": "毒雾伤害 +15%",
+    "icon": "tex_weapon_miasma",
+    "cost": 200,
+    "requires": [
+     "r_a1"
+    ],
+    "pos": [
+     2,
+     0
+    ],
+    "weapon": "weapon_miasma",
+    "weaponMod": {
+     "damagePct": 0.15
+    }
+   },
+   {
+    "id": "r_b1",
+    "name": "疾风",
+    "desc": "移动速度 +10",
+    "icon": "tex_passive_boots",
+    "cost": 60,
+    "requires": [
+     "r_vit"
+    ],
+    "pos": [
+     1,
+     1
+    ],
+    "stat": "speed",
+    "value": 10
+   },
+   {
+    "id": "r_b2",
+    "name": "连击",
+    "desc": "所有武器冷却 -4%",
+    "icon": "tex_passive_tome",
+    "cost": 140,
+    "requires": [
+     "r_b1"
+    ],
+    "pos": [
+     2,
+     1
+    ],
+    "stat": "cooldownPct",
+    "value": 0.04
+   },
+   {
+    "id": "r_b3",
+    "name": "鬼影",
+    "desc": "移动速度 +8",
+    "icon": "tex_passive_boots",
+    "cost": 180,
+    "requires": [
+     "r_b2"
+    ],
+    "pos": [
+     3,
+     1
+    ],
+    "stat": "speed",
+    "value": 8
+   },
+   {
+    "id": "r_c1",
+    "name": "狩猎",
+    "desc": "经验获取 +12%",
+    "icon": "tex_passive_lens",
+    "cost": 80,
+    "requires": [
+     "r_vit"
+    ],
+    "pos": [
+     1,
+     2
+    ],
+    "stat": "xpGainPct",
+    "value": 0.12
+   },
+   {
+    "id": "r_c2",
+    "name": "磁吸",
+    "desc": "拾取范围 +40",
+    "icon": "tex_passive_magnet",
+    "cost": 120,
+    "requires": [
+     "r_c1"
+    ],
+    "pos": [
+     2,
+     2
+    ],
+    "stat": "magnetRadius",
+    "value": 40
+   }
+  ]
+ },
+ "char_berserker": {
+  "nodes": [
+   {
+    "id": "b_vit",
+    "name": "体魄",
+    "desc": "生命上限 +20",
+    "icon": "tex_passive_heart",
+    "cost": 40,
+    "requires": [],
+    "pos": [
+     0,
+     1
+    ],
+    "stat": "maxHp",
+    "value": 20
+   },
+   {
+    "id": "b_a1",
+    "name": "重斧",
+    "desc": "回旋斧伤害 +12%",
+    "icon": "tex_weapon_axe",
+    "cost": 60,
+    "requires": [
+     "b_vit"
+    ],
+    "pos": [
+     1,
+     0
+    ],
+    "weapon": "weapon_axe",
+    "weaponMod": {
+     "damagePct": 0.12
+    }
+   },
+   {
+    "id": "b_a2",
+    "name": "双斧",
+    "desc": "回旋斧数量 +1",
+    "icon": "tex_weapon_axe",
+    "cost": 240,
+    "requires": [
+     "b_a1"
+    ],
+    "pos": [
+     2,
+     0
+    ],
+    "weapon": "weapon_axe",
+    "weaponMod": {
+     "projectiles": 1
+    }
+   },
+   {
+    "id": "b_b1",
+    "name": "坚韧",
+    "desc": "护甲 +1",
+    "icon": "tex_passive_armor",
+    "cost": 60,
+    "requires": [
+     "b_vit"
+    ],
+    "pos": [
+     1,
+     1
+    ],
+    "stat": "armor",
+    "value": 1
+   },
+   {
+    "id": "b_b2",
+    "name": "硬皮",
+    "desc": "生命上限 +25",
+    "icon": "tex_passive_heart",
+    "cost": 120,
+    "requires": [
+     "b_b1"
+    ],
+    "pos": [
+     2,
+     1
+    ],
+    "stat": "maxHp",
+    "value": 25
+   },
+   {
+    "id": "b_b3",
+    "name": "不屈",
+    "desc": "所有伤害 +5%",
+    "icon": "tex_passive_clover",
+    "cost": 180,
+    "requires": [
+     "b_b2"
+    ],
+    "pos": [
+     3,
+     1
+    ],
+    "stat": "damagePct",
+    "value": 0.05
+   },
+   {
+    "id": "b_c1",
+    "name": "狂怒",
+    "desc": "暴击率 +4%",
+    "icon": "tex_passive_crit",
+    "cost": 80,
+    "requires": [
+     "b_vit"
+    ],
+    "pos": [
+     1,
+     2
+    ],
+    "stat": "critPct",
+    "value": 0.04
+   },
+   {
+    "id": "b_c2",
+    "name": "嗜战",
+    "desc": "所有武器冷却 -4%",
+    "icon": "tex_passive_tome",
+    "cost": 150,
+    "requires": [
+     "b_c1"
+    ],
+    "pos": [
+     2,
+     2
+    ],
+    "stat": "cooldownPct",
+    "value": 0.04
+   }
+  ]
+ },
+ "char_hunter": {
+  "nodes": [
+   {
+    "id": "h_vit",
+    "name": "轻盈",
+    "desc": "生命上限 +10",
+    "icon": "tex_passive_heart",
+    "cost": 40,
+    "requires": [],
+    "pos": [
+     0,
+     1
+    ],
+    "stat": "maxHp",
+    "value": 10
+   },
+   {
+    "id": "h_a1",
+    "name": "锐箭",
+    "desc": "长弓伤害 +12%",
+    "icon": "tex_weapon_longbow",
+    "cost": 60,
+    "requires": [
+     "h_vit"
+    ],
+    "pos": [
+     1,
+     0
+    ],
+    "weapon": "weapon_longbow",
+    "weaponMod": {
+     "damagePct": 0.12
+    }
+   },
+   {
+    "id": "h_a2",
+    "name": "贯穿",
+    "desc": "长弓穿透 +2",
+    "icon": "tex_weapon_longbow",
+    "cost": 240,
+    "requires": [
+     "h_a1"
+    ],
+    "pos": [
+     2,
+     0
+    ],
+    "weapon": "weapon_longbow",
+    "weaponMod": {
+     "pierce": 2
+    }
+   },
+   {
+    "id": "h_b1",
+    "name": "疾步",
+    "desc": "移动速度 +10",
+    "icon": "tex_passive_boots",
+    "cost": 60,
+    "requires": [
+     "h_vit"
+    ],
+    "pos": [
+     1,
+     1
+    ],
+    "stat": "speed",
+    "value": 10
+   },
+   {
+    "id": "h_b2",
+    "name": "连射",
+    "desc": "所有武器冷却 -4%",
+    "icon": "tex_passive_tome",
+    "cost": 140,
+    "requires": [
+     "h_b1"
+    ],
+    "pos": [
+     2,
+     1
+    ],
+    "stat": "cooldownPct",
+    "value": 0.04
+   },
+   {
+    "id": "h_b3",
+    "name": "风行者",
+    "desc": "移动速度 +8",
+    "icon": "tex_passive_boots",
+    "cost": 180,
+    "requires": [
+     "h_b2"
+    ],
+    "pos": [
+     3,
+     1
+    ],
+    "stat": "speed",
+    "value": 8
+   },
+   {
+    "id": "h_c1",
+    "name": "鹰眼",
+    "desc": "经验获取 +10%",
+    "icon": "tex_passive_lens",
+    "cost": 80,
+    "requires": [
+     "h_vit"
+    ],
+    "pos": [
+     1,
+     2
+    ],
+    "stat": "xpGainPct",
+    "value": 0.1
+   },
+   {
+    "id": "h_c2",
+    "name": "远视",
+    "desc": "拾取范围 +35",
+    "icon": "tex_passive_magnet",
+    "cost": 120,
+    "requires": [
+     "h_c1"
+    ],
+    "pos": [
+     2,
+     2
+    ],
+    "stat": "magnetRadius",
+    "value": 35
+   }
+  ]
+ },
+ "char_cleric": {
+  "nodes": [
+   {
+    "id": "c_vit",
+    "name": "信仰",
+    "desc": "生命上限 +15",
+    "icon": "tex_passive_heart",
+    "cost": 40,
+    "requires": [],
+    "pos": [
+     0,
+     1
+    ],
+    "stat": "maxHp",
+    "value": 15
+   },
+   {
+    "id": "c_a1",
+    "name": "圣辉",
+    "desc": "圣光脉冲范围 +12%",
+    "icon": "tex_weapon_nova",
+    "cost": 60,
+    "requires": [
+     "c_vit"
+    ],
+    "pos": [
+     1,
+     0
+    ],
+    "weapon": "weapon_nova",
+    "weaponMod": {
+     "areaPct": 0.12
+    }
+   },
+   {
+    "id": "c_a2",
+    "name": "圣怒",
+    "desc": "圣光脉冲伤害 +15%",
+    "icon": "tex_weapon_nova",
+    "cost": 200,
+    "requires": [
+     "c_a1"
+    ],
+    "pos": [
+     2,
+     0
+    ],
+    "weapon": "weapon_nova",
+    "weaponMod": {
+     "damagePct": 0.15
+    }
+   },
+   {
+    "id": "c_b1",
+    "name": "虔诚",
+    "desc": "护甲 +1",
+    "icon": "tex_passive_armor",
+    "cost": 60,
+    "requires": [
+     "c_vit"
+    ],
+    "pos": [
+     1,
+     1
+    ],
+    "stat": "armor",
+    "value": 1
+   },
+   {
+    "id": "c_b2",
+    "name": "再生",
+    "desc": "每秒回复 +0.4 HP",
+    "icon": "tex_passive_regen",
+    "cost": 140,
+    "requires": [
+     "c_b1"
+    ],
+    "pos": [
+     2,
+     1
+    ],
+    "stat": "regenPerSec",
+    "value": 0.4
+   },
+   {
+    "id": "c_b3",
+    "name": "磐心",
+    "desc": "生命上限 +20",
+    "icon": "tex_passive_heart",
+    "cost": 180,
+    "requires": [
+     "c_b2"
+    ],
+    "pos": [
+     3,
+     1
+    ],
+    "stat": "maxHp",
+    "value": 20
+   },
+   {
+    "id": "c_c1",
+    "name": "祝福",
+    "desc": "经验获取 +10%",
+    "icon": "tex_passive_lens",
+    "cost": 80,
+    "requires": [
+     "c_vit"
+    ],
+    "pos": [
+     1,
+     2
+    ],
+    "stat": "xpGainPct",
+    "value": 0.1
+   },
+   {
+    "id": "c_c2",
+    "name": "慈怀",
+    "desc": "拾取范围 +30",
+    "icon": "tex_passive_magnet",
+    "cost": 120,
+    "requires": [
+     "c_c1"
+    ],
+    "pos": [
+     2,
+     2
+    ],
+    "stat": "magnetRadius",
+    "value": 30
+   }
+  ]
+ },
+ "char_necro": {
+  "nodes": [
+   {
+    "id": "n_vit",
+    "name": "死灵",
+    "desc": "生命上限 +8",
+    "icon": "tex_passive_heart",
+    "cost": 40,
+    "requires": [],
+    "pos": [
+     0,
+     1
+    ],
+    "stat": "maxHp",
+    "value": 8
+   },
+   {
+    "id": "n_a1",
+    "name": "骸骨",
+    "desc": "仆从伤害 +15%",
+    "icon": "tex_weapon_summon",
+    "cost": 60,
+    "requires": [
+     "n_vit"
+    ],
+    "pos": [
+     1,
+     0
+    ],
+    "weapon": "weapon_summon",
+    "weaponMod": {
+     "damagePct": 0.15
+    }
+   },
+   {
+    "id": "n_a2",
+    "name": "增员",
+    "desc": "仆从数量 +1",
+    "icon": "tex_weapon_summon",
+    "cost": 260,
+    "requires": [
+     "n_a1"
+    ],
+    "pos": [
+     2,
+     0
+    ],
+    "weapon": "weapon_summon",
+    "weaponMod": {
+     "projectiles": 1
+    }
+   },
+   {
+    "id": "n_b1",
+    "name": "暗影",
+    "desc": "所有武器冷却 -4%",
+    "icon": "tex_passive_tome",
+    "cost": 60,
+    "requires": [
+     "n_vit"
+    ],
+    "pos": [
+     1,
+     1
+    ],
+    "stat": "cooldownPct",
+    "value": 0.04
+   },
+   {
+    "id": "n_b2",
+    "name": "迅捷",
+    "desc": "移动速度 +8",
+    "icon": "tex_passive_boots",
+    "cost": 140,
+    "requires": [
+     "n_b1"
+    ],
+    "pos": [
+     2,
+     1
+    ],
+    "stat": "speed",
+    "value": 8
+   },
+   {
+    "id": "n_b3",
+    "name": "迅影",
+    "desc": "所有武器冷却 -3%",
+    "icon": "tex_passive_tome",
+    "cost": 180,
+    "requires": [
+     "n_b2"
+    ],
+    "pos": [
+     3,
+     1
+    ],
+    "stat": "cooldownPct",
+    "value": 0.03
+   },
+   {
+    "id": "n_c1",
+    "name": "吸取",
+    "desc": "经验获取 +12%",
+    "icon": "tex_passive_lens",
+    "cost": 80,
+    "requires": [
+     "n_vit"
+    ],
+    "pos": [
+     1,
+     2
+    ],
+    "stat": "xpGainPct",
+    "value": 0.12
+   },
+   {
+    "id": "n_c2",
+    "name": "灵视",
+    "desc": "拾取范围 +35",
+    "icon": "tex_passive_magnet",
+    "cost": 120,
+    "requires": [
+     "n_c1"
+    ],
+    "pos": [
+     2,
+     2
+    ],
+    "stat": "magnetRadius",
+    "value": 35
+   }
+  ]
+ },
+ "char_assassin": {
+  "nodes": [
+   {
+    "id": "as_vit",
+    "name": "影遁",
+    "desc": "生命上限 +8",
+    "icon": "tex_passive_mask",
+    "cost": 40,
+    "requires": [],
+    "pos": [
+     0,
+     1
+    ],
+    "stat": "maxHp",
+    "value": 8
+   },
+   {
+    "id": "as_a1",
+    "name": "淬毒刃",
+    "desc": "飞刀伤害 +12%",
+    "icon": "tex_weapon_knife",
+    "cost": 60,
+    "requires": [
+     "as_vit"
+    ],
+    "pos": [
+     1,
+     0
+    ],
+    "weapon": "weapon_knife",
+    "weaponMod": {
+     "damagePct": 0.12
+    }
+   },
+   {
+    "id": "as_a2",
+    "name": "连刃",
+    "desc": "飞刀弹道 +1",
+    "icon": "tex_weapon_knife",
+    "cost": 240,
+    "requires": [
+     "as_a1"
+    ],
+    "pos": [
+     2,
+     0
+    ],
+    "weapon": "weapon_knife",
+    "weaponMod": {
+     "projectiles": 1
+    }
+   },
+   {
+    "id": "as_b1",
+    "name": "致命",
+    "desc": "暴击率 +5%",
+    "icon": "tex_passive_crit",
+    "cost": 60,
+    "requires": [
+     "as_vit"
+    ],
+    "pos": [
+     1,
+     1
+    ],
+    "stat": "critPct",
+    "value": 0.05
+   },
+   {
+    "id": "as_b2",
+    "name": "背刺",
+    "desc": "所有伤害 +5%",
+    "icon": "tex_weapon_knife",
+    "cost": 140,
+    "requires": [
+     "as_b1"
+    ],
+    "pos": [
+     2,
+     1
+    ],
+    "stat": "damagePct",
+    "value": 0.05
+   },
+   {
+    "id": "as_b3",
+    "name": "收割",
+    "desc": "暴击率 +5%",
+    "icon": "tex_passive_reaper_rune",
+    "cost": 180,
+    "requires": [
+     "as_b2"
+    ],
+    "pos": [
+     3,
+     1
+    ],
+    "stat": "critPct",
+    "value": 0.05
+   },
+   {
+    "id": "as_c1",
+    "name": "影步",
+    "desc": "移动速度 +10",
+    "icon": "tex_passive_boots",
+    "cost": 80,
+    "requires": [
+     "as_vit"
+    ],
+    "pos": [
+     1,
+     2
+    ],
+    "stat": "speed",
+    "value": 10
+   },
+   {
+    "id": "as_c2",
+    "name": "掠夺",
+    "desc": "拾取范围 +40",
+    "icon": "tex_passive_magnet",
+    "cost": 120,
+    "requires": [
+     "as_c1"
+    ],
+    "pos": [
+     2,
+     2
+    ],
+    "stat": "magnetRadius",
+    "value": 40
+   }
+  ]
+ },
+ "char_alchemist": {
+  "nodes": [
+   {
+    "id": "al_vit",
+    "name": "实验体",
+    "desc": "生命上限 +12",
+    "icon": "tex_passive_heart",
+    "cost": 40,
+    "requires": [],
+    "pos": [
+     0,
+     1
+    ],
+    "stat": "maxHp",
+    "value": 12
+   },
+   {
+    "id": "al_a1",
+    "name": "烈性炸药",
+    "desc": "炸药瓶伤害 +12%",
+    "icon": "tex_weapon_bomb",
+    "cost": 60,
+    "requires": [
+     "al_vit"
+    ],
+    "pos": [
+     1,
+     0
+    ],
+    "weapon": "weapon_bomb",
+    "weaponMod": {
+     "damagePct": 0.12
+    }
+   },
+   {
+    "id": "al_a2",
+    "name": "连环装药",
+    "desc": "炸药瓶弹道 +1",
+    "icon": "tex_weapon_bomb",
+    "cost": 240,
+    "requires": [
+     "al_a1"
+    ],
+    "pos": [
+     2,
+     0
+    ],
+    "weapon": "weapon_bomb",
+    "weaponMod": {
+     "projectiles": 1
+    }
+   },
+   {
+    "id": "al_b1",
+    "name": "广域调配",
+    "desc": "攻击范围 +8%",
+    "icon": "tex_passive_mask",
+    "cost": 60,
+    "requires": [
+     "al_vit"
+    ],
+    "pos": [
+     1,
+     1
+    ],
+    "stat": "areaPct",
+    "value": 0.08
+   },
+   {
+    "id": "al_b2",
+    "name": "催化",
+    "desc": "所有武器冷却 -4%",
+    "icon": "tex_passive_tome",
+    "cost": 140,
+    "requires": [
+     "al_b1"
+    ],
+    "pos": [
+     2,
+     1
+    ],
+    "stat": "cooldownPct",
+    "value": 0.04
+   },
+   {
+    "id": "al_b3",
+    "name": "大当量",
+    "desc": "攻击范围 +8%",
+    "icon": "tex_passive_prism",
+    "cost": 180,
+    "requires": [
+     "al_b2"
+    ],
+    "pos": [
+     3,
+     1
+    ],
+    "stat": "areaPct",
+    "value": 0.08
+   },
+   {
+    "id": "al_c1",
+    "name": "炼金心得",
+    "desc": "经验获取 +12%",
+    "icon": "tex_passive_lens",
+    "cost": 80,
+    "requires": [
+     "al_vit"
+    ],
+    "pos": [
+     1,
+     2
+    ],
+    "stat": "xpGainPct",
+    "value": 0.12
+   },
+   {
+    "id": "al_c2",
+    "name": "资源回收",
+    "desc": "拾取范围 +40",
+    "icon": "tex_passive_magnet",
+    "cost": 120,
+    "requires": [
+     "al_c1"
+    ],
+    "pos": [
+     2,
+     2
+    ],
+    "stat": "magnetRadius",
+    "value": 40
+   }
+  ]
+ },
+ "char_witch": {
+  "nodes": [
+   {
+    "id": "wi_vit",
+    "name": "巫血",
+    "desc": "生命上限 +8",
+    "icon": "tex_passive_heart",
+    "cost": 40,
+    "requires": [],
+    "pos": [
+     0,
+     1
+    ],
+    "stat": "maxHp",
+    "value": 8
+   },
+   {
+    "id": "wi_a1",
+    "name": "蔓延毒瘴",
+    "desc": "毒雾范围 +12%",
+    "icon": "tex_weapon_miasma",
+    "cost": 60,
+    "requires": [
+     "wi_vit"
+    ],
+    "pos": [
+     1,
+     0
+    ],
+    "weapon": "weapon_miasma",
+    "weaponMod": {
+     "areaPct": 0.12
+    }
+   },
+   {
+    "id": "wi_a2",
+    "name": "猛毒",
+    "desc": "毒雾伤害 +15%",
+    "icon": "tex_weapon_miasma",
+    "cost": 200,
+    "requires": [
+     "wi_a1"
+    ],
+    "pos": [
+     2,
+     0
+    ],
+    "weapon": "weapon_miasma",
+    "weaponMod": {
+     "damagePct": 0.15
+    }
+   },
+   {
+    "id": "wi_b1",
+    "name": "咒术",
+    "desc": "所有武器冷却 -4%",
+    "icon": "tex_passive_tome",
+    "cost": 60,
+    "requires": [
+     "wi_vit"
+    ],
+    "pos": [
+     1,
+     1
+    ],
+    "stat": "cooldownPct",
+    "value": 0.04
+   },
+   {
+    "id": "wi_b2",
+    "name": "蚀骨",
+    "desc": "所有伤害 +5%",
+    "icon": "tex_passive_crit",
+    "cost": 140,
+    "requires": [
+     "wi_b1"
+    ],
+    "pos": [
+     2,
+     1
+    ],
+    "stat": "damagePct",
+    "value": 0.05
+   },
+   {
+    "id": "wi_b3",
+    "name": "毒爆",
+    "desc": "攻击范围 +8%",
+    "icon": "tex_weapon_miasma",
+    "cost": 180,
+    "requires": [
+     "wi_b2"
+    ],
+    "pos": [
+     3,
+     1
+    ],
+    "stat": "areaPct",
+    "value": 0.08
+   },
+   {
+    "id": "wi_c1",
+    "name": "巫术心得",
+    "desc": "经验获取 +10%",
+    "icon": "tex_passive_lens",
+    "cost": 80,
+    "requires": [
+     "wi_vit"
+    ],
+    "pos": [
+     1,
+     2
+    ],
+    "stat": "xpGainPct",
+    "value": 0.1
+   },
+   {
+    "id": "wi_c2",
+    "name": "汲取生机",
+    "desc": "每秒回复 +0.4 HP",
+    "icon": "tex_passive_regen",
+    "cost": 140,
+    "requires": [
+     "wi_c1"
+    ],
+    "pos": [
+     2,
+     2
+    ],
+    "stat": "regenPerSec",
+    "value": 0.4
+   }
+  ]
+ },
+ "char_monk": {
+  "nodes": [
+   {
+    "id": "mo_vit",
+    "name": "禅身",
+    "desc": "生命上限 +18",
+    "icon": "tex_passive_heart",
+    "cost": 40,
+    "requires": [],
+    "pos": [
+     0,
+     1
+    ],
+    "stat": "maxHp",
+    "value": 18
+   },
+   {
+    "id": "mo_a1",
+    "name": "禅心",
+    "desc": "圣光脉冲范围 +12%",
+    "icon": "tex_weapon_nova",
+    "cost": 60,
+    "requires": [
+     "mo_vit"
+    ],
+    "pos": [
+     1,
+     0
+    ],
+    "weapon": "weapon_nova",
+    "weaponMod": {
+     "areaPct": 0.12
+    }
+   },
+   {
+    "id": "mo_a2",
+    "name": "金刚怒目",
+    "desc": "圣光脉冲伤害 +15%",
+    "icon": "tex_weapon_nova",
+    "cost": 200,
+    "requires": [
+     "mo_a1"
+    ],
+    "pos": [
+     2,
+     0
+    ],
+    "weapon": "weapon_nova",
+    "weaponMod": {
+     "damagePct": 0.15
+    }
+   },
+   {
+    "id": "mo_b1",
+    "name": "吐纳",
+    "desc": "每秒回复 +0.5 HP",
+    "icon": "tex_passive_regen",
+    "cost": 60,
+    "requires": [
+     "mo_vit"
+    ],
+    "pos": [
+     1,
+     1
+    ],
+    "stat": "regenPerSec",
+    "value": 0.5
+   },
+   {
+    "id": "mo_b2",
+    "name": "铁布衫",
+    "desc": "护甲 +1",
+    "icon": "tex_passive_armor",
+    "cost": 140,
+    "requires": [
+     "mo_b1"
+    ],
+    "pos": [
+     2,
+     1
+    ],
+    "stat": "armor",
+    "value": 1
+   },
+   {
+    "id": "mo_b3",
+    "name": "禅定",
+    "desc": "生命上限 +25",
+    "icon": "tex_passive_heart",
+    "cost": 180,
+    "requires": [
+     "mo_b2"
+    ],
+    "pos": [
+     3,
+     1
+    ],
+    "stat": "maxHp",
+    "value": 25
+   },
+   {
+    "id": "mo_c1",
+    "name": "行脚",
+    "desc": "移动速度 +8",
+    "icon": "tex_passive_boots",
+    "cost": 80,
+    "requires": [
+     "mo_vit"
+    ],
+    "pos": [
+     1,
+     2
+    ],
+    "stat": "speed",
+    "value": 8
+   },
+   {
+    "id": "mo_c2",
+    "name": "善缘",
+    "desc": "经验获取 +12%",
+    "icon": "tex_passive_lens",
+    "cost": 120,
+    "requires": [
+     "mo_c1"
+    ],
+    "pos": [
+     2,
+     2
+    ],
+    "stat": "xpGainPct",
+    "value": 0.12
+   }
+  ]
+ },
+ "char_duelist": {
+  "nodes": [
+   {
+    "id": "du_vit",
+    "name": "斗气",
+    "desc": "生命上限 +10",
+    "icon": "tex_passive_heart",
+    "cost": 40,
+    "requires": [],
+    "pos": [
+     0,
+     1
+    ],
+    "stat": "maxHp",
+    "value": 10
+   },
+   {
+    "id": "du_a1",
+    "name": "快剑",
+    "desc": "回旋斧伤害 +12%",
+    "icon": "tex_weapon_axe",
+    "cost": 60,
+    "requires": [
+     "du_vit"
+    ],
+    "pos": [
+     1,
+     0
+    ],
+    "weapon": "weapon_axe",
+    "weaponMod": {
+     "damagePct": 0.12
+    }
+   },
+   {
+    "id": "du_a2",
+    "name": "双回旋",
+    "desc": "回旋斧数量 +1",
+    "icon": "tex_weapon_axe",
+    "cost": 240,
+    "requires": [
+     "du_a1"
+    ],
+    "pos": [
+     2,
+     0
+    ],
+    "weapon": "weapon_axe",
+    "weaponMod": {
+     "projectiles": 1
+    }
+   },
+   {
+    "id": "du_b1",
+    "name": "灵巧步伐",
+    "desc": "移动速度 +10",
+    "icon": "tex_passive_boots",
+    "cost": 60,
+    "requires": [
+     "du_vit"
+    ],
+    "pos": [
+     1,
+     1
+    ],
+    "stat": "speed",
+    "value": 10
+   },
+   {
+    "id": "du_b2",
+    "name": "连击节奏",
+    "desc": "所有武器冷却 -4%",
+    "icon": "tex_passive_tome",
+    "cost": 140,
+    "requires": [
+     "du_b1"
+    ],
+    "pos": [
+     2,
+     1
+    ],
+    "stat": "cooldownPct",
+    "value": 0.04
+   },
+   {
+    "id": "du_b3",
+    "name": "绝杀",
+    "desc": "暴击率 +5%",
+    "icon": "tex_passive_crit",
+    "cost": 180,
+    "requires": [
+     "du_b2"
+    ],
+    "pos": [
+     3,
+     1
+    ],
+    "stat": "critPct",
+    "value": 0.05
+   },
+   {
+    "id": "du_c1",
+    "name": "决斗心得",
+    "desc": "经验获取 +10%",
+    "icon": "tex_passive_lens",
+    "cost": 80,
+    "requires": [
+     "du_vit"
+    ],
+    "pos": [
+     1,
+     2
+    ],
+    "stat": "xpGainPct",
+    "value": 0.1
+   },
+   {
+    "id": "du_c2",
+    "name": "战利品",
+    "desc": "拾取范围 +35",
+    "icon": "tex_passive_magnet",
+    "cost": 120,
+    "requires": [
+     "du_c1"
+    ],
+    "pos": [
+     2,
+     2
+    ],
+    "stat": "magnetRadius",
+    "value": 35
+   }
+  ]
+ },
+ "char_bard": {
+  "nodes": [
+   {
+    "id": "ba_vit",
+    "name": "旅途",
+    "desc": "生命上限 +10",
+    "icon": "tex_passive_heart",
+    "cost": 40,
+    "requires": [],
+    "pos": [
+     0,
+     1
+    ],
+    "stat": "maxHp",
+    "value": 10
+   },
+   {
+    "id": "ba_a1",
+    "name": "圣歌",
+    "desc": "圣典伤害 +10%",
+    "icon": "tex_weapon_bible",
+    "cost": 60,
+    "requires": [
+     "ba_vit"
+    ],
+    "pos": [
+     1,
+     0
+    ],
+    "weapon": "weapon_bible",
+    "weaponMod": {
+     "damagePct": 0.1
+    }
+   },
+   {
+    "id": "ba_a2",
+    "name": "合唱",
+    "desc": "圣典环绕体 +1",
+    "icon": "tex_weapon_bible",
+    "cost": 240,
+    "requires": [
+     "ba_a1"
+    ],
+    "pos": [
+     2,
+     0
+    ],
+    "weapon": "weapon_bible",
+    "weaponMod": {
+     "projectiles": 1
+    }
+   },
+   {
+    "id": "ba_b1",
+    "name": "韵律",
+    "desc": "所有武器冷却 -4%",
+    "icon": "tex_passive_tome",
+    "cost": 60,
+    "requires": [
+     "ba_vit"
+    ],
+    "pos": [
+     1,
+     1
+    ],
+    "stat": "cooldownPct",
+    "value": 0.04
+   },
+   {
+    "id": "ba_b2",
+    "name": "音波",
+    "desc": "攻击范围 +6%",
+    "icon": "tex_passive_mask",
+    "cost": 120,
+    "requires": [
+     "ba_b1"
+    ],
+    "pos": [
+     2,
+     1
+    ],
+    "stat": "areaPct",
+    "value": 0.06
+   },
+   {
+    "id": "ba_b3",
+    "name": "安可",
+    "desc": "所有武器冷却 -3%",
+    "icon": "tex_passive_tome",
+    "cost": 180,
+    "requires": [
+     "ba_b2"
+    ],
+    "pos": [
+     3,
+     1
+    ],
+    "stat": "cooldownPct",
+    "value": 0.03
+   },
+   {
+    "id": "ba_c1",
+    "name": "巡游见闻",
+    "desc": "经验获取 +15%",
+    "icon": "tex_passive_lens",
+    "cost": 80,
+    "requires": [
+     "ba_vit"
+    ],
+    "pos": [
+     1,
+     2
+    ],
+    "stat": "xpGainPct",
+    "value": 0.15
+   },
+   {
+    "id": "ba_c2",
+    "name": "慷慨听众",
+    "desc": "拾取范围 +50",
+    "icon": "tex_passive_magnet",
+    "cost": 120,
+    "requires": [
+     "ba_c1"
+    ],
+    "pos": [
+     2,
+     2
+    ],
+    "stat": "magnetRadius",
+    "value": 50
+   }
+  ]
+ }
+}

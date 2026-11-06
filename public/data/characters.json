@@ -1,0 +1,266 @@
+[
+ {
+  "id": "char_knight",
+  "name": "骑士",
+  "description": "均衡的近战战士，自带一点护甲",
+  "baseStats": {
+   "maxHp": 120,
+   "speed": 170,
+   "armor": 1,
+   "damagePct": 0,
+   "areaPct": 0,
+   "cooldownPct": 0,
+   "magnetRadius": 60,
+   "xpGainPct": 0,
+   "critPct": 0,
+   "regenPerSec": 0,
+   "ricochetPct": 0
+  },
+  "startingWeapon": "weapon_sword",
+  "color": 5087231
+ },
+ {
+  "id": "char_mage",
+  "name": "法师",
+  "description": "伤害更高但身板较脆",
+  "baseStats": {
+   "maxHp": 80,
+   "speed": 160,
+   "armor": 0,
+   "damagePct": 0.1,
+   "areaPct": 0.1,
+   "cooldownPct": 0.05,
+   "magnetRadius": 60,
+   "xpGainPct": 0,
+   "critPct": 0,
+   "regenPerSec": 0,
+   "ricochetPct": 0
+  },
+  "startingWeapon": "weapon_arcane",
+  "color": 11693032
+ },
+ {
+  "id": "char_rogue",
+  "name": "游侠",
+  "description": "移速快，升级更快，但血少",
+  "baseStats": {
+   "maxHp": 90,
+   "speed": 200,
+   "armor": 0,
+   "damagePct": 0,
+   "areaPct": 0,
+   "cooldownPct": 0.1,
+   "magnetRadius": 80,
+   "xpGainPct": 0.1,
+   "critPct": 0,
+   "regenPerSec": 0,
+   "ricochetPct": 0
+  },
+  "startingWeapon": "weapon_fan",
+  "color": 7330174
+ },
+ {
+  "id": "char_berserker",
+  "name": "狂战士",
+  "description": "高伤高血但出手缓慢的近战莽夫",
+  "baseStats": {
+   "maxHp": 150,
+   "speed": 165,
+   "armor": 1,
+   "damagePct": 0.15,
+   "areaPct": 0,
+   "cooldownPct": -0.08,
+   "magnetRadius": 60,
+   "xpGainPct": 0,
+   "critPct": 0,
+   "regenPerSec": 0,
+   "ricochetPct": 0
+  },
+  "startingWeapon": "weapon_axe",
+  "color": 12603456,
+  "unlockCost": 200
+ },
+ {
+  "id": "char_hunter",
+  "name": "猎手",
+  "description": "移速极快的远程狙击手，身板单薄",
+  "baseStats": {
+   "maxHp": 90,
+   "speed": 210,
+   "armor": 0,
+   "damagePct": 0.05,
+   "areaPct": 0,
+   "cooldownPct": 0.05,
+   "magnetRadius": 70,
+   "xpGainPct": 0,
+   "critPct": 0,
+   "regenPerSec": 0,
+   "ricochetPct": 0
+  },
+  "startingWeapon": "weapon_longbow",
+  "color": 7387216,
+  "unlockCost": 150
+ },
+ {
+  "id": "char_cleric",
+  "name": "牧师",
+  "description": "靠圣光环保命的治疗系，输出偏弱",
+  "baseStats": {
+   "maxHp": 110,
+   "speed": 160,
+   "armor": 2,
+   "damagePct": -0.1,
+   "areaPct": 0,
+   "cooldownPct": 0,
+   "magnetRadius": 60,
+   "xpGainPct": 0.1,
+   "critPct": 0,
+   "regenPerSec": 0,
+   "ricochetPct": 0
+  },
+  "startingWeapon": "weapon_nova",
+  "color": 16771232,
+  "unlockCost": 250
+ },
+ {
+  "id": "char_necro",
+  "name": "唤灵师",
+  "description": "本体孱弱的召唤师，升级飞快",
+  "baseStats": {
+   "maxHp": 70,
+   "speed": 175,
+   "armor": 0,
+   "damagePct": -0.15,
+   "areaPct": 0,
+   "cooldownPct": 0,
+   "magnetRadius": 60,
+   "xpGainPct": 0.15,
+   "critPct": 0,
+   "regenPerSec": 0,
+   "ricochetPct": 0
+  },
+  "startingWeapon": "weapon_summon",
+  "color": 12105960,
+  "unlockCost": 300
+ },
+ {
+  "id": "char_assassin",
+  "name": "刺客",
+  "description": "暴击流刺客：+25%暴击，但身板极脆",
+  "baseStats": {
+   "maxHp": 70,
+   "speed": 195,
+   "armor": 0,
+   "damagePct": 0.05,
+   "areaPct": 0,
+   "cooldownPct": 0.05,
+   "magnetRadius": 60,
+   "xpGainPct": 0,
+   "critPct": 0.25,
+   "regenPerSec": 0,
+   "ricochetPct": 0
+  },
+  "startingWeapon": "weapon_knife",
+  "color": 3816010
+ },
+ {
+  "id": "char_alchemist",
+  "name": "炼金术士",
+  "description": "范围轰炸流：范围+20%，起手投掷燃烧瓶",
+  "baseStats": {
+   "maxHp": 90,
+   "speed": 165,
+   "armor": 0,
+   "damagePct": 0,
+   "areaPct": 0.2,
+   "cooldownPct": 0,
+   "magnetRadius": 70,
+   "xpGainPct": 0,
+   "critPct": 0,
+   "regenPerSec": 0,
+   "ricochetPct": 0
+  },
+  "startingWeapon": "weapon_bomb",
+  "color": 6982218
+ },
+ {
+  "id": "char_witch",
+  "name": "女巫",
+  "description": "诅咒流：伤害+20%但冷却+10%、极脆",
+  "baseStats": {
+   "maxHp": 65,
+   "speed": 170,
+   "armor": 0,
+   "damagePct": 0.2,
+   "areaPct": 0,
+   "cooldownPct": -0.1,
+   "magnetRadius": 0,
+   "xpGainPct": 0.1,
+   "critPct": 0,
+   "regenPerSec": 0,
+   "ricochetPct": 0
+  },
+  "startingWeapon": "weapon_miasma",
+  "color": 5913226
+ },
+ {
+  "id": "char_monk",
+  "name": "武僧",
+  "description": "回复流：每秒回2点血，能扛能耗",
+  "baseStats": {
+   "maxHp": 110,
+   "speed": 160,
+   "armor": 1,
+   "damagePct": 0,
+   "areaPct": 0,
+   "cooldownPct": 0,
+   "magnetRadius": 0,
+   "xpGainPct": 0,
+   "critPct": 0,
+   "regenPerSec": 2,
+   "ricochetPct": 0
+  },
+  "startingWeapon": "weapon_palm",
+  "color": 13664304
+ },
+ {
+  "id": "char_duelist",
+  "name": "决斗家",
+  "description": "弹射流：弹射+20%，轻盈致命",
+  "baseStats": {
+   "maxHp": 95,
+   "speed": 185,
+   "armor": 0,
+   "damagePct": 0.05,
+   "areaPct": 0,
+   "cooldownPct": 0,
+   "magnetRadius": 0,
+   "xpGainPct": 0,
+   "critPct": 0.05,
+   "regenPerSec": 0,
+   "ricochetPct": 0.2
+  },
+  "startingWeapon": "weapon_rapier",
+  "color": 3820172
+ },
+ {
+  "id": "char_bard",
+  "name": "吟游诗人",
+  "description": "幸运流：超大拾取范围+经验加成",
+  "baseStats": {
+   "maxHp": 85,
+   "speed": 175,
+   "armor": 0,
+   "damagePct": 0,
+   "areaPct": 0,
+   "cooldownPct": 0,
+   "magnetRadius": 120,
+   "xpGainPct": 0.15,
+   "critPct": 0,
+   "regenPerSec": 0,
+   "ricochetPct": 0
+  },
+  "startingWeapon": "weapon_bible",
+  "color": 3836490
+ }
+]
