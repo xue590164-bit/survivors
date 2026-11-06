@@ -6,6 +6,7 @@ import type { WeaponManager } from '../systems/WeaponManager';
 import type { PassiveManager } from '../systems/PassiveManager';
 import type { CharmSystem } from '../systems/CharmSystem';
 import type { BondSystem } from '../systems/BondSystem';
+import { MOBILE } from '../config';
 import type { BondDef } from '../types';
 import type { Enemy } from '../entities/Enemy';
 import { txt } from './text';
@@ -54,13 +55,13 @@ export class Hud {
       .setOrigin(0.5, 0)
       .setScrollFactor(0)
       .setDepth(Depths.Hud + 1);
-    this.bossText = txt(scene, GAME_WIDTH / 2, 52, '', { fontSize: '14px', color: UI.text.danger })
+    this.bossText = txt(scene, GAME_WIDTH / 2, MOBILE ? 138 : 52, '', { fontSize: '14px', color: UI.text.danger })
       .setOrigin(0.5, 0)
       .setScrollFactor(0)
       .setDepth(Depths.Hud + 1);
-    this.shardImg = scene.add.image(288, 48, 'tex_pickup_relic_shard')
-      .setScale(1).setScrollFactor(0).setDepth(Depths.Hud + 1).setVisible(false);
-    this.shardText = txt(scene, 302, 48, '', { fontSize: '14px', color: UI.text.gold })
+    this.shardImg = scene.add.image(MOBILE ? 530 : 288, MOBILE ? 52 : 48, 'tex_pickup_relic_shard')
+      .setScale(MOBILE ? 1.5 : 1).setScrollFactor(0).setDepth(Depths.Hud + 1).setVisible(false);
+    this.shardText = txt(scene, MOBILE ? 556 : 302, MOBILE ? 52 : 48, '', { fontSize: '14px', color: UI.text.gold })
       .setOrigin(0, 0.5).setScrollFactor(0).setDepth(Depths.Hud + 1).setVisible(false);
   }
 
@@ -70,18 +71,21 @@ export class Hud {
     g.clear();
 
     // ===== XP 条（顶部通栏，描金） =====
+    const S = MOBILE ? 1.9 : 1;
     const xpRatio = Phaser.Math.Clamp(p.xp / p.xpToNext, 0, 1);
-    g.fillStyle(0x141008, 0.92).fillRect(0, 0, GAME_WIDTH, 12);
-    g.fillStyle(UI.colors.gold, 1).fillRect(1, 2, (GAME_WIDTH - 2) * xpRatio, 8);
-    g.lineStyle(1, UI.colors.goldDim, 0.8).strokeRect(0, 0, GAME_WIDTH, 12);
+    g.fillStyle(0x141008, 0.92).fillRect(0, 0, GAME_WIDTH, MOBILE ? 20 : 12);
+    g.fillStyle(UI.colors.gold, 1).fillRect(1, 2, (GAME_WIDTH - 2) * xpRatio, (MOBILE ? 20 : 12) - 4);
+    g.lineStyle(1, UI.colors.goldDim, 0.8).strokeRect(0, 0, GAME_WIDTH, MOBILE ? 20 : 12);
 
     // ===== 左上信息板：暗底金边 + 血条 + Lv/击杀 =====
-    g.fillStyle(0x141008, 0.72).fillRoundedRect(8, 20, 262, 56, 4);
-    g.lineStyle(1, UI.colors.goldDim, 0.7).strokeRoundedRect(8, 20, 262, 56, 4);
+    const bw = 262 * S, bh = 56 * S, hpH = MOBILE ? 22 : 14;
+    g.fillStyle(0x141008, 0.72).fillRoundedRect(8, 20, bw, bh, 4);
+    g.lineStyle(1, UI.colors.goldDim, 0.7).strokeRoundedRect(8, 20, bw, bh, 4);
     const hpRatio = Phaser.Math.Clamp(p.hp / p.stats.maxHp, 0, 1);
-    g.fillStyle(0x2a120c, 1).fillRect(16, 50, 246, 14);
-    g.fillStyle(UI.colors.blood, 1).fillRect(16, 50, 246 * hpRatio, 14);
-    g.lineStyle(1, UI.colors.gold, 0.6).strokeRect(16, 50, 246, 14);
+    const hpY = 20 + bh - hpH - (MOBILE ? 12 : 6);
+    g.fillStyle(0x2a120c, 1).fillRect(16, hpY, bw - 16, hpH);
+    g.fillStyle(UI.colors.blood, 1).fillRect(16, hpY, (bw - 16) * hpRatio, hpH);
+    g.lineStyle(1, UI.colors.gold, 0.6).strokeRect(16, hpY, bw - 16, hpH);
     this.infoText.setText(`Lv.${p.level}   HP ${Math.ceil(p.hp)}/${p.stats.maxHp}   击杀 ${kills}`);
 
     this.timerText.setText(timerLabel ?? `${fmt(runSec)} / ${fmt(durationSec)}`);
@@ -110,10 +114,11 @@ export class Hud {
     const boss = bosses.find((b) => b.active && b.isBoss);
     if (boss) {
       const bw = 420;
+      const barY = MOBILE ? 176 : 72;
       const ratio = Phaser.Math.Clamp(boss.hp / boss.maxHp, 0, 1);
-      g.fillStyle(0x24100e, 0.9).fillRect(GAME_WIDTH / 2 - bw / 2, 72, bw, 12);
-      g.fillStyle(UI.colors.wine, 1).fillRect(GAME_WIDTH / 2 - bw / 2, 72, bw * ratio, 12);
-      g.lineStyle(1, UI.colors.gold, 0.7).strokeRect(GAME_WIDTH / 2 - bw / 2, 72, bw, 12);
+      g.fillStyle(0x24100e, 0.9).fillRect(GAME_WIDTH / 2 - bw / 2, barY, bw, MOBILE ? 18 : 12);
+      g.fillStyle(UI.colors.wine, 1).fillRect(GAME_WIDTH / 2 - bw / 2, barY, bw * ratio, MOBILE ? 18 : 12);
+      g.lineStyle(1, UI.colors.gold, 0.7).strokeRect(GAME_WIDTH / 2 - bw / 2, barY, bw, MOBILE ? 18 : 12);
       this.bossText.setText(`${boss.def.name}   ${Math.ceil(boss.hp)}/${boss.maxHp}`);
     } else {
       this.bossText.setText('');
@@ -126,24 +131,34 @@ export class Hud {
       s.img.destroy();
       s.lv.destroy();
     }
-    const rows: { ids: string[]; y: number }[] = [
-      { ids: wIds, y: 96 },
-      { ids: pIds, y: 130 },
-      { ids: cIds, y: 164 },
-      { ids: bIds, y: 198 },
-    ];
+    const rows: { ids: string[]; y: number }[] = MOBILE
+      ? [
+          { ids: wIds, y: 178 },
+          { ids: pIds, y: 236 },
+          { ids: cIds, y: 294 },
+          { ids: bIds, y: 352 },
+        ]
+      : [
+          { ids: wIds, y: 96 },
+          { ids: pIds, y: 130 },
+          { ids: cIds, y: 164 },
+          { ids: bIds, y: 198 },
+        ];
+    const xStep = MOBILE ? 56 : 34;
+    const x0 = MOBILE ? 36 : 26;
+    const iconScale = MOBILE ? 1.6 : 1;
     const make = (texId: string, x: number, y: number): IconSlot => ({
       img: this.scene.add.image(x, y, `tex_${texId}`)
-        .setScale(1).setScrollFactor(0).setDepth(Depths.Hud + 1),
-      lv: txt(this.scene, x + 10, y + 8, '', { fontSize: '11px', color: UI.text.gold })
+        .setScale(iconScale).setScrollFactor(0).setDepth(Depths.Hud + 1),
+      lv: txt(this.scene, x + (MOBILE ? 18 : 10), y + (MOBILE ? 14 : 8), '', { fontSize: '11px', color: UI.text.gold })
         .setOrigin(0, 0.5).setScrollFactor(0).setDepth(Depths.Hud + 1),
     });
-    this.weaponIcons = wIds.map((id, i) => make(id, 26 + i * 34, rows[0].y));
-    this.passiveIcons = pIds.map((id, i) => make(id, 26 + i * 34, rows[1].y));
-    this.charmIcons = cIds.map((id, i) => make(id, 26 + i * 34, rows[2].y));
+    this.weaponIcons = wIds.map((id, i) => make(id, x0 + i * xStep, rows[0].y));
+    this.passiveIcons = pIds.map((id, i) => make(id, x0 + i * xStep, rows[1].y));
+    this.charmIcons = cIds.map((id, i) => make(id, x0 + i * xStep, rows[2].y));
     this.bondIcons = bIds.map((id, i) => {
       // 羁绊无专属贴图：用配对武器的图标 + 金色调 + ✦ 角标
-      const s = make(this.bondWeaponTex(id) ?? id, 26 + i * 34, rows[3].y);
+      const s = make(this.bondWeaponTex(id) ?? id, x0 + i * xStep, rows[3].y);
       s.img.setTint(0xffd870);
       s.lv.setText('✦');
       return s;

@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { MOBILE } from '../config';
 import { txt } from './text';
 import { UI, woodPanel, parchmentPanel } from './theme';
 
@@ -26,7 +27,7 @@ export function makeButton(
   opts: ButtonOpts = {},
 ): Phaser.GameObjects.Container {
   const w = opts.width ?? 240;
-  const h = opts.height ?? 48;
+  const h = Math.round((opts.height ?? 48) * (MOBILE ? 1.45 : 1));
   const variant = opts.variant ?? 'wood';
   const parchment = variant === 'parchment';
   const fill = opts.bg ?? (parchment ? UI.colors.parchment : variant === 'wine' ? UI.colors.wine : UI.colors.woodMid);

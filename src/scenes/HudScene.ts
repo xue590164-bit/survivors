@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { SceneKeys, Depths, GAME_WIDTH, GAME_HEIGHT } from '../config';
+import { SceneKeys, Depths, GAME_WIDTH, GAME_HEIGHT, MOBILE } from '../config';
 import { txt } from '../ui/text';
 import { Hud } from '../ui/Hud';
 import { LevelUpMenu } from '../ui/LevelUpMenu';
@@ -69,7 +69,7 @@ export class HudScene extends Phaser.Scene {
     this.menu = new LevelUpMenu(this);
 
     if (r.modNames) {
-      txt(this, 16, 82, `词条 ${r.modNames}`, { fontSize: '11px', color: '#ff9050' })
+      txt(this, 16, MOBILE ? 132 : 82, `词条 ${r.modNames}`, { fontSize: '11px', color: '#ff9050' })
         .setOrigin(0, 0)
         .setDepth(Depths.Hud + 1);
     }

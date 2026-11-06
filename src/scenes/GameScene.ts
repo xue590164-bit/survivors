@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { SceneKeys, Depths } from '../config';
+import { SceneKeys, Depths, GAME_ZOOM, MOBILE } from '../config';
 import { db } from '../core/DataRegistry';
 import { saveSystem } from '../core/SaveSystem';
 import { eventBus, GameEvents, type EnemyKilledPayload } from '../core/EventBus';
@@ -26,7 +26,9 @@ import { Projectile } from '../entities/Projectile';
 import type { HudScene } from './HudScene';
 import type { RunResult, StageDef } from '../types';
 
-export interface GameSceneData {
+export const JOY_R = MOBILE ? 70 : 50;
+
+interface GameSceneData {
   characterId?: string;
   stageId?: string;
   /** 难度词条 id 列表 */
@@ -118,7 +120,7 @@ export class GameScene extends Phaser.Scene {
       metaWeaponMods(this.characterId),
     );
     this.cameras.main.startFollow(this.player, true, 0.1, 0.1);
-    this.cameras.main.setZoom(1.5);
+    this.cameras.main.setZoom(GAME_ZOOM);
 
     this.enemyGroup = this.physics.add.group({ classType: Enemy, runChildUpdate: true });
     this.pickupGroup = this.physics.add.group({ classType: Pickup, runChildUpdate: false });
@@ -318,7 +320,7 @@ export class GameScene extends Phaser.Scene {
       this.drawJoy(this.joy.cx, this.joy.cy, p.x, p.y);
       const dx = p.x - this.joy.cx, dy = p.y - this.joy.cy;
       const len = Math.hypot(dx, dy);
-      const k = Math.min(1, len / 50);
+      const k = Math.min(1, len / JOY_R);
       this.player.virtualVec.x = len > 6 ? (dx / len) * k : 0;
       this.player.virtualVec.y = len > 6 ? (dy / len) * k : 0;
     });
@@ -338,15 +340,15 @@ export class GameScene extends Phaser.Scene {
     if (!this.joy) return;
     const dx = px - cx, dy = py - cy;
     const len = Math.hypot(dx, dy) || 1;
-    const k = Math.min(1, len / 50);
-    const nx = cx + (dx / len) * 50 * k;
-    const ny = cy + (dy / len) * 50 * k;
+    const k = Math.min(1, len / JOY_R);
+    const nx = cx + (dx / len) * JOY_R * k;
+    const ny = cy + (dy / len) * JOY_R * k;
     this.joy.base.clear().setVisible(true)
-      .lineStyle(2, 0xd8a838, 0.5).strokeCircle(cx, cy, 52)
-      .fillStyle(0x141008, 0.3).fillCircle(cx, cy, 52);
+      .lineStyle(2, 0xd8a838, 0.5).strokeCircle(cx, cy, JOY_R + 2)
+      .fillStyle(0x141008, 0.3).fillCircle(cx, cy, JOY_R + 2);
     this.joy.nub.clear().setVisible(true)
-      .fillStyle(0xd8a838, 0.7).fillCircle(nx, ny, 20)
-      .lineStyle(2, 0xfff4d0, 0.8).strokeCircle(nx, ny, 20);
+      .fillStyle(0xd8a838, 0.7).fillCircle(nx, ny, JOY_R * 0.4)
+      .lineStyle(2, 0xfff4d0, 0.8).strokeCircle(nx, ny, JOY_R * 0.4);
   }
 
   /** 通关抉择：领取奖励 or 无尽挑战 */

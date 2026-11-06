@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { UI_SCALE } from '../config';
 import { UI } from './theme';
 
 /**
@@ -12,9 +13,18 @@ export function txt(
   content: string | string[],
   style: Phaser.Types.GameObjects.Text.TextStyle = {},
 ): Phaser.GameObjects.Text {
+  // 移动端全局字体放大：'20px' → 20*UI_SCALE
+  const fs = style.fontSize;
+  const scaledFs =
+    typeof fs === 'string' && fs.endsWith('px')
+      ? `${Math.round(parseFloat(fs) * UI_SCALE)}px`
+      : typeof fs === 'number'
+        ? `${Math.round(fs * UI_SCALE)}px`
+        : `${Math.round(16 * UI_SCALE)}px`;
   return scene.add.text(x, y, content, {
     fontFamily: UI.font,
     padding: { top: 4, bottom: 2 },
     ...style,
+    fontSize: scaledFs,
   });
 }
