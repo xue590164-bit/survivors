@@ -354,6 +354,17 @@ export interface ModifierDef {
   };
 }
 
+/** 局外成就：stat 累计/峰值达到 threshold 解锁，奖励金币 */
+export interface AchievementDef {
+  id: string;
+  name: string;
+  desc: string;
+  /** 统计键：kills/runs/wins/depthMax/rushMax/bossKills/godFuse/questDone/levelMax/charmsMax/bondsMax/shards/charsOwned/goldTotal */
+  stat: string;
+  threshold: number;
+  rewardGold: number;
+}
+
 /** 建筑效果：由 MapSystem 按 type 分发 */
 export type BuildingEffectType =
   | 'blood_pact'    // 鲜血祭坛：-10%当前血 → +8%伤害永久

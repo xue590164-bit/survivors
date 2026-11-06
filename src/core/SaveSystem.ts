@@ -10,6 +10,10 @@ export interface SaveData {
   metaNodes: Record<string, string[]>;
   unlockedCharacters: string[];
   unlockedStages: string[];
+  /** 成就统计累计值（kills/runs/wins/...） */
+  stats: Record<string, number>;
+  /** 已解锁成就 id */
+  achievements: string[];
 }
 
 const DEFAULT_SAVE: SaveData = {
@@ -17,6 +21,8 @@ const DEFAULT_SAVE: SaveData = {
   metaNodes: {},
   unlockedCharacters: ['char_knight'],
   unlockedStages: ['stage_forest'],
+  stats: {},
+  achievements: [],
 };
 
 /** 局外存档：localStorage 持久化，负责金币/永久成长/解锁状态 */
@@ -94,6 +100,32 @@ export class SaveSystem {
   unlockStage(id: string): void {
     if (!this.isStageUnlocked(id)) {
       this.data.unlockedStages.push(id);
+      this.save();
+    }
+  }
+
+  // ===== 成就统计 =====
+  stat(k: string): number {
+    // 派生统计：角色持有数实时算，不落盘
+    if (k === 'charsOwned') return this.data.unlockedCharacters.length;
+    return this.data.stats[k] ?? 0;
+  }
+  statInc(k: string, n = 1): void {
+    this.data.stats[k] = (this.data.stats[k] ?? 0) + n;
+    this.save();
+  }
+  statMax(k: string, v: number): void {
+    if (v > (this.data.stats[k] ?? 0)) {
+      this.data.stats[k] = v;
+      this.save();
+    }
+  }
+  isAchievementUnlocked(id: string): boolean {
+    return this.data.achievements.includes(id);
+  }
+  unlockAchievement(id: string): void {
+    if (!this.isAchievementUnlocked(id)) {
+      this.data.achievements.push(id);
       this.save();
     }
   }

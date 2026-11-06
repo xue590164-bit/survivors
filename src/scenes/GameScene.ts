@@ -4,6 +4,7 @@ import { db } from '../core/DataRegistry';
 import { saveSystem } from '../core/SaveSystem';
 import { eventBus, GameEvents, type EnemyKilledPayload } from '../core/EventBus';
 import { metaBonusStats, metaWeaponMods } from '../systems/MetaSystem';
+import { achievements } from '../systems/AchievementSystem';
 import { Player } from '../entities/Player';
 import { Enemy } from '../entities/Enemy';
 import { txt } from '../ui/text';
@@ -183,9 +184,7 @@ export class GameScene extends Phaser.Scene {
         enemies: this.enemyGroup,
         gameScene: this,
         durationSec: this.stageDef.durationSec,
-        modNames: this.modIds.length
-          ? this.modIds.map((id) => db().modifier(id).name).join('·')
-          : undefined,
+        modIds: this.modIds.length ? this.modIds : undefined,
         getTimerLabel: () =>
           this.stageDef.mode === 'bossrush'
             ? `讨伐 ${this.rushIdx} 只 · ${Math.floor(this.runTimeMs / 60000)}:${String(Math.floor(this.runTimeMs / 1000) % 60).padStart(2, '0')}`
@@ -406,6 +405,7 @@ export class GameScene extends Phaser.Scene {
     this.bossSkills.unregister(p.enemy);
     this.bosses = this.bosses.filter((b) => b !== p.enemy);
     this.floatText(p.x, p.y - 30, `${p.enemy.def.name} 被消灭！`, '#ffd700');
+    achievements.bump('bossKills');
     // Boss Rush：讨伐成功 → 回血+奖励，排下一波；循环后整体强化
     if (this.stageDef.mode === 'bossrush' && this.stageDef.bossSequence) {
       const seq = this.stageDef.bossSequence;
@@ -508,6 +508,16 @@ export class GameScene extends Phaser.Scene {
       daily: this.daily || undefined,
     };
     if (this.daily) saveSystem.saveDailyBest(result);
+    // ===== 成就统计 =====
+    achievements.bump('kills', this.kills);
+    achievements.bump('runs');
+    achievements.bump('goldTotal', goldEarned);
+    if (won) achievements.bump('wins');
+    achievements.mark('levelMax', this.player.level);
+    achievements.mark('charmsMax', this.charms.ownedIds().length);
+    achievements.mark('bondsMax', this.bonds.activeIds().length);
+    if (this.stageDef.mode === 'bossrush') achievements.mark('rushMax', this.rushIdx);
+    else achievements.mark('depthMax', this.endlessDepth);
     this.scene.start(SceneKeys.Result, result);
   }
 

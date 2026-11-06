@@ -78,7 +78,7 @@ if (process.argv[2] === 'apply') {
     + '  // ============ 冰原任务/随从 ============\n' + gen(TUNDRA_MISC));
   rep('  // ============ 武器 ============', '  // ============ 进化武器 ============', gen(WPN));
   rep('  // ============ 进化武器 ============', '  // ============ 被动图标 ============', gen(EVO));
-  rep('  // ============ 被动图标 ============', '  // ============ 护符图标 ============', gen(PAS.filter((e) => e.key.startsWith('tex_passive'))));
+  rep('  // ============ 被动图标 ============', '  // ============ 护符图标 ============', gen(PAS.filter((e) => e.key.startsWith('tex_passive') || e.key.startsWith('tex_mod'))));
   rep('  // ============ 护符图标 ============', '  // ============ 掉落物 ============', gen(PAS.filter((e) => e.key.startsWith('tex_charm'))));
   // 散件：prop_campfire_b（粒子段内）与 tex_ui_arrow（箭头段）逐 key 替换
   const solo = [...PROP_C.filter((e) => e.key === 'prop_campfire_b'), ...PICK.filter((e) => e.key === 'tex_ui_arrow')];

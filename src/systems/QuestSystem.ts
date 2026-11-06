@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import { Depths } from '../config';
 import { eventBus, GameEvents } from '../core/EventBus';
+import { achievements } from './AchievementSystem';
 import { telegraphCircle } from './Telegraph';
 import type { StageDef, StageQuest } from '../types';
 import type { Player } from '../entities/Player';
@@ -190,6 +191,7 @@ export class QuestSystem {
     switch (kind) {
       case 'tex_quest_survivor': {
         o.done = true;
+        achievements.bump('questDone');
         o.img.setTint(0x666666).setAlpha(0.7);
         o.glow.setVisible(false);
         const ally = o.data?.ally === false ? null : this.ctx.spawnAlly(o.x, o.y - 14);
@@ -200,6 +202,7 @@ export class QuestSystem {
       }
       case 'tex_bld_beacon_off': {
         o.done = true;
+        achievements.bump('questDone');
         o.img.setTexture(String(o.data?.texOn ?? 'tex_bld_beacon_on'));
         o.glow.setTint(0xffb860).setAlpha(0.4);
         this.beaconLit++;
@@ -210,6 +213,7 @@ export class QuestSystem {
       }
       case 'tex_quest_rift': {
         o.done = true;
+        achievements.bump('questDone');
         o.state = 0;
         o.img.setTint(0x335566).setAlpha(0.6);
         o.glow.setVisible(false);
@@ -240,6 +244,7 @@ export class QuestSystem {
 
   private landAirdrop(o: QuestObj): void {
     o.done = true;
+    achievements.bump('questDone');
     o.glow.setVisible(false);
     telegraphCircle(this.scene, o.x, o.y, 70, 350, 0xffd25e, () => {
       this.ctx.pickups.spawn('pickup_chest', o.x - 30, o.y + 16);

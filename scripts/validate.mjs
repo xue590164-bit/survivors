@@ -152,6 +152,15 @@ for (const m of modifiers) {
 }
 for (const m of modifiers) { if (m.id && modifiers.filter((x) => x.id === m.id).length > 1) err(`modifiers 重复 id: ${m.id}`); }
 
+// ---------- 6.6) 成就 ----------
+const achievementsData = J('achievements');
+for (const a of achievementsData) {
+  if (!a.stat || !(a.threshold > 0)) err(`achievement ${a.id} 缺 stat/threshold`);
+}
+dup(achievementsData, 'achievements');
+// 词条图标引用闭合
+for (const m of modifiers) need(`tex_mod_${m.id.replace('mod_', '')}`, `modifier ${m.id}`);
+
 // ---------- 7) 羁绊 ----------
 for (const b of bonds) {
   for (const wid of b.weaponIds) if (!wIds.has(wid)) err(`bond ${b.id} 引用未知武器 ${wid}`);

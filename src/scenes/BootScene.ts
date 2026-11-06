@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import { SceneKeys } from '../config';
-import { initRegistry } from '../core/DataRegistry';
+import { initRegistry, db } from '../core/DataRegistry';
+import { achievements } from '../systems/AchievementSystem';
 import { SPRITES } from '../art/sprites';
 import { soundSystem } from '../systems/SoundSystem';
 
@@ -22,10 +23,12 @@ export class BootScene extends Phaser.Scene {
     this.load.json('pickups', 'data/pickups.json');
     this.load.json('buildings', 'data/buildings.json');
     this.load.json('modifiers', 'data/modifiers.json');
+    this.load.json('achievements', 'data/achievements.json');
   }
 
   create(): void {
     initRegistry(this.cache);
+    achievements.init(db().achievements());
     this.generateTextures();
     soundSystem.attach(this);
     this.scene.start(SceneKeys.MainMenu);

@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import { db } from '../core/DataRegistry';
 import { eventBus, GameEvents, type EnemyKilledPayload } from '../core/EventBus';
+import { achievements } from './AchievementSystem';
 import { Pickup } from '../entities/Pickup';
 import type { Enemy } from '../entities/Enemy';
 import type { Player } from '../entities/Player';
@@ -122,6 +123,7 @@ export class PickupSystem {
         break;
       case 'relic':
         this.player.relicShards += 1;
+        achievements.bump('shards');
         break;
     }
     pk.collect();

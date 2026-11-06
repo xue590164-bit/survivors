@@ -103,6 +103,10 @@ export class MainMenuScene extends Phaser.Scene {
       }).setOrigin(0.5);
     }
 
+    makeButton(this, GAME_WIDTH / 2, GAME_HEIGHT / 2 + 258, '成 就', () => {
+      this.scene.start(SceneKeys.Achievements);
+    }, { width: 160, height: 40 });
+
     txt(this, GAME_WIDTH / 2, GAME_HEIGHT - 40, 'WASD / 方向键移动，武器自动攻击', {
         fontSize: '14px',
         color: UI.text.dim,

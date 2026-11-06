@@ -15,6 +15,7 @@ export const SceneKeys = {
   Boot: 'BootScene',
   MainMenu: 'MainMenuScene',
   MetaShop: 'MetaShopScene',
+  Achievements: 'AchievementsScene',
   CharSelect: 'CharSelectScene',
   Game: 'GameScene',
   Hud: 'HudScene',

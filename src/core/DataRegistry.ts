@@ -1,4 +1,5 @@
 import type {
+  AchievementDef,
   BondDef,
   BuildingTable,
   CharacterDef,
@@ -90,6 +91,10 @@ export class DataRegistry {
   }
   modifier(id: string): ModifierDef {
     return this.mustFind(this.modifiers(), id);
+  }
+
+  achievements(): AchievementDef[] {
+    return this.cache.json.get('achievements') as AchievementDef[];
   }
 
   private mustFind<T extends { id: string }>(list: T[], id: string): T {

@@ -3,6 +3,7 @@ import { GAME_WIDTH, GAME_HEIGHT } from './config';
 import { BootScene } from './scenes/BootScene';
 import { MainMenuScene } from './scenes/MainMenuScene';
 import { MetaShopScene } from './scenes/MetaShopScene';
+import { AchievementsScene } from './scenes/AchievementsScene';
 import { CharSelectScene } from './scenes/CharSelectScene';
 import { GameScene } from './scenes/GameScene';
 import { HudScene } from './scenes/HudScene';
@@ -32,7 +33,7 @@ async function boot(): Promise<void> {
       width: GAME_WIDTH,
       height: GAME_HEIGHT,
     },
-    scene: [BootScene, MainMenuScene, MetaShopScene, CharSelectScene, GameScene, HudScene, ResultScene],
+    scene: [BootScene, MainMenuScene, MetaShopScene, AchievementsScene, CharSelectScene, GameScene, HudScene, ResultScene],
   });
 }
 

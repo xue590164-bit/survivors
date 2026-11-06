@@ -1,5 +1,7 @@
 import Phaser from 'phaser';
 import { SceneKeys, Depths, GAME_WIDTH, GAME_HEIGHT, MOBILE } from '../config';
+import { db } from '../core/DataRegistry';
+import { UI } from '../ui/theme';
 import { txt } from '../ui/text';
 import { Hud } from '../ui/Hud';
 import { LevelUpMenu } from '../ui/LevelUpMenu';
@@ -33,8 +35,8 @@ export interface HudRefs {
   durationSec: number;
   /** Boss Rush 等模式的计时栏替代文案；undefined 走默认 "当前/总时长" */
   getTimerLabel?: () => string | undefined;
-  /** 本局难度词条名（开局传入，局内不变） */
-  modNames?: string;
+  /** 本局难度词条 id（开局传入，局内不变，HUD 画图标排） */
+  modIds?: string[];
   getRunSec: () => number;
   getKills: () => number;
   getBosses: () => Enemy[];
@@ -68,10 +70,22 @@ export class HudScene extends Phaser.Scene {
     eventBus.on(GameEvents.BondActivated, onBond);
     this.menu = new LevelUpMenu(this);
 
-    if (r.modNames) {
-      txt(this, 16, MOBILE ? 132 : 82, `词条 ${r.modNames}`, { fontSize: '11px', color: '#ff9050' })
-        .setOrigin(0, 0)
-        .setDepth(Depths.Hud + 1);
+    if (r.modIds?.length) {
+      const y = MOBILE ? 140 : 90;
+      r.modIds.forEach((id, i) => {
+        const m = db().modifier(id);
+        const x = 30 + i * (MOBILE ? 44 : 34);
+        const chip = this.add.image(x, y, `tex_mod_${id.replace('mod_', '')}`)
+          .setScale(MOBILE ? 1.8 : 1.4)
+          .setDepth(Depths.Hud + 1)
+          .setInteractive({ useHandCursor: true });
+        chip.on('pointerdown', () => {
+          const tip = txt(this, x, y + 26, `${m.name}：${m.desc}`, {
+            fontSize: '12px', color: UI.text.body,
+          }).setOrigin(0.5, 0).setDepth(Depths.Overlay);
+          this.tweens.add({ targets: tip, alpha: 0, y: y + 40, delay: 1400, duration: 400, onComplete: () => tip.destroy() });
+        });
+      });
     }
 
     if (DEV_MODE) {

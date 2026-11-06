@@ -9993,6 +9993,132 @@ const SPRITES = [
       ".................."
     ]
   },
+  {
+    key: "tex_mod_tough",
+    palette: { K: 1709088, S: 5933642, B: 3824176, E: 9091178 },
+    rows: [
+      "...KKKKKK...",
+      "..KSSSSSSK..",
+      ".KSEESSSEK..",
+      ".KSEESSSEK..",
+      "KSSSSSSSSSK.",
+      "KSSSBBSSSSK.",
+      ".KSSBBSSSK..",
+      ".KSSSSSSSK..",
+      "..KSSSSSK...",
+      "...KSSKSK...",
+      "...KKKKK....",
+      "....KKK....."
+    ]
+  },
+  {
+    key: "tex_mod_swift",
+    palette: { K: 1709088, W: 13691135, B: 6986456, L: 4876954 },
+    rows: [
+      "........KK..",
+      "......KKWWK.",
+      "....KKWWW..K",
+      "..KKWWB....K",
+      ".KWWBB.....K",
+      "KWBB....KKK.",
+      ".KLL..KKK...",
+      "..KKKLLLLKK.",
+      "...KLLLLLLK.",
+      "....KLLLLLK.",
+      ".....KKKKK..",
+      "............"
+    ]
+  },
+  {
+    key: "tex_mod_frail",
+    palette: { K: 1709088, W: 15261904, C: 10127984 },
+    rows: [
+      "..KKKKKKK...",
+      ".KWWWWWWK...",
+      ".KWKKWWWK...",
+      ".KWWKKWWK...",
+      ".KWWWKKWK...",
+      ".KWWWKCKK...",
+      ".KWWKCCKK...",
+      ".KWKKCWWK...",
+      ".KWKCWWWK...",
+      ".KCWWWWWK...",
+      ".KKWWWWWK...",
+      "..KKKKKK...."
+    ]
+  },
+  {
+    key: "tex_mod_stingy",
+    palette: { K: 1709088, B: 9071162, D: 4864544, E: 2760725 },
+    rows: [
+      "............",
+      ".KKKKKKKKK..",
+      ".KBKKKKKBK..",
+      "..KBEEEEBK..",
+      "..KBEEEEBK..",
+      "...KBDDBK...",
+      "....KBDBK...",
+      "....KBBBK...",
+      "....KKKKK...",
+      "............",
+      "............",
+      "............"
+    ]
+  },
+  {
+    key: "tex_mod_horde",
+    palette: { K: 1709088, H: 12619872, B: 5917322 },
+    rows: [
+      "..K..K..K...",
+      ".KHK.KHK.KHK",
+      ".KHK.KHK.KHK",
+      "..K..K..K...",
+      ".KBK.KBK.KBK",
+      "KBBKKBBKKBBK",
+      "KBBKKBBKKBBK",
+      "KBBKKBBKKBBK",
+      "KBBKKBBKKBBK",
+      ".K..K..K....",
+      "............",
+      "............"
+    ]
+  },
+  {
+    key: "tex_mod_nightmare",
+    palette: { K: 1051156, R: 14168112, D: 7346200, W: 16748656 },
+    rows: [
+      "KKKKKKKKKKKK",
+      "K....KK....K",
+      "K..KKRRKK..K",
+      "K.KRRRRRRK.K",
+      "K.KRWKWRRK.K",
+      "K.KRRRRRRK.K",
+      "K..KRRRRK..K",
+      "K...KKKK...K",
+      "K..........K",
+      "K..K....K..K",
+      "KKKKKKKKKKKK",
+      "............"
+    ]
+  },
+  {
+    key: "tex_mod_glass",
+    palette: { K: 1709088, G: 10149104, C: 4889272, W: 15268863 },
+    rows: [
+      ".....KK.....",
+      "....KGGK....",
+      "...KGWWGK...",
+      "..KGWGGGGK..",
+      ".KGGGGGCGK..",
+      ".KGGCCGGGK..",
+      "KGGGGGGGGG..",
+      "KCGGKKKGGK..",
+      ".KGK..KGGK..",
+      "..K...KGK...",
+      "......KK....",
+      "............"
+    ]
+  },
   // ============ 护符图标 ============
   {
     key: "tex_charm_thunder",

@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import { db } from '../core/DataRegistry';
 import { eventBus, GameEvents } from '../core/EventBus';
+import { achievements } from './AchievementSystem';
 import type { Player } from '../entities/Player';
 import type { WeaponManager } from './WeaponManager';
 import type { PassiveManager } from './PassiveManager';
@@ -108,6 +109,7 @@ export class LevelUpSystem {
       case 'weapon_god':
         if (opt.godConsume && this.weapons.fuse(opt.id, opt.godConsume)) {
           this.player.relicShards -= 1;
+          achievements.bump('godFuse');
           this.emitEvolved();
         }
         break;
