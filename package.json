@@ -1,0 +1,21 @@
+{
+  "name": "survivors",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "validate": "node scripts/validate.mjs",
+    "balance": "node scripts/balance-check.mjs",
+    "check": "tsc --noEmit && node scripts/validate.mjs"
+  },
+  "dependencies": {
+    "phaser": "^3.90.0"
+  },
+  "devDependencies": {
+    "typescript": "~5.6.2",
+    "vite": "^5.4.8"
+  }
+}

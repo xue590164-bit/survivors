@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<title>角色动画预览</title>
+<style>
+  body{background:#14141c;color:#d8d4e0;font:14px monospace;padding:16px}
+  h3{margin:14px 0 6px;color:#f0c86a}
+  .row{display:flex;gap:14px;flex-wrap:wrap}
+  .cell{background:#1e1e28;border:1px solid #333;padding:6px;text-align:center}
+  canvas{image-rendering:pixelated;display:block;margin:0 auto}
+  .lbl{font-size:11px;color:#8a8a9a;margin-top:4px}
+</style>
+</head>
+<body>
+<h2>走路循环预览（220ms/帧，与游戏一致）</h2>
+<div id="app"></div>
+<script>
+const CHARS=['knight','mage','rogue','berserker','hunter','cleric','necro','assassin','alchemist','witch','monk','duelist','bard'];
+const VIEWS=[['', '正面'],['_up','背面'],['_side','侧面']];
+const FRAMES=['','_f1','_f2','_f3'];
+const app=document.getElementById('app');
+const players=[];
+for(const c of CHARS){
+  const h=document.createElement('h3');h.textContent=c;app.appendChild(h);
+  const row=document.createElement('div');row.className='row';app.appendChild(row);
+  for(const[v,label]of VIEWS){
+    const cell=document.createElement('div');cell.className='cell';
+    const cv=document.createElement('canvas');
+    const lb=document.createElement('div');lb.className='lbl';lb.textContent=label;
+    cell.appendChild(cv);cell.appendChild(lb);row.appendChild(cell);
+    const imgs=FRAMES.map(f=>{const im=new Image();im.src=`tex_char_${c}${v}${f}.png`;return im;});
+    players.push({cv,imgs});
+  }
+}
+let idx=0;
+setInterval(()=>{
+  for(const p of players){
+    const im=p.imgs[idx%p.imgs.length];
+    if(im.complete&&im.naturalWidth){
+      p.cv.width=im.naturalWidth*3;p.cv.height=im.naturalHeight*3;
+      const ctx=p.cv.getContext('2d');ctx.imageSmoothingEnabled=false;
+      ctx.clearRect(0,0,p.cv.width,p.cv.height);
+      ctx.drawImage(im,0,0,p.cv.width,p.cv.height);
+    }
+  }
+  idx++;
+},220);
+</script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+[
+ {
+  "id": "ach_kill1",
+  "name": "初露锋芒",
+  "desc": "累计击杀 1,000 只怪物",
+  "stat": "kills",
+  "threshold": 1000,
+  "rewardGold": 100
+ },
+ {
+  "id": "ach_kill2",
+  "name": "千军破",
+  "desc": "累计击杀 10,000 只怪物",
+  "stat": "kills",
+  "threshold": 10000,
+  "rewardGold": 300
+ },
+ {
+  "id": "ach_kill3",
+  "name": "灭世者",
+  "desc": "累计击杀 50,000 只怪物",
+  "stat": "kills",
+  "threshold": 50000,
+  "rewardGold": 800,
+  "unlockDesc": "解锁护符「灭世印」"
+ },
+ {
+  "id": "ach_run1",
+  "name": "常客",
+  "desc": "累计进行 5 局游戏",
+  "stat": "runs",
+  "threshold": 5,
+  "rewardGold": 80
+ },
+ {
+  "id": "ach_run2",
+  "name": "百战余生",
+  "desc": "累计进行 25 局游戏",
+  "stat": "runs",
+  "threshold": 25,
+  "rewardGold": 300
+ },
+ {
+  "id": "ach_win1",
+  "name": "旗开得胜",
+  "desc": "首次通关任意地图",
+  "stat": "wins",
+  "threshold": 1,
+  "rewardGold": 200
+ },
+ {
+  "id": "ach_win2",
+  "name": "常胜将军",
+  "desc": "累计通关 5 次",
+  "stat": "wins",
+  "threshold": 5,
+  "rewardGold": 500
+ },
+ {
+  "id": "ach_deep1",
+  "name": "深渊行者",
+  "desc": "无尽模式达到 3 层深度",
+  "stat": "depthMax",
+  "threshold": 3,
+  "rewardGold": 300
+ },
+ {
+  "id": "ach_deep2",
+  "name": "深渊征服者",
+  "desc": "无尽模式达到 8 层深度",
+  "stat": "depthMax",
+  "threshold": 8,
+  "rewardGold": 800,
+  "unlockDesc": "解锁武器「虚空新星」"
+ },
+ {
+  "id": "ach_rush1",
+  "name": "斗场勇士",
+  "desc": "Boss Rush 讨伐 5 只 Boss",
+  "stat": "rushMax",
+  "threshold": 5,
+  "rewardGold": 300
+ },
+ {
+  "id": "ach_rush2",
+  "name": "斗场霸主",
+  "desc": "Boss Rush 讨伐全部 9 只 Boss",
+  "stat": "rushMax",
+  "threshold": 9,
+  "rewardGold": 600,
+  "unlockCharId": "char_ronin",
+  "unlockDesc": "解锁隐藏角色「浪人」"
+ },
+ {
+  "id": "ach_boss1",
+  "name": "猎手",
+  "desc": "累计击杀 10 只 Boss",
+  "stat": "bossKills",
+  "threshold": 10,
+  "rewardGold": 150
+ },
+ {
+  "id": "ach_boss2",
+  "name": "屠夫",
+  "desc": "累计击杀 50 只 Boss",
+  "stat": "bossKills",
+  "threshold": 50,
+  "rewardGold": 500
+ },
+ {
+  "id": "ach_god1",
+  "name": "铸剑师",
+  "desc": "首次合成神兵",
+  "stat": "godFuse",
+  "threshold": 1,
+  "rewardGold": 300
+ },
+ {
+  "id": "ach_god2",
+  "name": "神兵收藏家",
+  "desc": "累计合成 3 次神兵",
+  "stat": "godFuse",
+  "threshold": 3,
+  "rewardGold": 600,
+  "unlockDesc": "解锁护符「神眷符」"
+ },
+ {
+  "id": "ach_quest1",
+  "name": "冒险家",
+  "desc": "累计完成 10 个局内任务",
+  "stat": "questDone",
+  "threshold": 10,
+  "rewardGold": 200
+ },
+ {
+  "id": "ach_lv1",
+  "name": "炉火纯青",
+  "desc": "单局达到 20 级",
+  "stat": "levelMax",
+  "threshold": 20,
+  "rewardGold": 150
+ },
+ {
+  "id": "ach_lv2",
+  "name": "陆地神仙",
+  "desc": "单局达到 30 级",
+  "stat": "levelMax",
+  "threshold": 30,
+  "rewardGold": 400
+ },
+ {
+  "id": "ach_charm1",
+  "name": "护符大师",
+  "desc": "单局同时持有 3 个护符",
+  "stat": "charmsMax",
+  "threshold": 3,
+  "rewardGold": 150
+ },
+ {
+  "id": "ach_bond1",
+  "name": "羁绊大师",
+  "desc": "单局同时激活 3 条羁绊",
+  "stat": "bondsMax",
+  "threshold": 3,
+  "rewardGold": 200
+ },
+ {
+  "id": "ach_shard1",
+  "name": "寻宝者",
+  "desc": "累计拾取 10 枚神兵残片",
+  "stat": "shards",
+  "threshold": 10,
+  "rewardGold": 200
+ },
+ {
+  "id": "ach_chars",
+  "name": "全员集结",
+  "desc": "解锁全部 13 位英雄",
+  "stat": "charsOwned",
+  "threshold": 13,
+  "rewardGold": 500
+ },
+ {
+  "id": "ach_gold1",
+  "name": "富翁",
+  "desc": "累计赚取 5,000 金币",
+  "stat": "goldTotal",
+  "threshold": 5000,
+  "rewardGold": 250
+ }
+]
